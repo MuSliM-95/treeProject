@@ -1,0 +1,126 @@
+{
+	"settingsTitle": "Настройки узла",
+	"nameLabel": "Название узла",
+	"namePlaceholder": "Введите имя узла",
+	"imageLabel": "Ссылка на изображение",
+	"imagePlaceholder": "https://example.com",
+	"bioLabel": "Ссылка на биографию",
+	"bioPlaceholder": "https://example.com",
+	"textColor": "Цвет текста",
+	"nodeColor": "Цвет узлов",
+	"posX": "Позиция X",
+	"posY": "Позиция Y",
+	"applyChanges": "Применить изменения",
+	"addNode": "+ Добавить узел",
+	"addChild": "Добавить потомка",
+	"deleteNode": "Удалить узел",
+	"changeTextColor": "Изменить цвет текста",
+	"changeAnimatedNode": "Анимировать узлы",
+	"changeNodeColor": "Изменить цвет узлов",
+
+	"delete_links": "Удалить ссылки",
+
+	"yourTree": "Ваше дерево",
+	"nodeCount": "Количество узлов",
+	"edgeCount": "Количество соединений",
+	"appearance": "Вид",
+
+	"title": "Несохранённые изменения",
+	"message": "Вы действительно хотите выйти? Все несохранённые данные будут потеряны.",
+	"cancel": "Отмена",
+	"confirm": "Выйти без сохранения",
+
+	"handles_behavior": {
+		"title": "Поведение ручек",
+		"top": "Сверху",
+		"top-bottom": "Сверху и снизу"
+	},
+
+	"edgeColor": "Цвет веток",
+	"changeEdgeColor": "Изменить цвет веток",
+	"showHandles": "Показать ручки",
+	"animateBranches": "Анимировать ветки",
+	"nodeView": "Анимация узлов",
+	"statusLabels": {
+		"initial": "Базовый",
+		"loading": "Загрузка",
+		"success": "Зеленый",
+		"error": "Красный"
+	},
+
+	"branchSettings": {
+		"title": "Настройки ветки",
+		"id": "ID ветки",
+		"source": "source",
+		"target": "target",
+		"color": "Цвет",
+		"animated": "Анимация",
+		"delete": "Удалить ветку"
+	},
+	"feedback": {
+		"title": "Оставьте отзыв",
+		"description": "Пожалуйста, оставьте небольшой отзыв и ответьте на пару вопросов. Это поможет улучшить продукт.",
+		"button": "Перейти к опросу"
+	},
+	"download": {
+		"title": "Выберите формат",
+		"button": "Скачать дерево",
+		"format": "Формат",
+		"loadTree": "Загрузить дерево",
+		"emptyTree": "Дерево пустое.",
+		"jsonDownloaded": "JSON файл загружен.",
+		"imageDownloaded": "Изображение формата {{format}} загружено.",
+		"errorSaveTree": "Ошибка при сохранении дерева",
+		"invalidFile": "Файл не содержит корректное дерево",
+		"errorReadFile": "Ошибка при чтении файла",
+		"treeLoaded": "Дерево загружено"
+	},
+	"theme": {
+		"label": "Тема",
+		"dark": "Чёрная",
+		"light": "Белая"
+	},
+	"backgroundVariants": {
+		"cross": "Крест",
+		"dots": "Точки",
+		"lines": "Линии"
+	},
+	"button": {
+		"clearCanvas": "Отчистить холст",
+		"restore": "Вернуть"
+	},
+	"button_save_tree": {
+		"saveTree": "Сохранить дерево",
+		"treeSaved": "Дерево сохранено в браузере."
+	},
+	"button_center": {
+		"center": "Центрировать"
+	},
+	"feedback-form": {
+		"back": "Назад",
+		"title": "Пожалуйста, оставьте отзыв",
+		"subtitle": "Ответьте на пару вопросов — это займёт менее минуты",
+		"treeQuestion": "Вы уже создали своё дерево?",
+		"yes": "Да",
+		"no": "Нет",
+		"commentLabel": "Комментарий",
+		"commentPlaceholder": "Что вам понравилось? Что можно улучшить?",
+		"contactLabel": "Контакт для связи (необязательно)",
+		"contactPlaceholder": "Ваш email или Telegram",
+		"submit": "Отправить",
+		"thankYouTitle": "Спасибо за отзыв!",
+		"thankYouText": "Нам очень важно ваше мнение ❤️",
+
+		"errors": {
+			"treeRequired": "Выберите, создали ли вы дерево",
+			"commentTooShort": "Пожалуйста, оставьте хотя бы короткий отзыв",
+			"invalidEmail": "Некорректный email"
+		}
+	},
+
+	"links": {
+		"errors": {
+			"mustStartWithHttps": "Ссылка должна начинаться с https://"
+		}
+	}
+}

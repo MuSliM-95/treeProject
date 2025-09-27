@@ -1,0 +1,123 @@
+{
+	"settingsTitle": "Node Settings",
+	"nameLabel": "Node Name",
+	"namePlaceholder": "Enter node name",
+	"imageLabel": "Image URL",
+	"imagePlaceholder": "https://example.com",
+	"bioLabel": "Biography URL",
+	"bioPlaceholder": "https://example.com",
+	"textColor": "Text Color",
+	"nodeColor": "Node Color",
+	"posX": "Position X",
+	"posY": "Position Y",
+	"applyChanges": "Apply Changes",
+	"addNode": "+ Add Node",
+	"addChild": "Add Child",
+	"deleteNode": "Delete Node",
+	"changeTextColor": "Change text color",
+	"changeAnimatedNode": "Animate nodes",
+	"changeNodeColor": "Change node color",
+	"delete_links": "Remove links",
+	"handles_behavior": {
+		"title": "Handles Behavior",
+		"top": "Top",
+		"top-bottom": "Top-Bottom"
+	},
+
+	"title": "Unsaved changes",
+	"message": "Are you sure you want to leave? All unsaved data will be lost.",
+	"cancel": "Cancel",
+	"confirm": "Leave without saving",
+
+	"yourTree": "Your Tree",
+	"nodeCount": "Node count",
+	"edgeCount": "Connection count",
+	"appearance": "Appearance",
+	"edgeColor": "Edge color",
+	"changeEdgeColor": "Change edge color",
+	"showHandles": "Show handles",
+	"animateBranches": "Animate branches",
+	"nodeView": "Node Animation",
+	"statusLabels": {
+		"initial": "Default",
+		"loading": "loading",
+		"success": "green",
+		"error": "red"
+	},
+
+	"branchSettings": {
+		"title": "Branch Settings",
+		"id": "Branch ID",
+		"source": "Source",
+		"target": "Target",
+		"color": "Color",
+		"animated": "Animation",
+		"delete": "Delete Branch"
+	},
+	"feedback": {
+		"title": "Leave Feedback",
+		"description": "Please leave a short review and answer a few questions. This will help improve the product.",
+		"button": "Go to the survey"
+	},
+	"download": {
+		"title": "Choose format",
+		"button": "Download tree",
+		"format": "Format",
+		"loadTree": "Load Tree",
+		"emptyTree": "Tree is empty.",
+		"jsonDownloaded": "JSON file downloaded.",
+		"imageDownloaded": "Image in {{format}} format downloaded.",
+		"errorSaveTree": "Error saving tree",
+		"invalidFile": "File does not contain a valid tree",
+		"errorReadFile": "Error reading file",
+		"treeLoaded": "Tree loaded"
+	},
+	"theme": {
+		"label": "Theme",
+		"dark": "Dark",
+		"light": "Light"
+	},
+	"backgroundVariants": {
+		"cross": "Cross",
+		"dots": "Dots",
+		"lines": "Lines"
+	},
+	"button": {
+		"clearCanvas": "Clear Canvas",
+		"restore": "Restore"
+	},
+	"button_save_tree": {
+		"saveTree": "Save Tree",
+		"treeSaved": "Tree has been saved in the browser."
+	},
+	"button_center": {
+		"center": "Center"
+	},
+	"feedback-form": {
+		"back": "Back",
+		"title": "Please leave feedback",
+		"subtitle": "Answer a few questions — it will take less than a minute",
+		"treeQuestion": "Have you already created your tree?",
+		"yes": "Yes",
+		"no": "No",
+		"commentLabel": "Comment",
+		"commentPlaceholder": "What did you like? What could be improved?",
+		"contactLabel": "Contact info (optional)",
+		"contactPlaceholder": "Your email or Telegram",
+		"submit": "Submit",
+		"thankYouTitle": "Thank you for your feedback!",
+		"thankYouText": "Your opinion means a lot to us ❤️",
+
+		"errors": {
+			"treeRequired": "Please select if you have created a tree",
+			"commentTooShort": "Please leave at least a short comment",
+			"invalidEmail": "Invalid email"
+		}
+	},
+
+	"links": {
+		"errors": {
+			"mustStartWithHttps": "The link must start with https://"
+		}
+	}
+}

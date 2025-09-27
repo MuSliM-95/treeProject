@@ -1,0 +1,35 @@
+{
+	"privacy": {
+		"title": "Privacy Policy",
+		"toc": {
+			"about": "1. About the project",
+			"data": "2. What data we collect",
+			"cookies": "3. Cookies and tracking",
+			"security": "4. Data security",
+			"userRights": "5. User rights",
+			"ads": "6. Ads and project support",
+			"external": "7. External links",
+			"responsibility": "8. Responsibility",
+			"changes": "9. Policy changes",
+			"contacts": "10. Contacts"
+		},
+		"sections": {
+			"about": "This web application is designed for creating and storing a family genealogy tree. The project is non-commercial and aims to help people preserve family memory for future generations.",
+			"data": "At this stage, we do not collect or store personal data (name, email, etc.). The tree is stored in your browser's local storage. You can download the tree in PNG, JPG, or JSON format and upload it back in JSON format if necessary.",
+			"cookies": "We use cookies solely to save site settings (language, theme). Third-party services do not have access to your data.",
+			"security": "Your data is stored in the browser's local storage. We recommend not using public devices to work with the tree to avoid data leakage.",
+			"userRights": "You can download your tree in PNG, JPG, or JSON format at any time and delete data from your browser's local storage.",
+			"ads": "In the future, ads and buttons for voluntary support (donations) may be placed on the site. We do not process your payment data — payment systems handle it. The project monitors changes in Russian legislation and takes measures to comply with applicable laws.",
+			"external": "If you follow external links or use payment systems to support the project, we are not responsible for their privacy policies.",
+			"responsibility": "The project is provided free of charge. We are not responsible for data integrity, technical failures, or loss of information.",
+			"changes": "The policy may be updated as the project develops. The updated version will be published on this page.",
+			"contacts": "If you have any questions, write to: Gmail"
+		}
+	},
+	"termsPage": {
+		"disclaimer": {
+			"title": "Terms of Use",
+			"text": "We do not store any data on our side. Use the site freely, and do not violate the laws of your country. You can embed the site in your apps and bots. We reserve the right to change these terms at our discretion."
+		}
+	}
+}
