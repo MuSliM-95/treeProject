@@ -14,6 +14,7 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 import { HomeReactXFlow } from './HomeReactXFlow'
 import { Reviews } from './Reviews'
+
 'render HomePage'
 export default function HomePage() {
 	const { t } = useTranslation()

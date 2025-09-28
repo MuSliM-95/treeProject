@@ -1,12 +1,12 @@
 'use client'
 
 import { useTranslation } from 'next-i18next'
-import React, { useEffect, useRef, useState } from 'react'
-import { toast } from 'sonner'
+import React, { useEffect, useState } from 'react'
 
 import { cn } from '@/shared/utils'
 
 import { CustomAd } from './CustomAd'
+import { PromoBanner } from './PromoBanner'
 
 interface Props {
 	className?: string
@@ -62,13 +62,6 @@ const adsRU3 = [
 
 // Реклама для EN
 const adsEN = [
-	{
-		title: 'Learn JavaScript from Scratch',
-		description:
-			'Basics of the language and hands-on practice for beginners',
-		url: 'https://example.com/js-course',
-		image: 'js-en.png'
-	},
 	{
 		title: 'Creatium',
 		description:
@@ -131,7 +124,8 @@ export const Advertising: React.FC<Props> = ({ className }) => {
 				</h3>
 			</div>
 
-			<div
+			<PromoBanner />
+			{/* <div
 				className={cn(isEnglish && 'hidden', 'mx-auto mt-10 max-w-7xl')}
 			>
 				<script
@@ -142,13 +136,15 @@ export const Advertising: React.FC<Props> = ({ className }) => {
 					className='wps-widget'
 					data-w='//wpwidget.ru/greetings?orientation=3&pid=29659'
 				></div>
-			</div>
+			</div> */}
 
-			<div className='mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3'>
-				<CustomAd ads={ads} />
-				<CustomAd ads={ads2} />
-				<CustomAd ads={ads3} />
-			</div>
+			{!isEnglish && (
+				<div className='mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3'>
+					<CustomAd ads={ads} />
+					<CustomAd ads={ads2} />
+					<CustomAd ads={ads3} />
+				</div>
+			)}
 		</section>
 	)
 }
