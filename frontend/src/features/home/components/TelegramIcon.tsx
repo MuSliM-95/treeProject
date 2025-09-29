@@ -26,8 +26,8 @@ export const TelegramIcon: React.FC<Props> = ({ className }) => {
 			<Link
 				href={
 					language === 'ru'
-						? 'https://t.me/ideasAnd_Actions'
-						: 'https://t.me/ideasAnd_Actions_en'
+						? 'https://t.me/AsIntended_ru'
+						: 'https://t.me/AsIntended_en'
 				}
 				target='_blank'
 				className='flex items-center gap-2 border-b-2 border-transparent text-[#6a4e3a] hover:border-[#6a4e3a]'

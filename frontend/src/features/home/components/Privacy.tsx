@@ -10,7 +10,7 @@ export function Privacy() {
 
 	return (
 		<InfoNavProvider>
-			<div className='mx-auto max-w-3xl py-10'>
+			<div className='mx-auto max-w-3xl p-4'>
 				<h1 className='mb-6 text-3xl font-bold'>
 					{t('privacy.title')}
 				</h1>

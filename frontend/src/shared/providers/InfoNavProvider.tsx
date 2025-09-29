@@ -4,7 +4,13 @@ import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { BackButton, Button, Card, ScrollArea } from '@/shared/components'
+import {
+	BackButton,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger
+} from '@/shared/components'
 
 export const InfoNavProvider: React.FC<PropsWithChildren<unknown>> = ({
 	children
@@ -17,31 +23,62 @@ export const InfoNavProvider: React.FC<PropsWithChildren<unknown>> = ({
 	>
 
 	return (
-		<div className='flex gap-6'>
-			{/* Левая колонка: навигация */}
-			<Card className='sticky top-4 self-start rounded-lg border-gray-200'>
-				<ScrollArea  className='h-[80vh] p-4'>
-					<nav className='space-y-2'>
-						{Object.entries(toc).map(([key, text]) => (
-							<Link
-								key={key}
-								href={`/${key}`}
-								className='block rounded-md px-3 py-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900'
-							>
-								{text}
-							</Link>
-						))}
-					</nav>
-				</ScrollArea>
-			</Card>
+		<div className='flex flex-col gap-4 lg:flex-row'>
+			{/* ===== Меню для мобильных ===== */}
+			<div className='lg:hidden'>
+				<DropdownMenu className='mt-2 ml-2'>
+					<DropdownMenuTrigger className='rounded-md border px-4 py-2 shadow-sm'>
+						Меню
+					</DropdownMenuTrigger>
+					<DropdownMenuContent className='min-w-[200px]'>
+						<nav className='space-y-2'>
+							<DropdownMenuItem>
+								<Link
+									href='/'
+									className='flex items-center gap-2 rounded-md text-gray-700 transition-colors hover:text-gray-900'
+								>
+									<BackButton className='relative top-auto left-auto' />
+								</Link>
+							</DropdownMenuItem>
 
-			{/* Правая колонка: контент */}
-			<div className='flex-1'>
-				<Link href='/' className='fixed top-2 left-2'>
-					<BackButton />
+							{Object.entries(toc).map(([key, text]) => (
+								<DropdownMenuItem key={key}>
+									<Link
+										href={`/${key}`}
+										className='block w-full rounded-md px-3 py-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900'
+									>
+										{text}
+									</Link>
+								</DropdownMenuItem>
+							))}
+						</nav>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			</div>
+
+			{/* ===== Меню для десктопа ===== */}
+			<nav className='hidden w-64 space-y-2 border-r pr-4 lg:block'>
+				<Link
+					href='/'
+					className='flex items-center gap-2 rounded-md text-gray-700 transition-colors hover:text-gray-900'
+				>
+					<BackButton className='relative top-auto left-auto' />
 				</Link>
 
-				{children}
+				{Object.entries(toc).map(([key, text]) => (
+					<Link
+						key={key}
+						href={`/${key}`}
+						className='block rounded-md px-3 py-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900'
+					>
+						{text}
+					</Link>
+				))}
+			</nav>
+
+			{/* ===== Контент ===== */}
+			<div className='flex-1'>
+				<div className='mt-4 lg:mt-0'>{children}</div>
 			</div>
 		</div>
 	)
