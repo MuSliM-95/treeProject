@@ -21,7 +21,7 @@ i18n.use(Backend)
 		debug: true,
 		detection: {
 			order: ['localStorage', 'navigator'],
-			caches: ['localStorage']
+			caches: ['localStorage', 'cookie']
 		},
 		resources: {
 			en: { translation: homeEN, tree: treeEN, auth: authEN, privacy: privacyEN },

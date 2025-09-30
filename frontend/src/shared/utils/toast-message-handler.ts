@@ -5,7 +5,6 @@ interface IError extends Error {
 }
 
 export function toastMessageHandler(error: Error) {
-	// console.log(error);
 	
 	if (error.message) {
 		const errorMessage = error.message

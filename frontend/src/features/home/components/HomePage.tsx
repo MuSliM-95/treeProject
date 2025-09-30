@@ -2,7 +2,7 @@
 
 import { TelegramIcon } from '.'
 import { motion } from 'framer-motion'
-import { ArrowRight, User } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
@@ -15,7 +15,6 @@ import { Header } from './Header'
 import { HomeReactXFlow } from './HomeReactXFlow'
 import { Reviews } from './Reviews'
 
-'render HomePage'
 export default function HomePage() {
 	const { t } = useTranslation()
 	return (
