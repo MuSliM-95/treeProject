@@ -18,64 +18,66 @@ import { Reviews } from './Reviews'
 export default function HomePage() {
 	const { t } = useTranslation()
 	return (
-		<main className='min-h-screen overflow-x-hidden px-4 py-8 text-[#2e2e2e] md:px-20'>
+		<div className='min-h-screen overflow-x-hidden px-4 py-8 text-[#2e2e2e] md:px-20'>
 			<Header />
-			<section className='mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 md:flex-row'>
-				<motion.div
-					initial={{ opacity: 0, x: -20 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ duration: 0.6 }}
-					className='flex-1'
-				>
-					<h2 className='font-serif text-4xl leading-snug font-bold text-[#4a372a] md:text-5xl'>
-						{t('homepage.exploreRoots')}
-					</h2>
-					<p className='mt-4 max-w-xl text-lg text-[#5a4638]'>
-						{t('homepage.archiveBuildPreserve')}
-					</p>
-					<div className='mt-6 flex flex-wrap gap-4'>
-						<Link
-							href={'/tree'}
-							className='flex items-center  rounded-md bg-[#6a4e3a] px-6 text-lg text-white hover:bg-[#523a2a]'
-						>
-							{t('homepage.getStarted')}
-							<ArrowRight className='ml-2 h-2 w-2 mt-1' />
-						</Link>
-						<Link href='/lear-more'>
-							<Button
-								variant='outline'
-								className='border-[#6a4e3a] text-[#6a4e3a] hover:bg-[#f3ebe3]'
+			<main>
+				<section className='mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 md:flex-row'>
+					<motion.div
+						initial={{ opacity: 0, x: -20 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.6 }}
+						className='flex-1'
+					>
+						<h2 className='font-serif text-4xl leading-snug font-bold text-[#4a372a] md:text-5xl'>
+							{t('homepage.exploreRoots')}
+						</h2>
+						<p className='mt-4 max-w-xl text-lg text-[#5a4638]'>
+							{t('homepage.archiveBuildPreserve')}
+						</p>
+						<div className='mt-6 flex flex-wrap gap-4'>
+							<Link
+								href={'/tree'}
+								className='flex items-center rounded-md bg-[#6a4e3a] px-6 text-lg text-white hover:bg-[#523a2a]'
 							>
-								{t('homepage.infoPage.lear-more')}
-							</Button>
-						</Link>
-					</div>
-				</motion.div>
-
-				<motion.div
-					initial={{ opacity: 0, x: 20 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ duration: 0.6 }}
-				>
-					<div className='max-w-sm overflow-hidden'>
-						<img
-							src='/images/untitled-design-19.png'
-							alt={t('homepage.familyImageAlt')}
-							className='w-full rounded-t-2xl object-cover'
-						/>
-						<div className='p-4 text-center font-serif text-sm text-[#5e4432] italic'>
-							{t('homepage.familyQuote')}
+								{t('homepage.getStarted')}
+								<ArrowRight className='mt-1 ml-2 h-2 w-2' />
+							</Link>
+							<Link href='/lear-more'>
+								<Button
+									variant='outline'
+									className='border-[#6a4e3a] text-[#6a4e3a] hover:bg-[#f3ebe3]'
+								>
+									{t('homepage.infoPage.lear-more')}
+								</Button>
+							</Link>
 						</div>
-					</div>
-				</motion.div>
-			</section>
+					</motion.div>
 
-			<HomeReactXFlow />
-			<Advertising />
-			<TelegramIcon />
-			<FaqSection />
-			<Reviews />
+					<motion.div
+						initial={{ opacity: 0, x: 20 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.6 }}
+					>
+						<div className='max-w-sm overflow-hidden'>
+							<img
+								src='/images/untitled-design-19.png'
+								alt={t('homepage.familyImageAlt')}
+								className='w-full rounded-t-2xl object-cover'
+							/>
+							<div className='p-4 text-center font-serif text-sm text-[#5e4432] italic'>
+								{t('homepage.familyQuote')}
+							</div>
+						</div>
+					</motion.div>
+				</section>
+
+				<HomeReactXFlow />
+				<Advertising />
+				<TelegramIcon />
+				<FaqSection />
+				<Reviews />
+			</main>
 			<Footer />
-		</main>
+		</div>
 	)
 }

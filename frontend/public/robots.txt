@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://genealogyhub.ru
+
+# Sitemaps
+Sitemap: https://genealogyhub.ru/sitemap.xml

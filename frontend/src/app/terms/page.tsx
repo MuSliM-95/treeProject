@@ -1,10 +1,7 @@
 'use client'
 
-import { ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
-import { Button } from '@/shared/components'
 import { InfoNavProvider } from '@/shared/providers'
 
 export default function TermsPage() {
