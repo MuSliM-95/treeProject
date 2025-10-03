@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useReactFlow } from '@xyflow/react'
-import React, { Dispatch, SetStateAction, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'

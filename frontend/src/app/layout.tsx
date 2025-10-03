@@ -30,6 +30,13 @@ export async function generateMetadata(): Promise<Metadata> {
 		verification: {
 			google: 'K4NjTpnl-Yu4tWYOS-afGUtZA3PIIZM-AH30tKuJrzo',
 			yandex: '016d187c35064f23'
+		},
+		openGraph: {
+			title: t('title'),
+			description: t('description'),
+			url: 'https://genealogyhub.ru',
+			siteName: t('name'),
+			images: [{ url: '/images/network.svg' }]
 		}
 	}
 }
