@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Position, Viewport, useReactFlow } from '@xyflow/react'
+import { Position, useReactFlow } from '@xyflow/react'
 import { useEffect } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -64,9 +64,6 @@ export function NodeForm({
 
 	useEffect(() => {
 		if (selectedNode) {
-			form.setValue('posX', getViewport().x)
-			form.setValue('posY', getViewport().y)
-
 			form.setValue('label', selectedNode.data.label)
 			form.setValue('posX', selectedNode.position.x)
 			form.setValue('posY', selectedNode.position.y)
