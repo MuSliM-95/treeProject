@@ -198,8 +198,8 @@ export default function GenealogyEditor({
 				]}
 				nodeTypes={nodeTypes as any}
 				defaultViewport={{
-					x: 925,
-					y: 311,
+					x: 0,
+					y: 0,
 					zoom: 1
 				}}
 				className='intersection-flow max-w-full'

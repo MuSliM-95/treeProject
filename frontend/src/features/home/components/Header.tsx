@@ -14,7 +14,6 @@ import {
 } from '@/shared/components'
 
 import { langToggle } from '../hooks/homeSlice'
-import { toast } from 'sonner'
 
 interface Props {
 	className?: string

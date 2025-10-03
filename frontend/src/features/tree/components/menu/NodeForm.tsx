@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Position, useReactFlow } from '@xyflow/react'
+import { Position, Viewport, useReactFlow } from '@xyflow/react'
 import { useEffect } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -40,7 +40,8 @@ export function NodeForm({
 	const { t } = useTranslation('tree')
 	const nodesStatus = useAppSelector(state => state.tree.nodesStatus)
 
-	const { addNodes, setNodes, setEdges, addEdges } = useReactFlow()
+	const { addNodes, setNodes, setEdges, addEdges, getViewport } =
+		useReactFlow()
 
 	const schema = createLinksSchema(t)
 	const form = useForm<TypeLinksSchema>({
@@ -63,6 +64,9 @@ export function NodeForm({
 
 	useEffect(() => {
 		if (selectedNode) {
+			form.setValue('posX', getViewport().x)
+			form.setValue('posY', getViewport().y)
+
 			form.setValue('label', selectedNode.data.label)
 			form.setValue('posX', selectedNode.position.x)
 			form.setValue('posY', selectedNode.position.y)
@@ -116,6 +120,10 @@ export function NodeForm({
 	}
 
 	const handleNodeSubmit = (data: TypeLinksSchema) => {
+		const { x: panX, y: panY, zoom } = getViewport()
+		// Берём центр окна браузера
+		const screenCenterX = window.innerWidth / 2
+		const screenCenterY = window.innerHeight / 2
 		const node = {
 			id: selectedNode?.id || `node-${Date.now()}`,
 			data: {
@@ -131,7 +139,11 @@ export function NodeForm({
 					: data.imageUrl || selectedNode?.data.img,
 				bio: data.clearBio ? '' : data.bioUrl || selectedNode?.data.bio
 			},
-			position: { x: data.posX, y: data.posY },
+			position: {
+				// Переводим координаты экрана в координаты канвы
+				x: data.posX || (screenCenterX - panX) / zoom,
+				y: data.posY || (screenCenterY - panY) / zoom
+			},
 			type: 'baseNode',
 			sourcePosition: Position.Bottom,
 			targetPosition: Position.Top
@@ -179,7 +191,7 @@ export function NodeForm({
 				onSubmit={form.handleSubmit(handleNodeSubmit, onInvalid)}
 				className='w-full'
 			>
-				<Card className='w-full p-6 gap-5'>
+				<Card className='w-full gap-5 p-6'>
 					<h2 className='text-lg font-semibold'>
 						{t('settingsTitle')}
 					</h2>
@@ -188,7 +200,7 @@ export function NodeForm({
 						control={form.control}
 						name='label'
 						render={({ field }) => (
-							<FormItem >
+							<FormItem>
 								<FormLabel>{t('nameLabel')}</FormLabel>
 								<FormControl>
 									<Input
@@ -320,7 +332,11 @@ export function NodeForm({
 											type='number'
 											step='any'
 											{...field}
-											onChange={e => field.onChange(e.target.valueAsNumber)}
+											onChange={e =>
+												field.onChange(
+													e.target.valueAsNumber
+												)
+											}
 										/>
 									</FormControl>
 								</FormItem>
@@ -337,7 +353,11 @@ export function NodeForm({
 											type='number'
 											step='any'
 											{...field}
-											onChange={e => field.onChange(e.target.valueAsNumber)}
+											onChange={e =>
+												field.onChange(
+													e.target.valueAsNumber
+												)
+											}
 										/>
 									</FormControl>
 								</FormItem>
