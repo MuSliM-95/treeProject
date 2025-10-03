@@ -62,6 +62,7 @@
 	"download": {
 		"title": "Choose format",
 		"button": "Download tree",
+		"loadingText": "Preparing your download...",
 		"format": "Format",
 		"loadTree": "Load Tree",
 		"emptyTree": "Tree is empty.",

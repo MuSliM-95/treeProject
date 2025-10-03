@@ -75,8 +75,6 @@ export default function GenealogyEditor({
 	const { setViewport } = useReactFlow()
 	const viewportRef = useRef<Viewport | null>(null)
 
-	console.log('🔄 GenealogyEditor render')
-
 	const initialNodes = useAppSelector(state => state.tree.nodes)
 	const initialEdges = useAppSelector(state => state.tree.edges)
 	const tab = useAppSelector(state => state.tree.tab)

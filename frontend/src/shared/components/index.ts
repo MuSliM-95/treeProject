@@ -26,5 +26,6 @@ export * from './ui/dialog'
 export * from './ui/react-accordion'
 export * from './ui/scroll-area'
 export * from './ui/back-button'
+export * from './ui/progress'
 
 

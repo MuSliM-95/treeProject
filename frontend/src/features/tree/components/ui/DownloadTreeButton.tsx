@@ -17,6 +17,8 @@ import {
 
 import { Theme, TreeEdge, TreeNode } from '../../types'
 
+import { SpinnerOverlay } from './SpinnerOverlay'
+
 type Format = 'svg' | 'png' | 'jpg' | 'json'
 
 interface IDownloadTreeButton {
@@ -33,13 +35,14 @@ export function DownloadTreeButton({
 	theme
 }: IDownloadTreeButton) {
 	const [format, setFormat] = useState<Format>('svg')
+	const [loading, setLoading] = useState<boolean>(false)
 	const [jsonData, setJsonData] = useState({
 		nodes: [],
 		edges: []
 	})
 	const { setEdges, getNodes, setNodes } = useReactFlow()
 
-	console.log('render DownloadTreeButton');
+	console.log('render DownloadTreeButton')
 
 	const { t } = useTranslation('tree')
 
@@ -50,6 +53,10 @@ export function DownloadTreeButton({
 		}
 		const element = treeRef.current
 		if (!element) return
+
+		setLoading(true)
+
+		await new Promise(resolve => setTimeout(resolve, 0))
 		const SCALE = 6
 		try {
 			if (format === 'json') {
@@ -79,9 +86,8 @@ export function DownloadTreeButton({
 						? element.scrollHeight * SCALE
 						: element.scrollHeight,
 				style: {
-					transform:
-						format !== 'svg' ?  `scale(${SCALE})` : '',
-					transformOrigin: 'top left',
+					transform: format !== 'svg' ? `scale(${SCALE})` : '',
+					transformOrigin: 'top left'
 				}
 			}
 
@@ -107,12 +113,14 @@ export function DownloadTreeButton({
 			link.download = `tree.${format}`
 			link.href = dataUrl
 			link.click()
+
 			toast.success(
 				t('download.imageDownloaded', { format: format.toUpperCase() })
 			)
 		} catch (error) {
-			console.error('❌ Ошибка при сохранении дерева:', error)
 			toast.error(t('download.errorSaveTree'))
+		} finally {
+			setLoading(false)
 		}
 	}
 
@@ -153,62 +161,65 @@ export function DownloadTreeButton({
 	}
 
 	return (
-		<div className='space-y-4 p-4'>
-			<h2 className='text-lg font-semibold'>{t('download.title')}</h2>
+		<>
+			{loading && <SpinnerOverlay text={t('download.loadingText')} />}
+			<div className='space-y-4 p-4'>
+				<h2 className='text-lg font-semibold'>{t('download.title')}</h2>
 
-			{/* Выбор формата */}
-			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button
-						variant='outline'
-						className='w-full justify-between'
-					>
-						{t('download.format')}: {format.toUpperCase()}
-						<ChevronDown className='ml-2 h-4 w-4' />
-					</Button>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent className='w-40'>
-					{(['svg', 'png', 'jpg', 'json'] as Format[]).map(f => (
-						<DropdownMenuItem
-							key={f}
-							onClick={() => setFormat(f)}
-							className='capitalize'
+				{/* Выбор формата */}
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button
+							variant='outline'
+							className='w-full justify-between'
 						>
-							{f.toUpperCase()}
-						</DropdownMenuItem>
-					))}
-				</DropdownMenuContent>
-			</DropdownMenu>
+							{t('download.format')}: {format.toUpperCase()}
+							<ChevronDown className='ml-2 h-4 w-4' />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent className='w-40'>
+						{(['svg', 'png', 'jpg', 'json'] as Format[]).map(f => (
+							<DropdownMenuItem
+								key={f}
+								onClick={() => setFormat(f)}
+								className='capitalize'
+							>
+								{f.toUpperCase()}
+							</DropdownMenuItem>
+						))}
+					</DropdownMenuContent>
+				</DropdownMenu>
 
-			{/* Кнопка скачивания */}
-			<Button
-				onClick={handleDownload}
-				variant='default'
-				className='w-full justify-start'
-			>
-				<Download className='mr-2 h-4 w-4' />
-				{t('download.button')}
-			</Button>
-
-			{/* Кнопка загрузки */}
-			<label className='block'>
-				<h2 className='mb-3 text-lg font-semibold'>
-					{t('download.loadTree')}
-				</h2>
-				<Input
-					type='file'
-					accept='application/json'
-					onChange={handleImport}
-				/>
+				{/* Кнопка скачивания */}
 				<Button
-					onClick={handleImportTree}
-					variant='secondary'
-					className='mt-4 w-full justify-start'
+					onClick={handleDownload}
+					variant='default'
+					className='w-full justify-start'
 				>
-					<Upload className='mr-2 h-4 w-4' />
-					{t('download.loadTree')}
+					<Download className='mr-2 h-4 w-4' />
+					{t('download.button')}
 				</Button>
-			</label>
-		</div>
+
+				{/* Кнопка загрузки */}
+				<label className='block'>
+					<h2 className='mb-3 text-lg font-semibold'>
+						{t('download.loadTree')}
+					</h2>
+					<Input
+						type='file'
+						accept='application/json'
+						onChange={handleImport}
+					/>
+					<Button
+						onClick={handleImportTree}
+						variant='secondary'
+						className='mt-4 w-full justify-start'
+					>
+						<Upload className='mr-2 h-4 w-4' />
+						{t('download.loadTree')}
+					</Button>
+				</label>
+			</div>
+		</>
 	)
 }
