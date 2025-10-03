@@ -37,7 +37,6 @@ export const Header: React.FC<Props> = ({ className }) => {
 
 		// Если выбора нет, определяем по языку браузера
 		const browserLang = navigator.language || navigator.languages[0]
-        toast.message(browserLang)
 		if (browserLang.toLowerCase().includes('ru')) {
 			i18n.changeLanguage('ru')
 		} else {

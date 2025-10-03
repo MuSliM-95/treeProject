@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			description: t('description'),
 			url: 'https://genealogyhub.ru',
 			siteName: t('name'),
-			images: [{ url: 'https://genealogyhub.ru/images/network.svg' }]
+			images: [{ url: 'https://genealogyhub.ru/images/network.png' }]
 		}
 	}
 }
