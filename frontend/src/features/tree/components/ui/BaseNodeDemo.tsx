@@ -96,6 +96,7 @@ export const BaseNodeDemo = memo(
 											? data.img
 											: '/images/image.png'
 									}
+									alt='avatar'
 								/>
 								<AvatarFallback>
 									{data.label?.slice(0, 1) || ''}

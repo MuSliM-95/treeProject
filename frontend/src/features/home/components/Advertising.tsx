@@ -3,8 +3,6 @@
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 
-import { cn } from '@/shared/utils'
-
 import { CustomAd } from './CustomAd'
 import { PromoBanner } from './PromoBanner'
 
@@ -49,7 +47,7 @@ const adsRU3 = [
 		description:
 			'Запустите сайт на конструкторе Creatium без помощи программистов и дизайнеров и начните получать клиентов уже сегодня.',
 		url: 'https://creatium.io/?promo=MuHaMMaD',
-		image: 'instagram-post-106_605aefa2172a4.png'
+		image: 'creatium.png'
 	},
 
 	{
