@@ -60,7 +60,7 @@ export default function HomePage() {
 					>
 						<div className='max-w-sm overflow-hidden'>
 							<img
-								src='/images/untitled-design-19.png'
+								src='/images/home-tree-img.png'
 								alt={t('homepage.familyImageAlt')}
 								className='w-full rounded-t-2xl object-cover'
 							/>
