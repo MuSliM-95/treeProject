@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
 
 import {
 	Button,
@@ -11,12 +10,13 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger
 } from '@/shared/components'
-import i18n from '@/shared/utils/i18n/i18n-client'
+import i18nClient from '@/shared/utils/i18n/i18n-client'
 
-import i18nConfig from '../../../../i18nConfig'
+interface ILanguageChanger {
+	locale: string
+}
 
-export default function LanguageChanger() {
-	const currentLocale = i18n.language
+export default function LanguageChanger({locale}: ILanguageChanger) {
 	const router = useRouter()
 	const currentPathname = usePathname()
 
@@ -32,7 +32,8 @@ export default function LanguageChanger() {
 		const cleanedPath = currentPathname.replace(/^\/(en|ru)(?=\/|$)/, '')
 
 		// Меняем язык клиента
-		i18n.changeLanguage(lang)
+		i18nClient.changeLanguage(lang)
+
 
 		// Меняем URL
 		router.push(`/${lang}${cleanedPath}`)
@@ -43,7 +44,7 @@ export default function LanguageChanger() {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button variant='ghost' className='text-[#6a4e3a]'>
-					🌐 {i18n.language?.toUpperCase()}
+					🌐 {locale.toUpperCase()}
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end' className='w-28'>

@@ -19,11 +19,11 @@ interface HeaderProps {
 
 export default function HomePage({ t, locale }: HeaderProps) {
 	return (
-		<div className='min-h-screen overflow-x-hidden px-4 py-8 text-[#2e2e2e] md:px-20'>
-			<Header t={t} />
+		<div className='min-h-screen w-full overflow-x-hidden px-4 py-8 text-[#2e2e2e] md:px-20'>
+			<Header t={t} locale={locale} />
 			<main>
 				<section className='mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 md:flex-row'>
-					<div
+					<div 
 						className='flex-1'
 					>
 						<h2 className='font-serif text-4xl leading-snug font-bold text-[#4a372a] md:text-5xl'>
