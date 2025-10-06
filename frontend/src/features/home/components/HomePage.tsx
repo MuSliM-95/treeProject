@@ -14,7 +14,7 @@ import { Reviews } from './Reviews'
 
 interface HeaderProps {
 	t: TFunction
-	locale: 'ru' | 'en'
+	locale: string
 }
 
 export default function HomePage({ t, locale }: HeaderProps) {

@@ -6,7 +6,11 @@ import initTranslations from '../../shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['home']
 
-export default async function Home({ params }: { params: { locale: 'ru' | 'en' } }) {
+export default async function Home({
+	params
+}: {
+	params: Promise<{ locale: string }>
+}) {
 	const { locale } = await params
 	const { t, resources } = await initTranslations({
 		locale: locale,
@@ -18,7 +22,7 @@ export default async function Home({ params }: { params: { locale: 'ru' | 'en' }
 			locale={locale}
 			resources={resources}
 		>
-			<HomePage t={t} locale={locale}/>
+			<HomePage t={t} locale={locale} />
 		</TranslationsProvider>
 	)
 }

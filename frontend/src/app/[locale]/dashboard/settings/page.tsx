@@ -1,11 +1,15 @@
-
-import initTranslations from '@/shared/utils/i18n/i18n'
 import { SettingsForm } from '@/features/user/components'
+
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['auth']
 
-export default async function SettingsPage({params}: { params: { locale: string } }) {
+export default async function SettingsPage({
+	params
+}: {
+	params: Promise<{ locale: string }>
+}) {
 	const { locale } = await params
 	const { resources } = await initTranslations({
 		locale: locale,

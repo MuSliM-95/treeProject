@@ -5,14 +5,18 @@ import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['tree']
 
-export default async function FeedbackPage({params}: {params: { locale: string }}) {
+export default async function FeedbackPage({
+	params
+}: {
+	params: Promise<{ locale: string }>
+}) {
 	const { locale } = await params
 
 	const { t, resources } = await initTranslations({
 		locale: locale,
 		namespaces: i18nNamespaces
 	})
-	
+
 	return (
 		<TranslationsProvider
 			namespaces={i18nNamespaces}

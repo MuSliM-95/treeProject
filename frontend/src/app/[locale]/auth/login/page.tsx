@@ -1,11 +1,15 @@
-import initTranslations from '@/shared/utils/i18n/i18n'
 import { LoginForm } from '@/features/auth/components'
+
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['auth']
 
-export default async function LoginPage({params}: {params: {locale: string}}) {
-
+export default async function LoginPage({
+	params
+}: {
+	params: Promise<{ locale: string }>
+}) {
 	const { locale } = await params
 	const { resources } = await initTranslations({
 		locale: locale,

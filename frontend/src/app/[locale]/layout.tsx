@@ -1,14 +1,14 @@
 // app/[locale]/layout.tsx
 import type { Metadata } from 'next'
 
-
 import i18nConfig from '../../../i18nConfig'
 import initTranslations from '../../shared/utils/i18n/i18n'
+import { ReactNode } from 'react'
 
 export async function generateMetadata({
 	params
 }: {
-	params: { locale: string }
+	params: Promise<{ locale: string }>
 }): Promise<Metadata> {
 	const { locale } = await params
 	const { t } = await initTranslations({
@@ -38,17 +38,18 @@ export async function generateMetadata({
 	}
 }
 
-
 export function generateStaticParams() {
 	return i18nConfig.locales.map(locale => ({ locale }))
+}
+
+interface ILayout {
+	children: ReactNode
+	params: Promise<{locale: string}>
 }
 
 export default async function LocaleLayout({
 	children,
 	params
-}: {
-	children: React.ReactNode
-	params: { locale: string }
-}) {
+}: ILayout) {
 	return <>{children}</>
 }

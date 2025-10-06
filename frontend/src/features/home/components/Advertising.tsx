@@ -6,7 +6,7 @@ import { TFunction } from 'i18next'
 
 interface Props {
 	className?: string
-	locale: 'ru' | 'en'
+	locale: string
 	t: TFunction
 }
 

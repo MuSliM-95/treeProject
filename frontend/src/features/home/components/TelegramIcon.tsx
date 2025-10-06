@@ -5,7 +5,7 @@ import React  from 'react'
 
 interface Props {
 	className?: string
-	locale: 'ru' | 'en'
+	locale: string
 }
 
 export const TelegramIcon: React.FC<Props> = ({ className, locale }) => {

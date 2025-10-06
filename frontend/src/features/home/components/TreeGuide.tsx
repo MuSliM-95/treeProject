@@ -15,7 +15,7 @@ export const TreeGuide: React.FC<Props> = ({ className, t }) => {
 	}[]
 
 	return (
-		<InfoNavProvider>
+		<InfoNavProvider t={t}>
 			<div className='mx-auto max-w-3xl p-4'>
 				<h1 className='mb-6 text-2xl font-bold'>
 					{t('homepage.guide.title')}

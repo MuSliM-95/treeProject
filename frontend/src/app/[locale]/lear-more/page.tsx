@@ -1,13 +1,13 @@
-import initTranslations from '@/shared/utils/i18n/i18n'
-
 import AboutProject from '@/features/home/components/AboutProject'
+
+import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['about']
 
 export default async function AboutProjectPage({
 	params
 }: {
-	params: { locale: string }
+	params: Promise<{ locale: string }>
 }) {
 	const { locale } = await params
 	const { t } = await initTranslations({

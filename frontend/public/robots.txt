@@ -1,6 +1,16 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /ru/auth
+Disallow: /en/auth
+Disallow: /ru/dashboard
+Disallow: /en/dashboard
+Disallow: /ru/lear-more
+Disallow: /en/lear-more
+Disallow: /ru/terms
+Disallow: /en/terms
+Disallow: /ru/tree/feedback
+Disallow: /en/tree/feedback
 
 # Host
 Host: https://genealogyhub.ru

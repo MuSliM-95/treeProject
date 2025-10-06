@@ -1,15 +1,14 @@
-import initTranslations from '@/shared/utils/i18n/i18n'
-
 import { NewVerificationForm } from '@/features/auth/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['auth']
 
 export default async function NewVerificationPage({
 	params
 }: {
-	params: { locale: string }
+	params: Promise<{ locale: string }>
 }) {
 	const { locale } = await params
 	const { resources } = await initTranslations({
