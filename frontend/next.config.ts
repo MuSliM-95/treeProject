@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
 		SERVER_URL: process.env.SERVER_URL
 	},
 
-	images: {git 
+	images: {
 		remotePatterns: [
 			{
 				protocol: 'https',
