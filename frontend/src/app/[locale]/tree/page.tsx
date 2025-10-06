@@ -12,6 +12,8 @@ import TreeSidebarProvider from '@/shared/providers/SidebarProvider'
 import i18n from '@/shared/utils/i18n/i18n-client'
 
 
+
+
 export default function TreePage() {
 	const animated = useAppSelector(state => state.tree.animatedEdge)
 	const themeState = useAppSelector(state => state.tree.theme)
@@ -31,7 +33,6 @@ export default function TreePage() {
 	const [nodeTextColor, setNodeTextColor] = useState(nodeTextColorState)
 	const [handlesBehavior, setHandlesBehavior] =
 		useState<HandlesBehavior>(handles_behavior)
-
 
 	return (
 		<I18nextProvider i18n={i18n}>

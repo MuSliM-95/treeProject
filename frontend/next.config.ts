@@ -1,20 +1,21 @@
 /** @type {import('next').NextConfig} */
-import { NextConfig } from 'next';
-// import createNextIntlPlugin from 'next-intl/plugin';
-const nextConfig: NextConfig  = {
-  /* config options here */
-  output: 'standalone',
-  experimental: {
+import { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
+	/* config options here */
+	output: 'standalone',
+	experimental: {
 		// missingSuspenseWithCSRBailout: false
 	},
 	env: {
 		SERVER_URL: process.env.SERVER_URL
 	},
-	images: {
+
+	images: {git 
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'lh3.googleusercontent.com',
+				hostname: 'lh3.googleusercontent.com'
 			},
 			{
 				protocol: 'https',
@@ -22,8 +23,6 @@ const nextConfig: NextConfig  = {
 			}
 		]
 	}
-};
+}
 
-// const withNextIntl = createNextIntlPlugin('./src/shared/utils/i18n/request.ts');
-export default nextConfig;
-
+export default nextConfig
