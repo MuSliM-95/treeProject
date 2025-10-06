@@ -10,7 +10,7 @@ i18n.use(LanguageDetector)
 	.init({
 		fallbackLng: 'en',
 		detection: {
-			order: ['cookie', 'htmlTag', 'navigator'],
+			order: ['cookie', 'navigator'],
 			lookupCookie: 'NEXT_LOCALE',  
 		},
 	
