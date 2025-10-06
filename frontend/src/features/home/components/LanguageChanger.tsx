@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 
 import {
 	Button,
@@ -10,37 +11,33 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger
 } from '@/shared/components'
-
 import i18n from '@/shared/utils/i18n/i18n-client'
 
-
-
+import i18nConfig from '../../../../i18nConfig'
 
 export default function LanguageChanger() {
-	
 	const currentLocale = i18n.language
 	const router = useRouter()
 	const currentPathname = usePathname()
 
 	const handleChange = (lang: 'ru' | 'en') => {
+		// set cookie for next-i18n-router
 		const days = 30
 		const date = new Date()
 		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
 		const expires = date.toUTCString()
 		document.cookie = `NEXT_LOCALE=${lang};expires=${expires};path=/`
-		// Получаем текущий путь без префикса языка
-		let newPath = currentPathname
 
-		// Удаляем текущий префикс языка, если он есть
-		if (currentLocale) {
-			newPath = newPath.replace(new RegExp(`^/${currentLocale}`), '')
-		}
+		// Удаляем текущую локаль из пути
+		const cleanedPath = currentPathname.replace(/^\/(en|ru)(?=\/|$)/, '')
 
-		// Формируем новый путь
-		router.push(`/${lang}${newPath}`)
+		// Меняем язык клиента
 		i18n.changeLanguage(lang)
-	}
 
+		// Меняем URL
+		router.push(`/${lang}${cleanedPath}`)
+		router.refresh()
+	}
 
 	return (
 		<DropdownMenu>
