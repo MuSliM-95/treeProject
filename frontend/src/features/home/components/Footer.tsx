@@ -1,15 +1,13 @@
-'use client'
-
-import { useTranslation } from 'next-i18next'
+import { TFunction } from 'i18next'
 import Link from 'next/link'
 import React from 'react'
 
 interface Props {
 	className?: string
+	t:TFunction
 }
 
-export const Footer: React.FC<Props> = ({ className }) => {
-	const { t } = useTranslation()
+export const Footer: React.FC<Props> = ({ className, t }) => {
 
 	return (
 		<footer
@@ -20,10 +18,6 @@ export const Footer: React.FC<Props> = ({ className }) => {
 				{t('homepage.footer.rights')}
 			</p>
 			<p className='mt-2'>
-				<Link href='/privacy' className='hover:underline'>
-					{t('homepage.infoPage.privacy')}
-				</Link>{' '}
-				&middot;{' '}
 				<Link href='/terms' className='hover:underline'>
 					{t('homepage.infoPage.terms')}
 				</Link>

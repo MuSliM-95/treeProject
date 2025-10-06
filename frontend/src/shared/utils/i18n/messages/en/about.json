@@ -1,0 +1,19 @@
+{
+	"title": "About the Project",
+	"intro": "This project is designed for creating infographic-style family trees.",
+	"features": "You can create beautiful family tree infographics, customize their style, and save them. You can also download your tree in JSON, SVG, PNG, and JPG formats to share it with relatives.",
+	"storage": "The JSON format allows you to reload your tree back to the site, enabling you to store it on your own computer or external drive. Note that we do not store your tree on our server — it is stored in your browser’s local storage, so don’t forget to save it.",
+	"nodes": "You can also upload images for each node (ancestor, descendant, family member) and attach any link with information about them, such as a biography or a YouTube video.",
+	"try": "To understand how the project works, simply explore it and try creating something. If you have questions or find a bug, feel free to contact me.",
+	"contact": {
+		"text": "You can reach me via Telegram",
+		"or": "or by email"
+	},
+
+	"infoPage": {
+		"lear-more": "Learn More",
+		"terms": "Terms of Use & Privacy"
+	},
+	"back": "Back",
+	"menu": "Menu"
+}

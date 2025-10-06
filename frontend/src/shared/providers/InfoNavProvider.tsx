@@ -1,8 +1,5 @@
-'use client'
-
 import Link from 'next/link'
-import React, { PropsWithChildren } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { ReactNode } from 'react'
 
 import {
 	BackButton,
@@ -11,13 +8,19 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger
 } from '@/shared/components'
+import { TFunction } from 'i18next'
 
-export const InfoNavProvider: React.FC<PropsWithChildren<unknown>> = ({
-	children
+interface IInfoNavProvider {
+	children: ReactNode
+	t: TFunction
+}
+
+export const InfoNavProvider: React.FC<IInfoNavProvider> = ({
+	children,
+	t
 }) => {
-	const { t } = useTranslation()
 
-	const toc = t('homepage.infoPage', { returnObjects: true }) as Record<
+	const toc = t('infoPage', { returnObjects: true }) as Record<
 		string,
 		string
 	>
@@ -28,7 +31,7 @@ export const InfoNavProvider: React.FC<PropsWithChildren<unknown>> = ({
 			<div className='lg:hidden'>
 				<DropdownMenu className='mt-2 ml-2'>
 					<DropdownMenuTrigger className='rounded-md border px-4 py-2 shadow-sm'>
-						Меню
+						{t('menu')}
 					</DropdownMenuTrigger>
 					<DropdownMenuContent className='min-w-[200px]'>
 						<nav className='space-y-2'>
@@ -37,7 +40,7 @@ export const InfoNavProvider: React.FC<PropsWithChildren<unknown>> = ({
 									href='/'
 									className='flex items-center gap-2 rounded-md text-gray-700 transition-colors hover:text-gray-900'
 								>
-									<BackButton className='relative top-auto left-auto' />
+									<BackButton t={t} className='relative top-auto left-auto' />
 								</Link>
 							</DropdownMenuItem>
 
@@ -62,7 +65,7 @@ export const InfoNavProvider: React.FC<PropsWithChildren<unknown>> = ({
 					href='/'
 					className='flex items-center gap-2 rounded-md text-gray-700 transition-colors hover:text-gray-900'
 				>
-					<BackButton className='relative top-auto left-auto' />
+					<BackButton t={t} className='relative top-auto left-auto' />
 				</Link>
 
 				{Object.entries(toc).map(([key, text]) => (

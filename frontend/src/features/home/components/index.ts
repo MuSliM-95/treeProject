@@ -1,4 +1,4 @@
 export * from './HomePage' 
-export * from './Privacy' 
+export * from './Terms' 
 export * from './TelegramIcon'
-export * from './TreeGuide'
+export * from './AboutProject'

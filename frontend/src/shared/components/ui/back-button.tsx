@@ -1,17 +1,16 @@
-'use client'
-
 import { cn } from '@/shared/utils'
 import { Button } from '..'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { TFunction } from 'i18next'
 
 interface Props {
 	className?: string
 	onClick?: () => void
+	t:TFunction
 }
 
-export const BackButton: React.FC<Props> = ({ className, onClick }) => {
-	const { t } = useTranslation()
+export const BackButton: React.FC<Props> = ({ className, onClick, t }) => {
+	
 	return (
 		<Button
 			onClick={onClick}

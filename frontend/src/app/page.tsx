@@ -1,12 +1,5 @@
-'use client'
-
-import HomePage from '@/features/home/components/HomePage'
-import '../shared/utils'
+import { redirect } from 'next/navigation'
 
 export default function Home() {
-	return (
-		<>
-			<HomePage />
-		</>
-	)
+  return redirect('/en')
 }

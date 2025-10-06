@@ -1,10 +1,7 @@
-'use client'
-
 import { TelegramIcon } from '.'
-import { motion } from 'framer-motion'
+import { TFunction } from 'i18next'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/shared/components'
 
@@ -15,17 +12,18 @@ import { Header } from './Header'
 import { HomeReactXFlow } from './HomeReactXFlow'
 import { Reviews } from './Reviews'
 
-export default function HomePage() {
-	const { t } = useTranslation()
+interface HeaderProps {
+	t: TFunction
+	locale: 'ru' | 'en'
+}
+
+export default function HomePage({ t, locale }: HeaderProps) {
 	return (
 		<div className='min-h-screen overflow-x-hidden px-4 py-8 text-[#2e2e2e] md:px-20'>
-			<Header />
+			<Header t={t} />
 			<main>
 				<section className='mx-auto flex max-w-7xl flex-col-reverse items-center gap-12 md:flex-row'>
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.6 }}
+					<div
 						className='flex-1'
 					>
 						<h2 className='font-serif text-4xl leading-snug font-bold text-[#4a372a] md:text-5xl'>
@@ -51,13 +49,9 @@ export default function HomePage() {
 								</Button>
 							</Link>
 						</div>
-					</motion.div>
+					</div>
 
-					<motion.div
-						initial={{ opacity: 0, x: 20 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.6 }}
-					>
+					<div>
 						<div className='max-w-sm overflow-hidden'>
 							<img
 								src='/images/home-tree-img.png'
@@ -68,16 +62,16 @@ export default function HomePage() {
 								{t('homepage.familyQuote')}
 							</div>
 						</div>
-					</motion.div>
+					</div>
 				</section>
 
 				<HomeReactXFlow />
-				<Advertising />
-				<TelegramIcon />
-				<FaqSection />
-				<Reviews />
+				<Advertising locale={locale} t={t}/>
+				<TelegramIcon locale={locale}/>
+				<FaqSection t={t}/>
+				<Reviews t={t} />
 			</main>
-			<Footer />
+			<Footer t={t}/>
 		</div>
 	)
 }

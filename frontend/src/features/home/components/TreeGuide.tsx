@@ -1,15 +1,14 @@
-'use client'
 import { InfoNavProvider } from '@/shared/providers'
+import { TFunction } from 'i18next'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
 interface Props {
 	className?: string
+	t: TFunction
 }
 
-export const TreeGuide: React.FC<Props> = ({ className }) => {
-	const { t } = useTranslation()
-
+export const TreeGuide: React.FC<Props> = ({ className, t }) => {
+	
 	const sections = t('homepage.guide.sections', { returnObjects: true }) as {
 		header: string
 		content: string

@@ -1,3 +1,5 @@
+'use client'
+
 import { LuLogOut } from 'react-icons/lu'
 import { IUser } from '@/features/auth/types'
 import { useLogoutMutation } from '../hooks'

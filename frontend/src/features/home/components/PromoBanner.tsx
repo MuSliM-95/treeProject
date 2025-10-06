@@ -1,13 +1,14 @@
-'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslation } from 'next-i18next'
-import { Label } from '@/shared/components'
 
-export const PromoBanner: React.FC = () => {
-  const { t } = useTranslation()
+import { TFunction } from 'i18next'
+
+interface IPromoBanner {
+  t: TFunction
+}
+
+export const PromoBanner: React.FC<IPromoBanner> = ({t}) => {
 
   return (
     <section className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg mx-auto mt-10 max-w-7xl">

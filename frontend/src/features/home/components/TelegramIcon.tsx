@@ -1,31 +1,19 @@
-"use client"
-import i18next from 'i18next'
 import { Send } from 'lucide-react'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React  from 'react'
 
 
 interface Props {
 	className?: string
+	locale: 'ru' | 'en'
 }
 
-export const TelegramIcon: React.FC<Props> = ({ className }) => {
-	const [language, setLanguage] = useState(i18next.language)
-
-	useEffect(() => {
-		const handleChange = (lng: string) => setLanguage(lng)
-		i18next.on('languageChanged', handleChange)
-	  
-		return () => {
-		  i18next.off('languageChanged', handleChange)
-		}
-	}, [])
-	
-	return (
+export const TelegramIcon: React.FC<Props> = ({ className, locale }) => {
+		return (
 		<div className='fixed top-1/3 left-2'>
 			<Link
 				href={
-					language === 'ru'
+					locale === 'ru'
 						? 'https://t.me/AsIntended_ru'
 						: 'https://t.me/AsIntended_en'
 				}

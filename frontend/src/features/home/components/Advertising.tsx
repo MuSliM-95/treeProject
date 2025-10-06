@@ -1,16 +1,15 @@
-'use client'
-
-import { useTranslation } from 'next-i18next'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { CustomAd } from './CustomAd'
 import { PromoBanner } from './PromoBanner'
+import { TFunction } from 'i18next'
 
 interface Props {
 	className?: string
+	locale: 'ru' | 'en'
+	t: TFunction
 }
 
-// Реклама для RU
 const adsRU = [
 	{
 		title: 'JavaScript с нуля',
@@ -99,20 +98,14 @@ const adsEN3 = [
 	}
 ]
 
-export const Advertising: React.FC<Props> = ({ className }) => {
-	const { t, i18n } = useTranslation()
+export const Advertising: React.FC<Props> = ({ className, locale, t }) => {
 
-	const [isEnglish, setIsEnglish] = useState(i18n.language === 'en')
-
-	// Определяем, какой язык активен
+    const isEnglish = locale === 'en'
 
 	const ads = isEnglish ? adsEN : adsRU
 	const ads2 = isEnglish ? adsEN2 : adsRU2
 	const ads3 = isEnglish ? adsEN3 : adsRU3
 
-	useEffect(() => {
-		setIsEnglish(i18n.language === 'en')
-	}, [i18n.language])
 
 	return (
 		<section className='mt-24'>
@@ -122,7 +115,7 @@ export const Advertising: React.FC<Props> = ({ className }) => {
 				</h3>
 			</div>
 
-			<PromoBanner />
+			<PromoBanner t={t}/>
 			{/* <div
 				className={cn(isEnglish && 'hidden', 'mx-auto mt-10 max-w-7xl')}
 			>

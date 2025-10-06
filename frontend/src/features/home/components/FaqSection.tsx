@@ -1,4 +1,4 @@
-'use client'
+import { TFunction } from 'i18next'
 
 import {
 	Accordion,
@@ -6,16 +6,17 @@ import {
 	AccordionItem,
 	AccordionTrigger
 } from '@/shared/components'
-import { useTranslation } from 'next-i18next'
 
-export function FaqSection() {
-	const { t } = useTranslation()
+interface IFaqSection {
+	t: TFunction
+}
 
+export function FaqSection({ t }: IFaqSection) {
 	const faqItems = t('homepage.faq.items', { returnObjects: true }) as {
 		question: string
 		answer: string
 	}[]
-  
+
 	return (
 		<section className='mx-auto mt-24 max-w-4xl'>
 			<h3 className='mb-6 text-center text-2xl font-semibold text-[#4a372a]'>
