@@ -1,9 +1,11 @@
 // app/[locale]/layout.tsx
 import type { Metadata } from 'next'
+import { ReactNode } from 'react'
+
+import ConsentBanner from '@/shared/components/ui/ConsentBanner'
 
 import i18nConfig from '../../../i18nConfig'
 import initTranslations from '../../shared/utils/i18n/i18n'
-import { ReactNode } from 'react'
 
 export async function generateMetadata({
 	params
@@ -34,9 +36,7 @@ export async function generateMetadata({
 			url: 'https://genealogyhub.ru',
 			siteName: t('meta.name'),
 			images: [{ url: 'https://genealogyhub.ru/images/og-tree.png' }]
-		},
-
-		
+		}
 	}
 }
 
@@ -46,12 +46,15 @@ export function generateStaticParams() {
 
 interface ILayout {
 	children: ReactNode
-	params: Promise<{locale: string}>
+	params: Promise<{ locale: string }>
 }
 
-export default async function LocaleLayout({
-	children,
-	params
-}: ILayout) {
-	return <>{children}</>
+export default async function LocaleLayout({ children, params }: ILayout) {
+	const {locale} = await params
+	return (
+		<>
+			{/* <ConsentBanner /> */}
+			{children}
+		</>
+	)
 }

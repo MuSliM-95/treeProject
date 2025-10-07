@@ -4,6 +4,8 @@ import { initReactI18next } from 'react-i18next'
 
 import treeEN from './messages/en/tree.json'
 import treeRU from './messages/ru/tree.json'
+import commonEN from './messages/en/common.json'
+import commonRU from './messages/ru/common.json'
 
 i18n.use(LanguageDetector)
 	.use(initReactI18next)
@@ -16,8 +18,8 @@ i18n.use(LanguageDetector)
 		},
 	
 		resources: {
-			en: { tree: treeEN },
-			ru: { tree: treeRU }
+			en: { tree: treeEN, common: commonEN },
+			ru: { tree: treeRU, common: commonRU }
 		},
 		interpolation: {
 			escapeValue: false

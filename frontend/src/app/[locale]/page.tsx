@@ -16,6 +16,7 @@ export default async function Home({
 		locale: locale,
 		namespaces: i18nNamespaces
 	})
+	
 	return (
 		<TranslationsProvider
 			namespaces={i18nNamespaces}

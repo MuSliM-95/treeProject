@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactFlowProvider } from '@xyflow/react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { I18nextProvider } from 'react-i18next'
 
 import GenealogyEditor from '@/features/tree/components/ui/GenealogyEditor'
@@ -10,11 +10,16 @@ import { HandlesBehavior, Status, Theme } from '@/features/tree/types'
 
 import TreeSidebarProvider from '@/shared/providers/SidebarProvider'
 import i18n from '@/shared/utils/i18n/i18n-client'
-
-
-
+import { usePathname } from 'next/navigation'
 
 export default function TreePage() {
+	const pathname = usePathname()
+	const lang = pathname.split('/')[1]
+	useEffect(() => {
+		i18n.changeLanguage(lang)
+	}, [lang])
+
+	
 	const animated = useAppSelector(state => state.tree.animatedEdge)
 	const themeState = useAppSelector(state => state.tree.theme)
 	const edgeColorState = useAppSelector(state => state.tree.edgeColor)
