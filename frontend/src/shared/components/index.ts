@@ -28,5 +28,6 @@ export * from './ui/scroll-area'
 export * from './ui/back-button'
 export * from './ui/progress'
 export * from './ui/ConsentBanner'
+export * from './ui/CopyLinkButton'
 
 

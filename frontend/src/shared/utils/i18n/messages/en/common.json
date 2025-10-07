@@ -1,4 +1,6 @@
 {
-	"consent_message": "We use cookies for personalized advertising and data collection. By continuing to use the site, you agree to this.",
-	"consent_accept": "Accept"
+	"title": "We use cookies and recommendation technologies",
+	"description":  "We use cookies to improve website performance and provide you with more relevant content and offers. By continuing to use the website, you agree to the use of cookies.",
+	"consent_accept": "OK",
+	"consent_learn_more": "Learn more"
 }

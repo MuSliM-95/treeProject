@@ -2,10 +2,11 @@
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
-import ConsentBanner from '@/shared/components/ui/ConsentBanner'
-
 import i18nConfig from '../../../i18nConfig'
 import initTranslations from '../../shared/utils/i18n/i18n'
+import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+import ConsentBanner from '@/shared/components/ui/ConsentBanner'
+
 
 export async function generateMetadata({
 	params
@@ -50,11 +51,19 @@ interface ILayout {
 }
 
 export default async function LocaleLayout({ children, params }: ILayout) {
-	const {locale} = await params
+	const { locale } = await params
+	const { resources } = await initTranslations({
+		locale: locale,
+		namespaces: ['common']
+	})
 	return (
-		<>
-			{/* <ConsentBanner /> */}
+		<TranslationsProvider
+			namespaces={['common']}
+			locale={locale}
+			resources={resources}
+		>
+			<ConsentBanner />
 			{children}
-		</>
+		</TranslationsProvider>
 	)
 }

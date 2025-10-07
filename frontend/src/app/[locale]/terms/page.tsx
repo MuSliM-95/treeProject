@@ -1,5 +1,6 @@
 import { Terms } from '@/features/home/components'
 
+import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['terms']
@@ -10,9 +11,18 @@ export default async function TermsPage({
 	params: Promise<{ locale: string }>
 }) {
 	const { locale } = await params
-	const { t } = await initTranslations({
+	const { t, resources } = await initTranslations({
 		locale: locale,
 		namespaces: i18nNamespaces
 	})
-	return <Terms t={t} />
+	return (
+		<TranslationsProvider
+			namespaces={i18nNamespaces}
+			locale={locale}
+			resources={resources}
+		>
+			{' '}
+			<Terms />{' '}
+		</TranslationsProvider>
+	)
 }

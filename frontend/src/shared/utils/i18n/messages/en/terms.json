@@ -8,7 +8,7 @@
 		},
 		"2": {
 			"title": "2. Site features",
-			"body": "The Site is available without mandatory registration. Data created by unauthenticated users is stored locally in browser localStorage. Cookies are used for language, theme and session for authorized users. The Administration does not access data stored only in localStorage."
+			"body":  "The website is available without mandatory registration. Data created by anonymous users is stored in the browser's localStorage. Cookies are used for language, theme, and authorized user sessions. The administration does not have access to data stored solely in localStorage.\n\nTo improve the quality of the website and analyze traffic, we use cookies and similar technologies provided by analytics services (such as Google Analytics, Yandex Metrica, and others). These files collect anonymized statistical data, such as the number of visits, time spent on the site, traffic sources, and user interactions with content. This information helps us understand how users interact with the site and improve its functionality. Users can disable or delete these cookies at any time via their browser settings; however, this may affect the proper functioning of certain site features."
 		},
 		"3": {
 			"title": "3. Registration and account",
@@ -44,7 +44,7 @@
 		},
 		"11": {
 			"title": "11. Contacts",
-			"body": "If you have questions about the Site or these Terms, contact us at: [your Gmail]."
+			"body": "If you have questions about the Site or these Terms, contact us at: samahkinets@gmail.com."
 		}
 	},
 	"infoPage": {
