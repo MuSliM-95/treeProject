@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      
       <meta name="image" content="https://genealogyhub.ru/images/og-tree.png" />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <MainProvider>{children}</MainProvider>
