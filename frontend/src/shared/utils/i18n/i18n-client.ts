@@ -12,6 +12,7 @@ i18n.use(LanguageDetector)
 		detection: {
 			order: ['cookie', 'navigator'],
 			lookupCookie: 'NEXT_LOCALE',  
+			caches: []
 		},
 	
 		resources: {
