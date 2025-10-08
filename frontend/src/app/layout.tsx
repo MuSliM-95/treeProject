@@ -25,7 +25,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<head>
-		     	<Link rel="icon" href="https://example.com/favicon.ico" type="image/svg+xml" />
+		     	<Link rel="icon" href="https://example.com/images/favicon.ico" type="image/svg+xml" />
 				<Script
 					strategy='afterInteractive'
 					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
