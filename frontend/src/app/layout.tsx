@@ -23,14 +23,11 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<meta
-				name='image'
-				content='https://genealogyhub.ru/images/og-tree.png'
-			/>
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				<MainProvider>{children}</MainProvider>
+			<head>
+				<meta
+					name='image'
+					content='https://genealogyhub.ru/images/og-tree.png'
+				/>
 				<Script
 					strategy='afterInteractive'
 					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
@@ -51,6 +48,11 @@ export default function RootLayout({
             gtag('config', '${process.env.NEXT_PUBLIC_GTAG_ID}');
           `}
 				</Script>
+			</head>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+			>
+				<MainProvider>{children}</MainProvider>
 			</body>
 		</html>
 	)
