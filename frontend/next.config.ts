@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
 		// missingSuspenseWithCSRBailout: false
 	},
 	env: {
-		SERVER_URL: process.env.SERVER_URL
+		SERVER_URL: process.env.SERVER_URL,
+		NEXT_PUBLIC_GTAG_ID: process.env.NEXT_PUBLIC_GTAG_ID
 	},
 
 	images: {

@@ -8,41 +8,41 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import { Card, CardContent, CardFooter } from './card'
 
-const COOKIE_NAME = 'user_consent'
-
 export default function ConsentBanner() {
 	const { t, i18n } = useTranslation('common')
 	const pathname = usePathname()
-	// предполагаем, что переводы в common.json
+
 	const [showBanner, setShowBanner] = useState(false)
-	useEffect(() => {
+	useEffect(() => {			
 		const lang = pathname.split('/')[1]
 		i18n.changeLanguage(lang)
-		const consent = localStorage.getItem(COOKIE_NAME)
+		const consent = localStorage.getItem('consent')
 		if (!consent) setShowBanner(true)
 	}, [])
 
 	const handleAccept = () => {
-		localStorage.setItem(COOKIE_NAME, 'true')
-		setShowBanner(false)
-		loadAnalyticsScripts()
-	}
+		window.gtag?.('consent', 'update', {
+		  ad_storage: 'granted',
+		  analytics_storage: 'granted',
+		  ad_user_data: 'granted',
+		  ad_personalization: 'granted'
+		});
 
-	const loadAnalyticsScripts = () => {
-		if (typeof window === 'undefined') return
+		localStorage.setItem('consent', 'granted');
+		setShowBanner(false);
+	  };
 
-		window.dataLayer = window.dataLayer || []
-		function gtag(...args: any[]) {
-			window.dataLayer.push(args)
-		}
-		gtag('js', new Date())
-		gtag('config', 'GA_MEASUREMENT_ID')
-
-		const script = document.createElement('script')
-		script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.googleId}`
-		script.async = true
-		document.body.appendChild(script)
-	}
+	  const handleDecline = () => {
+		window.gtag?.('consent', 'update', {
+		  ad_storage: 'denied',
+		  analytics_storage: 'denied',
+		  ad_user_data: 'denied',
+		  ad_personalization: 'denied'
+		});
+	  
+		localStorage.setItem('consent', 'denied');
+		setShowBanner(false);
+	  };
 
 	if (!showBanner) return null
 
@@ -72,12 +72,18 @@ export default function ConsentBanner() {
 								</a>
 							</p>
 						</CardContent>
-						<CardFooter className='flex justify-end p-4 pt-0'>
+						<CardFooter className='flex justify-between p-4 pt-0'>
 							<Button
 								onClick={handleAccept}
 								className='rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700'
 							>
 								{t('consent_accept')}
+							</Button>
+							<Button
+								onClick={handleDecline}
+								className='rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700'
+							>
+								{t('consent_decline')}
 							</Button>
 						</CardFooter>
 					</Card>

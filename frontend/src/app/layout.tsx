@@ -33,14 +33,22 @@ export default function RootLayout({
 				<MainProvider>{children}</MainProvider>
 				<Script
 					strategy='afterInteractive'
-					src='https://www.googletagmanager.com/gtag/js?id=G-09F6WVZCWR'
+					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
 				/>
 				<Script id='gtag-init' strategy='afterInteractive'>
 					{`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-09F6WVZCWR');
+
+            gtag('consent', 'default', {
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'analytics_storage': 'denied'
+            });
+
+            gtag('config', '${process.env.NEXT_PUBLIC_GTAG_ID}');
           `}
 				</Script>
 			</body>

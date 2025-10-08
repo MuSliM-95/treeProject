@@ -1,6 +1,7 @@
 {
 	"title": "We use cookies and recommendation technologies",
 	"description":  "We use cookies to improve website performance and provide you with more relevant content and offers. By continuing to use the website, you agree to the use of cookies.",
-	"consent_accept": "OK",
+	"consent_accept": "Accept",
+	"consent_decline": "Essential only",
 	"consent_learn_more": "Learn more"
 }
