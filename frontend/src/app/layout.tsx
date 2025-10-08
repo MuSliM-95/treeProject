@@ -5,6 +5,7 @@ import Script from 'next/script'
 import '@/app/styles/globals.css'
 
 import { MainProvider } from '@/shared/providers'
+import Link from 'next/link'
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -24,10 +25,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<head>
-				<meta
-					name='image'
-					content='https://genealogyhub.ru/images/og-tree.png'
-				/>
+		     	<Link rel="icon" href="https://example.com/favicon.ico" type="image/svg+xml" />
 				<Script
 					strategy='afterInteractive'
 					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}

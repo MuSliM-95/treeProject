@@ -36,7 +36,7 @@ export async function generateMetadata({
 			description: t('description'),
 			url: 'https://genealogyhub.ru',
 			siteName: t('meta.name'),
-			images: [{ url: 'https://genealogyhub.ru/images/og-tree.png' }]
+			images: [{ url: 'https://genealogyhub.ru/images/favicon.png' }]
 		}
 	}
 }
