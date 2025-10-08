@@ -43,7 +43,7 @@ export default function LanguageChanger({locale}: ILanguageChanger) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant='ghost' className='text-[#6a4e3a]'>
+				<Button variant={'ghost'} className='text-[#6a4e3a] focus-visible:ring-0'>
 					🌐 {locale.toUpperCase()}
 				</Button>
 			</DropdownMenuTrigger>

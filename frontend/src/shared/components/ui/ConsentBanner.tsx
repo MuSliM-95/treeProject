@@ -28,6 +28,8 @@ export default function ConsentBanner() {
 		  ad_personalization: 'granted'
 		});
 
+		window.gtag?.('config', process.env.NEXT_PUBLIC_GTAG_ID);
+
 		localStorage.setItem('consent', 'granted');
 		setShowBanner(false);
 	  };
@@ -39,7 +41,9 @@ export default function ConsentBanner() {
 		  ad_user_data: 'denied',
 		  ad_personalization: 'denied'
 		});
-	  
+		
+		window.gtag?.('config', process.env.NEXT_PUBLIC_GTAG_ID);
+
 		localStorage.setItem('consent', 'denied');
 		setShowBanner(false);
 	  };
