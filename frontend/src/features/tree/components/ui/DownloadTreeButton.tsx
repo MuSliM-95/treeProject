@@ -1,6 +1,7 @@
 'use client'
 
 import { Edge, Node, useReactFlow } from '@xyflow/react'
+import { saveAs } from 'file-saver'
 import * as htmlToImage from 'html-to-image'
 import { ChevronDown, Download, Upload } from 'lucide-react'
 import { RefObject, useState } from 'react'
@@ -42,8 +43,6 @@ export function DownloadTreeButton({
 	})
 	const { setEdges, getNodes, setNodes } = useReactFlow()
 
-	console.log('render DownloadTreeButton')
-
 	const { t } = useTranslation('tree')
 
 	const handleDownload = async () => {
@@ -62,12 +61,7 @@ export function DownloadTreeButton({
 			if (format === 'json') {
 				const dataStr = JSON.stringify({ nodes, edges }, null, 2)
 				const blob = new Blob([dataStr], { type: 'application/json' })
-				const url = URL.createObjectURL(blob)
-				const link = document.createElement('a')
-				link.download = 'tree.json'
-				link.href = url
-				link.click()
-				URL.revokeObjectURL(url)
+				saveAs(blob, 'tree.json')
 				toast.success(t('download.jsonDownloaded'))
 				return
 			}
@@ -109,10 +103,10 @@ export function DownloadTreeButton({
 					throw new Error('Unsupported format')
 			}
 
-			const link = document.createElement('a')
-			link.download = `tree.${format}`
-			link.href = dataUrl
-			link.click()
+			const res = await fetch(dataUrl)
+			const blob = await res.blob()
+
+			saveAs(blob, `tree.${format}`)
 
 			toast.success(
 				t('download.imageDownloaded', { format: format.toUpperCase() })

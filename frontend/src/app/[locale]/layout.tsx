@@ -23,9 +23,9 @@ export async function generateMetadata({
 		title: t('meta.title'),
 		description: t('meta.description'),
 		icons: {
-			icon: '/images/favicon.svg',
-			shortcut: '/images/favicon.svg',
-			apple: '/images/favicon.svg'
+			icon: '/images/share-2.svg',
+			shortcut: '/images/share-2.svg',
+			apple: '/images/share-2.svg'
 		},
 		verification: {
 			google: 'K4NjTpnl-Yu4tWYOS-afGUtZA3PIIZM-AH30tKuJrzo',
@@ -36,7 +36,7 @@ export async function generateMetadata({
 			description: t('description'),
 			url: 'https://genealogyhub.ru',
 			siteName: t('meta.name'),
-			images: [{ url: 'https://genealogyhub.ru/images/favicon.png' }]
+			images: [{ url: 'https://genealogyhub.ru/images/share-2.svg' }]
 		}
 	}
 }
