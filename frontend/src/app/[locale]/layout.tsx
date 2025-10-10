@@ -23,9 +23,9 @@ export async function generateMetadata({
 		title: t('meta.title'),
 		description: t('meta.description'),
 		icons: {
-			icon: '/images/share-2.svg',
-			shortcut: '/images/share-2.svg',
-			apple: '/images/share-2.svg'
+			icon: '/images/favicon.svg',
+			shortcut: '/images/favicon.svg',
+			apple: '/images/favicon.svg'
 		},
 		verification: {
 			google: 'K4NjTpnl-Yu4tWYOS-afGUtZA3PIIZM-AH30tKuJrzo',
