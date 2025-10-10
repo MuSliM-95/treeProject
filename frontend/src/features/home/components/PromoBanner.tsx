@@ -11,7 +11,7 @@ interface IPromoBanner {
 export const PromoBanner: React.FC<IPromoBanner> = ({t}) => {
 
   return (
-    <section className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg mx-auto mt-10 max-w-7xl">
+    <section className="relative w-full overflow-hidden text-white shadow-lg mx-auto mt-10 max-w-7xl bg-gradient-to-r from-[#6a82fa] to-[#8abffb] p-4 rounded-xl">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 py-8 text-center md:flex-row md:gap-12 md:text-left">
         
         {/* Текст */}
