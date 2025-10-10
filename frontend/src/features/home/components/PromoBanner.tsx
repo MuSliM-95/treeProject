@@ -21,7 +21,7 @@ export const PromoBanner: React.FC<IPromoBanner> = ({t}) => {
 
           <div className="mt-6 flex justify-center md:justify-start">
             <Link
-              href="https://split.tg/?ref=UQCJX2F1H8RcEEMacxzgxZezVIidQTQrqEtcISSVB4p7rYR1" // 🔗 тут вставь ссылку на своё приложение
+              href="https://split.tg/?ref=UQBUhH6P4oSxb-4_loEwEvOQUsFmXXr_3goPcNyx1Mqsy7bj" // 🔗 тут вставь ссылку на своё приложение
               className="rounded-full bg-white px-8 py-3 text-blue-600 font-medium shadow hover:bg-gray-100 transition"
               target='_blank'
             >
