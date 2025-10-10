@@ -36,7 +36,7 @@ export async function generateMetadata({
 			description: t('description'),
 			url: 'https://genealogyhub.ru',
 			siteName: t('meta.name'),
-			images: [{ url: 'https://genealogyhub.ru/images/share-2.svg' }]
+			images: [{ url: 'https://genealogyhub.ru/images/waypoints (1).png' }]
 		}
 	}
 }
