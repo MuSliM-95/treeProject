@@ -2,11 +2,11 @@
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
+import ConsentBanner from '@/shared/components/ui/ConsentBanner'
+import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+
 import i18nConfig from '../../../i18nConfig'
 import initTranslations from '../../shared/utils/i18n/i18n'
-import TranslationsProvider from '@/shared/providers/TranslationsProvider'
-import ConsentBanner from '@/shared/components/ui/ConsentBanner'
-
 
 export async function generateMetadata({
 	params
@@ -36,7 +36,21 @@ export async function generateMetadata({
 			description: t('description'),
 			url: 'https://genealogyhub.ru',
 			siteName: t('meta.name'),
-			images: [{ url: 'https://genealogyhub.ru/images/waypoints (1).png' }]
+			images: [
+				{
+					url: 'https://genealogyhub.ru/images/favicon.png',
+					width: 1200,
+					height: 630,
+					alt: 'Genealogy Hub — сайт о генеалогии'
+				}
+			],
+			type: 'website'
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: t('meta.title'),
+			description: t('description'),
+			images: ['https://genealogyhub.ru/images/favicon.png']
 		}
 	}
 }
