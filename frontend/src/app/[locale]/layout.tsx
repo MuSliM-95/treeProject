@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import ConsentBanner from '@/shared/components/ui/ConsentBanner'
+import { MetaDataWrapper } from '@/shared/components/ui/MetaDataWrapper'
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 
 import i18nConfig from '../../../i18nConfig'
@@ -20,6 +21,7 @@ export async function generateMetadata({
 	})
 
 	return {
+		metadataBase: new URL('https://genealogyhub.ru'),
 		title: t('meta.title'),
 		description: t('meta.description'),
 		icons: {
@@ -33,9 +35,13 @@ export async function generateMetadata({
 		},
 		openGraph: {
 			title: t('meta.title'),
-			description: t('description'),
-			url: 'https://genealogyhub.ru',
+			description: t('meta.description'),
+			url:
+				locale === 'en'
+					? 'https://genealogyhub.ru/en'
+					: 'https://genealogyhub.ru/ru',
 			siteName: t('meta.name'),
+			locale: locale === 'en' ? 'en_US' : 'ru_RU',
 			images: [
 				{
 					url: 'https://genealogyhub.ru/images/favicon.png',
@@ -51,6 +57,16 @@ export async function generateMetadata({
 			title: t('meta.title'),
 			description: t('description'),
 			images: ['https://genealogyhub.ru/images/favicon.png']
+		},
+		alternates: {
+			canonical:
+				locale === 'en'
+					? 'https://genealogyhub.ru/en'
+					: 'https://genealogyhub.ru/ru',
+			languages: {
+				en: 'https://genealogyhub.ru/en',
+				ru: 'https://genealogyhub.ru/ru'
+			}
 		}
 	}
 }
@@ -66,18 +82,22 @@ interface ILayout {
 
 export default async function LocaleLayout({ children, params }: ILayout) {
 	const { locale } = await params
-	const { resources } = await initTranslations({
+	const { t, resources } = await initTranslations({
 		locale: locale,
 		namespaces: ['common']
 	})
 	return (
-		<TranslationsProvider
-			namespaces={['common']}
-			locale={locale}
-			resources={resources}
-		>
-			<ConsentBanner />
-			{children}
-		</TranslationsProvider>
+		<>
+			<TranslationsProvider
+				namespaces={['common']}
+				locale={locale}
+				resources={resources}
+			>
+				<ConsentBanner />
+
+				{children}
+			</TranslationsProvider>
+			<MetaDataWrapper locale={locale} />
+		</>
 	)
 }

@@ -39,9 +39,17 @@
 			]
 		},
 
+		"meta": {
+			"description": "Platform for building a family genealogy tree"
+		},
+
 		"faq": {
 			"title": "Frequently Asked Questions",
 			"items": [
+				{
+					"question": "What is this, and how does it work?",
+					"answer": "A project that allows you to create an infographic family tree. You can style it, animate it, and save your tree."
+				},
 				{
 					"question": "How do I start building my tree?",
 					"answer": "Just click the \"Start\" button on the homepage and add the first family member."

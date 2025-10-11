@@ -17,6 +17,8 @@ export function FaqSection({ t }: IFaqSection) {
 		answer: string
 	}[]
 
+	
+
 	return (
 		<section className='mx-auto mt-24 max-w-4xl'>
 			<h3 className='mb-6 text-center text-2xl font-semibold text-[#4a372a]'>
