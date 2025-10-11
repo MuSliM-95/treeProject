@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
+import { v4 as uuidv4 } from 'uuid';
 
 import {
 	Button,
@@ -57,8 +58,6 @@ export function NodeForm({
 			bgColor: nodeColor || '#ffffff',
 			nodeTextColor: nodeTextColor || '#000000',
 			position: true
-			// sourcePosition: Position.Bottom,
-			// targetPosition: Position.Top
 		}
 	})
 
@@ -67,8 +66,6 @@ export function NodeForm({
 			form.setValue('label', selectedNode.data.label)
 			form.setValue('posX', selectedNode.position.x)
 			form.setValue('posY', selectedNode.position.y)
-			// setValue('sourcePosition', selectedNode.sourcePosition!)
-			// setValue('targetPosition', selectedNode.targetPosition!)
 			form.setValue(
 				'bgColor',
 				selectedNode.data?.style?.backgroundColor || '#ffffff'
@@ -84,7 +81,7 @@ export function NodeForm({
 
 	const handlerAddChildren = () => {
 		if (!selectedNode) return
-		const newNodeId = `node-${Date.now()}`
+		const newNodeId = `node-${uuidv4()}`
 
 		const node = {
 			id: newNodeId,
@@ -105,7 +102,7 @@ export function NodeForm({
 		}
 
 		const edge = {
-			id: `edge-${Date.now()}`,
+			id: `edge-${uuidv4()}`,
 			source: selectedNode.id,
 			target: newNodeId,
 			type: 'default',
@@ -122,7 +119,7 @@ export function NodeForm({
 		const screenCenterX = window.innerWidth / 2
 		const screenCenterY = window.innerHeight / 2
 		const node = {
-			id: selectedNode?.id || `node-${Date.now()}`,
+			id: selectedNode?.id || `node-${uuidv4()}`,
 			data: {
 				...selectedNode?.data,
 				label: data.label,

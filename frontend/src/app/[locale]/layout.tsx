@@ -25,9 +25,9 @@ export async function generateMetadata({
 		title: t('meta.title'),
 		description: t('meta.description'),
 		icons: {
-			icon: '/images/share-2.svg',
-			shortcut: '/images/share-2.svg',
-			apple: '/images/share-2.svg'
+			icon: 'https://genealogyhub.ru/images/favicon.svg',
+			shortcut: 'https://genealogyhub.ru/images/favicon.svg',
+			apple: 'https://genealogyhub.ru/images/favicon.svg'
 		},
 		verification: {
 			google: 'K4NjTpnl-Yu4tWYOS-afGUtZA3PIIZM-AH30tKuJrzo',
