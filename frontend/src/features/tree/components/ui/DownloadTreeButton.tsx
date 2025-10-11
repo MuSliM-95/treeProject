@@ -4,6 +4,8 @@ import { Edge, Node, useReactFlow } from '@xyflow/react'
 import { saveAs } from 'file-saver'
 import * as htmlToImage from 'html-to-image'
 import { ChevronDown, Download, Upload } from 'lucide-react'
+import { domToJpeg, domToPng } from 'modern-screenshot'
+import workerUrl from 'modern-screenshot'
 import { RefObject, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
@@ -45,6 +47,7 @@ export function DownloadTreeButton({
 
 	const { t } = useTranslation('tree')
 
+
 	const handleDownload = async () => {
 		if (getNodes().length === 0) {
 			toast.error(t('download.emptyTree'))
@@ -54,9 +57,28 @@ export function DownloadTreeButton({
 		if (!element) return
 
 		setLoading(true)
-
 		await new Promise(resolve => setTimeout(resolve, 0))
 		const SCALE = 6
+
+		const options: any = {
+			filter: (node: any) =>
+				!node.classList?.contains('hide-on-export'),
+			backgroundColor: theme === Theme.DARK ? '#1e1e1e' : '#ffffff',
+
+			width:
+				format !== 'svg'
+					? element.scrollWidth * SCALE
+					: element.scrollWidth,
+			height:
+				format !== 'svg'
+					? element.scrollHeight * SCALE
+					: element.scrollHeight,
+			style: {
+				transform: format !== 'svg' ? `scale(${SCALE})` : ``,
+				transformOrigin: 'top left'
+			}
+		}
+
 		try {
 			if (format === 'json') {
 				const dataStr = JSON.stringify({ nodes, edges }, null, 2)
@@ -66,85 +88,30 @@ export function DownloadTreeButton({
 				return
 			}
 
-			const options = {
-				filter: (node: HTMLElement) =>
-					!node.classList?.contains('hide-on-export'),
-				backgroundColor: theme === Theme.DARK ? '#1e1e1e' : '#ffffff',
+			let dataUrl
 
-				width:
-					format !== 'svg'
-						? element.scrollWidth * SCALE
-						: element.scrollWidth,
-				height:
-					format !== 'svg'
-						? element.scrollHeight * SCALE
-						: element.scrollHeight,
-				style: {
-					transform: format !== 'svg' ? `scale(${SCALE})` : '',
-					transformOrigin: 'top left'
-				}
-			}
-
-			let dataUrl: string
 			switch (format) {
 				case 'svg':
 					dataUrl = await htmlToImage.toSvg(element, options)
 					break
-				case 'png':
-					dataUrl = await htmlToImage.toPng(element, options)
-					break
+
 				case 'jpg':
-					dataUrl = await htmlToImage.toJpeg(element, {
-						...options,
-						quality: 0.95
-					})
+					dataUrl = await domToJpeg(element, options)
 					break
-				default:
-					throw new Error('Unsupported format')
+
+				case 'png':
+					dataUrl = await domToPng(element, options)
+					break
 			}
 
-			if (format === 'svg') {
-				const res = await fetch(dataUrl)
-				const blob = await res.blob()
+			const link = document.createElement('a')
+			link.download = `tree.${format}`
+			link.href = dataUrl
+			link.click()
 
-				saveAs(blob, `tree.${format}`)
-				toast.success(
-					t('download.imageDownloaded', {
-						format: format.toUpperCase()
-					})
-				)
-				return
-			}
-
-			const base64Data = dataUrl.split(',')[1]
-			const byteCharacters = atob(base64Data)
-			const byteNumbers = new Array(byteCharacters.length)
-			for (let i = 0; i < byteCharacters.length; i++) {
-				byteNumbers[i] = byteCharacters.charCodeAt(i)
-			}
-			const byteArray = new Uint8Array(byteNumbers)
-			const mimeType =
-				format === 'jpg'
-					? 'image/jpeg'
-					: format === 'png'
-						? 'image/png'
-						: 'image/svg+xml'
-			const blob = new Blob([byteArray], { type: mimeType })
-
-			// ✅ Обработка iOS отдельно
-			const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-			if (isIOS) {
-				const blobUrl = URL.createObjectURL(blob)
-				window.open(blobUrl, '_blank')
-				toast.info('Откройте изображение и сохраните его вручную 📲')
-			} else {
-				saveAs(blob, `tree.${format}`)
-				toast.success(
-					t('download.imageDownloaded', {
-						format: format.toUpperCase()
-					})
-				)
-			}
+			toast.success(
+				t('download.imageDownloaded', { format: format.toUpperCase() })
+			)
 		} catch (error) {
 			toast.error(t('download.errorSaveTree'))
 		} finally {

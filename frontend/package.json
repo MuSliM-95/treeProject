@@ -7,7 +7,8 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:lan": "npm run dev -- -p 3000 -H 0.0.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -48,6 +49,7 @@
     "install": "^0.13.0",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.525.0",
+    "modern-screenshot": "^4.6.6",
     "next": "15.3.4",
     "next-i18n-router": "^5.5.4",
     "next-i18next": "^15.4.2",
