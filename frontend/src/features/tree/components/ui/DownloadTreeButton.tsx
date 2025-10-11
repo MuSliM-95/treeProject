@@ -103,14 +103,48 @@ export function DownloadTreeButton({
 					throw new Error('Unsupported format')
 			}
 
-			const res = await fetch(dataUrl)
-			const blob = await res.blob()
+			if (format === 'svg') {
+				const res = await fetch(dataUrl)
+				const blob = await res.blob()
 
-			saveAs(blob, `tree.${format}`)
+				saveAs(blob, `tree.${format}`)
+				toast.success(
+					t('download.imageDownloaded', {
+						format: format.toUpperCase()
+					})
+				)
+				return
+			}
 
-			toast.success(
-				t('download.imageDownloaded', { format: format.toUpperCase() })
-			)
+			const base64Data = dataUrl.split(',')[1]
+			const byteCharacters = atob(base64Data)
+			const byteNumbers = new Array(byteCharacters.length)
+			for (let i = 0; i < byteCharacters.length; i++) {
+				byteNumbers[i] = byteCharacters.charCodeAt(i)
+			}
+			const byteArray = new Uint8Array(byteNumbers)
+			const mimeType =
+				format === 'jpg'
+					? 'image/jpeg'
+					: format === 'png'
+						? 'image/png'
+						: 'image/svg+xml'
+			const blob = new Blob([byteArray], { type: mimeType })
+
+			// ✅ Обработка iOS отдельно
+			const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+			if (isIOS) {
+				const blobUrl = URL.createObjectURL(blob)
+				window.open(blobUrl, '_blank')
+				toast.info('Откройте изображение и сохраните его вручную 📲')
+			} else {
+				saveAs(blob, `tree.${format}`)
+				toast.success(
+					t('download.imageDownloaded', {
+						format: format.toUpperCase()
+					})
+				)
+			}
 		} catch (error) {
 			toast.error(t('download.errorSaveTree'))
 		} finally {
