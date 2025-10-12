@@ -3,10 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 
 import '@/app/styles/globals.css'
 
-import { GoogleAnalytics, MetaData } from '@/shared/components'
+import { GoogleAnalytics } from '@/shared/components'
 import { MainProvider } from '@/shared/providers'
-import TranslationsProvider from '@/shared/providers/TranslationsProvider'
-import initTranslations from '@/shared/utils/i18n/i18n'
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -18,7 +16,6 @@ const geistMono = Geist_Mono({
 	subsets: ['latin']
 })
 
-const i18nNamespaces = ['meta']
 
 export default async function RootLayout({
 	children
@@ -27,7 +24,9 @@ export default async function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<head></head>
+			<head>
+
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>

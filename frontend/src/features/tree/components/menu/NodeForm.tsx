@@ -20,7 +20,7 @@ import {
 	Input
 } from '@/shared/components'
 
-import { clearNodeEdge, sendNode } from '../../hooks'
+import { buttonActivate, clearNodeEdge, sendNode } from '../../hooks'
 import { useAppDispatch, useAppSelector } from '../../hooks/useHooks'
 import { TypeLinksSchema, createLinksSchema } from '../../schemes'
 import { TreeNode } from '../../types'
@@ -119,7 +119,7 @@ export function NodeForm({
 		const screenCenterX = window.innerWidth / 2
 		const screenCenterY = window.innerHeight / 2
 		const node = {
-			id: selectedNode?.id || `node-${uuidv4()}`,
+			id: selectedNode?.id || `node-${Date.now()}`,
 			data: {
 				...selectedNode?.data,
 				label: data.label,
@@ -151,7 +151,7 @@ export function NodeForm({
 		} else {
 			addNodes(node)
 		}
-
+		dispatch(buttonActivate({ activate: false }))
 		form.reset()
 	}
 

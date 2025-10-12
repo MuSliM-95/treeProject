@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import ConsentBanner from '@/shared/components/ui/ConsentBanner'
-import { MetaDataWrapper } from '@/shared/components/ui/MetaDataWrapper'
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 
 import i18nConfig from '../../../i18nConfig'
@@ -55,7 +54,7 @@ export async function generateMetadata({
 		twitter: {
 			card: 'summary_large_image',
 			title: t('meta.title'),
-			description: t('description'),
+			description: t('meta.description'),
 			images: ['https://genealogyhub.ru/images/favicon.png']
 		},
 		alternates: {
@@ -67,7 +66,8 @@ export async function generateMetadata({
 				en: 'https://genealogyhub.ru/en',
 				ru: 'https://genealogyhub.ru/ru'
 			}
-		}
+		},
+		
 	}
 }
 
@@ -97,7 +97,6 @@ export default async function LocaleLayout({ children, params }: ILayout) {
 
 				{children}
 			</TranslationsProvider>
-			<MetaDataWrapper locale={locale} />
 		</>
 	)
 }
