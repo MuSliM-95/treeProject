@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next'
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 
@@ -8,7 +9,6 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger
 } from '@/shared/components'
-import { TFunction } from 'i18next'
 
 interface IInfoNavProvider {
 	children: ReactNode
@@ -19,11 +19,7 @@ export const InfoNavProvider: React.FC<IInfoNavProvider> = ({
 	children,
 	t
 }) => {
-
-	const toc = t('infoPage', { returnObjects: true }) as Record<
-		string,
-		string
-	>
+	const toc = t('infoPage', { returnObjects: true }) as Record<string, string>
 
 	return (
 		<div className='flex flex-col gap-4 lg:flex-row'>
@@ -36,12 +32,11 @@ export const InfoNavProvider: React.FC<IInfoNavProvider> = ({
 					<DropdownMenuContent className='min-w-[200px]'>
 						<nav className='space-y-2'>
 							<DropdownMenuItem>
-								<Link
-									href='/'
-									className='flex items-center gap-2 rounded-md text-gray-700 transition-colors hover:text-gray-900'
-								>
-									<BackButton t={t} className='relative top-auto left-auto' />
-								</Link>
+								<BackButton
+									t={t}
+									path='/'
+									className='relative top-auto left-auto'
+								/>
 							</DropdownMenuItem>
 
 							{Object.entries(toc).map(([key, text]) => (
@@ -61,12 +56,11 @@ export const InfoNavProvider: React.FC<IInfoNavProvider> = ({
 
 			{/* ===== Меню для десктопа ===== */}
 			<nav className='hidden w-64 space-y-2 border-r pr-4 lg:block'>
-				<Link
-					href='/'
-					className='flex items-center gap-2 rounded-md text-gray-700 transition-colors hover:text-gray-900'
-				>
-					<BackButton t={t} className='relative top-auto left-auto' />
-				</Link>
+				<BackButton
+					t={t}
+					path='/'
+					className='relative top-auto left-auto'
+				/>
 
 				{Object.entries(toc).map(([key, text]) => (
 					<Link

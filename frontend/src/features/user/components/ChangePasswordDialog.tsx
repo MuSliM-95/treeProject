@@ -20,13 +20,19 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ChangePasswordSchema, TypeChangePasswordSchema } from '@/features/user/schemes/change-password-schema'
 import { useUpdatePasswordMutation } from '../hooks/useUpdatePasswordMutation'
 
-export function ChangePasswordDialog({ onSuccess }: { onSuccess?: () => void }) {
+interface IPChangePasswordDialog {
+  // onSuccess?: () => void,
+  isTwoFactorEnabled: boolean
+
+}
+
+export function ChangePasswordDialog({ isTwoFactorEnabled }: IPChangePasswordDialog) {
   const { t } = useTranslation('auth')
   const [passwordStatus, setPasswordStatus] = useState('')
   const [isShowCode, setIsShowCode] = useState(false)
   const [open, setOpen] = useState(false)
 
-  const { update, isLoadingUpdate } = useUpdatePasswordMutation()
+  const { update, isLoadingUpdate, data } = useUpdatePasswordMutation()
 
   const passwordForm = useForm<TypeChangePasswordSchema>({
     resolver: zodResolver(ChangePasswordSchema(t)),
@@ -38,7 +44,7 @@ export function ChangePasswordDialog({ onSuccess }: { onSuccess?: () => void }) 
     try {
       await update(values)
 
-      if (!isShowCode) {
+      if (isTwoFactorEnabled && data?.messageTwo) {
         setIsShowCode(true)
         setPasswordStatus(t('profile.enterConfirmationCode'))
         return
@@ -48,7 +54,7 @@ export function ChangePasswordDialog({ onSuccess }: { onSuccess?: () => void }) 
       passwordForm.reset()
       setIsShowCode(false)
       setOpen(false)
-      onSuccess?.()
+      // onSuccess?.()
     } catch {
       setPasswordStatus(t('profile.passwordChangeError'))
     }

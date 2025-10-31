@@ -2,10 +2,13 @@
 
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-import { useVerificationMutation } from '../hooks'
-import { AuthWrapper } from './AuthWrapper'
-import { Loading } from '@/shared/components'
 import { useTranslation } from 'react-i18next'
+
+import { SpinnerOverlay } from '@/shared/components'
+
+import { useVerificationMutation } from '../hooks'
+
+import { AuthWrapper } from './AuthWrapper'
 
 export function NewVerificationForm() {
 	const searchParams = useSearchParams()
@@ -21,7 +24,7 @@ export function NewVerificationForm() {
 	return (
 		<AuthWrapper heading={t('auth-form.verify.title')}>
 			<div>
-				<Loading />
+				<SpinnerOverlay t={t} />
 			</div>
 		</AuthWrapper>
 	)

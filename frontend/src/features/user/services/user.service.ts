@@ -1,7 +1,8 @@
 import { api } from '@/shared/api'
 import { TypeSettingsSchema } from '../schemes'
-import { IPasswordUpdate, IUser } from '@/features/auth/types'
+import { IDeleteProfile, IDeleteProfileResponse, IPasswordUpdate, IUser } from '@/features/auth/types'
 import { TypeChangePasswordSchema } from '../schemes/change-password-schema'
+import { TypeDeleteProfileSchema } from '../schemes/delete-profile-schema'
 
 
 class UserService {
@@ -18,6 +19,11 @@ class UserService {
 	}
 	public async updatePassword(body: TypeChangePasswordSchema) {
 		const response = await api.patch<IPasswordUpdate>('api/auth/update-password', body)
+
+		return response
+	}
+	public async profileDelete(body: TypeDeleteProfileSchema) {
+		const response = await api.delete<IDeleteProfileResponse>('api/auth/delete-profile', body)
 
 		return response
 	}

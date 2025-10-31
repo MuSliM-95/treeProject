@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import {
+	BackButton,
 	Button,
 	Card,
 	CardContent,
@@ -30,6 +31,8 @@ import { SettingsSchema, TypeSettingsSchema } from '../schemes'
 import { ChangePasswordDialog } from './ChangePasswordDialog'
 import { EmailUpdate } from './EmailUpdate'
 import { UserButton, UserButtonLoading } from './UserButton'
+import { ChangeDeleteProfileDialog } from './ChangeDeleteProfileDialog'
+
 
 export function SettingsForm() {
 	const { user, isLoading } = useProfile()
@@ -54,9 +57,7 @@ export function SettingsForm() {
 
 	return (
 		<div className='relative flex min-h-screen flex-col'>
-			<Link className='mt-4 ml-4' href='/'>
-				<ArrowLeft className='h-6 w-6' />
-			</Link>
+			<BackButton t={t} path='/dashboard/profile' />
 			<div className='flex w-full items-center justify-center px-4'>
 				<Card className='w-[450px] space-y-6'>
 					<CardHeader className='flex flex-row items-center justify-between'>
@@ -153,12 +154,17 @@ export function SettingsForm() {
 
 								{/* 2. Смена email */}
 								<section>
-									<EmailUpdate email={user.email} />
+									<EmailUpdate email={form.getValues('email')} />
 								</section>
 
 								{/* 3. Смена пароля */}
 								<section>
-									<ChangePasswordDialog />
+									<ChangePasswordDialog isTwoFactorEnabled={form.getValues('isTwoFactorEnabled')} />
+								</section>
+
+								{/* 3. Удалить профиль */}
+								<section>
+									<ChangeDeleteProfileDialog />
 								</section>
 							</>
 						)}

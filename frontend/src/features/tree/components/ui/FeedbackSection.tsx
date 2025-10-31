@@ -19,11 +19,9 @@ export function FeedbackSection() {
 	const [showDialog, setShowDialog] = useState(false)
 
 	const handleClick = () => {
-		if (!activate && getNodes().length > 0) {
-			setShowDialog(true)
-		} else {
+
 			router.push('/tree/feedback')
-		}
+		
 	}
 
 	return (

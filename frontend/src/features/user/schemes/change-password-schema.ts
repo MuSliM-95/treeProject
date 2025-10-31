@@ -16,9 +16,9 @@ export const ChangePasswordSchema = (t: TFunction) =>
 
       code: z.optional(z.string())
     })
-		// .refine(data => data.password === data.passwordRepeat, {
-		// 	message: t('auth-errors.passwords-not-match'),
-		// 	path: ['passwordRepeat']
-		// })
+		.refine(data => data.password === data.passwordRepeat, {
+			message: t('auth-errors.passwords-not-match'),
+			path: ['passwordRepeat']
+		})
 
 export type TypeChangePasswordSchema = z.infer<ReturnType<typeof ChangePasswordSchema>>

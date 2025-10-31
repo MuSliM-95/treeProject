@@ -32,8 +32,9 @@ export const EmailUpdate: React.FC<IProps> = ({ email }) => {
 
 	const emailForm = useForm<TypeChangeEmailSchema>({
 		resolver: zodResolver(ChangeEmailSchema(t)),
-		defaultValues: { email: '', code: '' } // добавляем поле code
+		defaultValues: { email: '', code: '' } 
 	})
+	
 	const { updateEmail, isPending } = useEmailUpdateMutation(setIsShowFactor, setOpen, emailForm.reset)
 
 	const handleChangeEmail = async (values: TypeChangeEmailSchema) => {

@@ -5,13 +5,14 @@ import { toast } from 'sonner'
 import { toastMessageHandler } from '@/shared/utils'
 import { TypeLoginSchema } from '../schemes'
 import { authService } from '../services'
-import { useTranslation } from 'next-i18next'
+
+import { TFunction } from 'i18next'
 
 export function useLoginMutation(
-	setIsShowFactor: Dispatch<SetStateAction<boolean>>
+	setIsShowFactor: Dispatch<SetStateAction<boolean>>,
+	t: TFunction
 ) {
 	const router = useRouter()
-	const { t } = useTranslation('auth')
 
 	const { mutate: login, isPending: isLoadingLogin } = useMutation({
 		mutationKey: ['login user'],
@@ -26,7 +27,7 @@ export function useLoginMutation(
 				setIsShowFactor(true)
 			} else {
 				toast.success(t(`auth-toast.auth-success`))
-				router.push('/dashboard/settings')
+				router.push('/dashboard/profile')
 			}
 		},
 		onError(error: any) {							 	

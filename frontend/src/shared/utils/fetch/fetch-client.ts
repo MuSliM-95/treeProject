@@ -1,7 +1,6 @@
 import { FetchError } from './fetch-error'
 import { RequestOptions, TypeSearchParams } from './types/fetch.types'
 
-
 export class FetchClient {
 	private baseUrl: string
 	public headers?: Record<string, string>
@@ -66,9 +65,7 @@ export class FetchClient {
 		const response: Response = await fetch(url, config)
 
 		if (!response.ok) {
-			const error = await response.json() as
-			| { err: string }
-			| undefined
+			const error = (await response.json()) as { err: string } | undefined
 			throw new FetchError(
 				response.status,
 				error?.err || response.statusText
@@ -76,7 +73,6 @@ export class FetchClient {
 		}
 
 		if (
-			
 			response.headers.get('Content-Type')?.includes('application/json')
 		) {
 			return (await response.json()) as unknown as T
@@ -103,7 +99,7 @@ export class FetchClient {
 				'Content-Type': 'application/json',
 				...(options?.headers || {})
 			},
-			
+
 			...(!!body && { body: JSON.stringify(body) })
 		})
 	}
@@ -125,9 +121,17 @@ export class FetchClient {
 
 	public delete<T>(
 		endpoint: string,
+		body?: Record<string, any>,
 		options: Omit<RequestOptions, 'body'> = {}
 	) {
-		return this.request<T>(endpoint, 'DELETE', options)
+		return this.request<T>(endpoint, 'DELETE', {
+			...options,
+			headers: {
+				'Content-Type': 'application/json',
+				...(options?.headers || {})
+			},
+			...(!!body && { body: JSON.stringify(body) })
+		})
 	}
 
 	public patch<T>(

@@ -25,7 +25,7 @@ export function Exists() {
 		mutate(token)
 	}, [searchParams, error])
 
-	if (isPending) return <p>{t('loading')}</p>
+	if (isPending) return <p>{t('loading')}...</p>
 
 	return (
 		<div className='flex min-h-screen flex-col items-center justify-center bg-[#f7f2e9]'>

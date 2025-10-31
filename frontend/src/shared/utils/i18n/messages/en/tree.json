@@ -62,7 +62,6 @@
 	"download": {
 		"title": "Choose format",
 		"button": "Download tree",
-		"loadingText": "Preparing your download...",
 		"format": "Format",
 		"loadTree": "Load Tree",
 		"emptyTree": "Tree is empty.",
@@ -95,30 +94,13 @@
 		"center": "Center"
 	},
 	"feedback-form": {
-		"back": "Back",
-		"title": "Please leave feedback",
-		"subtitle": "Answer a few questions — it will take less than a minute",
-		"treeQuestion": "Have you already created your tree?",
-		"yes": "Yes",
-		"no": "No",
-		"commentLabel": "Comment",
-		"commentPlaceholder": "What did you like? What could be improved?",
-		"contactLabel": "Contact info (optional)",
-		"contactPlaceholder": "Your email or Telegram",
-		"submit": "Submit",
-		"thankYouTitle": "Thank you for your feedback!",
-		"thankYouText": "Your opinion means a lot to us ❤️",
-
-		"errors": {
-			"treeRequired": "Please select if you have created a tree",
-			"commentTooShort": "Please leave at least a short comment",
-			"invalidEmail": "Invalid email"
-		}
+		"back": "Back"
 	},
 
 	"links": {
 		"errors": {
 			"mustStartWithHttps": "The link must start with https://"
 		}
-	}
+	}, 
+	"loading": "Loading"
 }

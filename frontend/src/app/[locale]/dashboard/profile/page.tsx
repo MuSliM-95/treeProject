@@ -1,17 +1,16 @@
-import { LoginForm } from '@/features/auth/components'
-
+import Profile from '@/features/user/components/Profile'
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['auth']
 
-export default async function LoginPage({
+export default async function ProfilePage({
 	params
 }: {
 	params: Promise<{ locale: string }>
 }) {
 	const { locale } = await params
-	const { t, resources } = await initTranslations({
+	const { resources } = await initTranslations({
 		locale: locale,
 		namespaces: i18nNamespaces
 	})
@@ -22,7 +21,7 @@ export default async function LoginPage({
 			locale={locale}
 			resources={resources}
 		>
-			<LoginForm />
+			<Profile /> 
 		</TranslationsProvider>
 	)
 }

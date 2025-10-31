@@ -2,7 +2,10 @@ import 'next-i18n-router'
 
 const i18nConfig = {
 	locales: ['ru', 'en'],
-	defaultLocale: 'en',
+	defaultLocale: 'ru',
+	fallbackLng: 'ru',
+	order: ['cookie'],
+	lookupCookie: 'NEXT_LOCALE',
 	caches: [],
 	localeDetector: (request: unknown, config: unknown) => {
 		return 'the-locale'

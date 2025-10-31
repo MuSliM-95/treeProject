@@ -12,8 +12,8 @@ interface UserButtonProps {
 }
 
 export function UserButton({ user }: UserButtonProps) {
-	const { logout, isLoadingLogout } = useLogoutMutation()
 	const { t } = useTranslation('auth')
+	const { logout, isLoadingLogout } = useLogoutMutation(t)
 
 	if (!user) return null
 

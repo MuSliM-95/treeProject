@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+
 
 import {
 	Button,
@@ -18,15 +18,20 @@ import {
 } from '@/shared/components'
 
 import { useLoginMutation } from '../hooks'
-
+import { LoginSchema, TypeLoginSchema } from '../schemes'
 
 import { AuthWrapper } from './AuthWrapper'
-import { LoginSchema, TypeLoginSchema } from '../schemes'
+import { TFunction } from 'i18next'
+import { useTranslation } from 'react-i18next'
+
+interface IPLoginForm {
+	t: TFunction
+}
 
 export function LoginForm() {
 	const [isShowTwoFactor, setIsShowFactor] = useState(false)
 	const { t } = useTranslation('auth')
-	const schema = LoginSchema(t) 
+	const schema = LoginSchema(t)
 
 	const form = useForm<TypeLoginSchema>({
 		resolver: zodResolver(schema),
@@ -36,7 +41,7 @@ export function LoginForm() {
 		}
 	})
 
-	const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor)
+	const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor, t)
 
 	const onSubmit = (values: TypeLoginSchema) => {
 		login({ values })

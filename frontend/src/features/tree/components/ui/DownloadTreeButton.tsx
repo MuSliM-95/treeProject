@@ -17,9 +17,8 @@ import {
 	DropdownMenuTrigger
 } from '@/shared/components'
 
+import { SpinnerOverlay } from '../../../../shared/components/ui/SpinnerOverlay'
 import { Theme, TreeEdge, TreeNode } from '../../types'
-
-import { SpinnerOverlay } from './SpinnerOverlay'
 
 type Format = 'svg' | 'png' | 'jpg' | 'json'
 
@@ -46,7 +45,6 @@ export function DownloadTreeButton({
 
 	const { t } = useTranslation('tree')
 
-
 	const handleDownload = async () => {
 		if (getNodes().length === 0) {
 			toast.error(t('download.emptyTree'))
@@ -60,8 +58,7 @@ export function DownloadTreeButton({
 		const SCALE = 6
 
 		const options: any = {
-			filter: (node: any) =>
-				!node.classList?.contains('hide-on-export'),
+			filter: (node: any) => !node.classList?.contains('hide-on-export'),
 			backgroundColor: theme === Theme.DARK ? '#1e1e1e' : '#ffffff',
 
 			width:
@@ -156,7 +153,7 @@ export function DownloadTreeButton({
 
 	return (
 		<>
-			{loading && <SpinnerOverlay text={t('download.loadingText')} />}
+			{loading && <SpinnerOverlay t={t} />}
 			<div className='space-y-4 p-4'>
 				<h2 className='text-lg font-semibold'>{t('download.title')}</h2>
 

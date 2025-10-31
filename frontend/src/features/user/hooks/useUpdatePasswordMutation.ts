@@ -7,21 +7,21 @@ import { TypeChangePasswordSchema } from '../schemes/change-password-schema'
 import { userService } from '../services'
 
 export function useUpdatePasswordMutation() {
-	const { mutate: update, isPending: isLoadingUpdate } = useMutation({
+	const { mutate: update, isPending: isLoadingUpdate, data } = useMutation({
 		mutationKey: ['update password'],
 		mutationFn: (data: TypeChangePasswordSchema) =>
 			userService.updatePassword(data),
 		onSuccess(data: any) {
 			if (data?.messageTwo) {
+				console.log(data);
 				return toast.message(data?.messageTwo)
 			}
 			toast.success(data?.message)
 		},
 		onError(error) {
-			console.log(error.message)
 			toastMessageHandler(error)
 		}
 	})
 
-	return { update, isLoadingUpdate }
+	return { update, isLoadingUpdate, data }
 }

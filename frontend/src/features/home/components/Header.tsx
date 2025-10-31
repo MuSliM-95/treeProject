@@ -2,6 +2,8 @@ import { TFunction } from 'i18next'
 import React from 'react'
 
 import LanguageChanger from './LanguageChanger'
+import Link from 'next/link'
+import { User } from 'lucide-react'
 
 interface Props {
 	className?: string
@@ -17,13 +19,13 @@ export const Header: React.FC<Props> = ({ className, t, locale }) => {
 			</h1>
 			<div className='flex items-center gap-6'>
 				<LanguageChanger locale={locale} />
-				{/* <Link
-					href='/dashboard/settings'
+				<Link 
+					href='/dashboard/profile'
 					aria-label={t('homepage.header.goToProfile')}
 					className='flex items-center gap-2 border-b-2 border-transparent text-[#6a4e3a] hover:border-[#6a4e3a]'
 				>
 					<User className='h-5 w-5' /> {t('homepage.header.profile')}
-				</Link> */}
+				</Link>
 			</div>
 		</header>
 	)

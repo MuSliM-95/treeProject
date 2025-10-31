@@ -29,4 +29,6 @@ export * from './ui/back-button'
 export * from './ui/progress'
 export * from './ui/ConsentBanner'
 export * from './ui/GoogleAnalytics'
+export * from './ui/separator'
+export * from './ui/SpinnerOverlay'
 

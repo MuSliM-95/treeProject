@@ -41,3 +41,12 @@ export interface IPasswordUpdate {
 	password: string,
 	passwordRepeat: string
 }
+
+export interface IDeleteProfileResponse {
+	needCode: boolean, 
+	message: string
+}
+
+export interface IDeleteProfile {
+	code?: string
+}

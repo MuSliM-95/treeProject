@@ -1,8 +1,7 @@
 'use client'
 
-// import { FeedbackSection } from '..'
 import { useReactFlow } from '@xyflow/react'
-import { Download, Home, LayoutTemplate, Share2, Split } from 'lucide-react'
+import { Download, Home, LayoutTemplate, MessageSquare, Share2, Split } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Dispatch, RefObject, SetStateAction, useEffect, useState } from 'react'
 
@@ -23,12 +22,13 @@ import { ConfirmDialog } from './ConfirmDialog'
 import { EdgeForm } from './EdgeForm'
 import { NodeForm } from './NodeForm'
 import { TreePattern } from './TreePattern'
+import { FeedbackSection } from '..'
 
 const tabs = [
 	{ id: 'node', icon: Share2 },
 	{ id: 'edge', icon: Split },
 	{ id: 'tree', icon: LayoutTemplate },
-	// { id: 'feedback', icon: MessageSquare },
+	{ id: 'feedback', icon: MessageSquare },
 	{ id: 'download', icon: Download }
 ]
 
@@ -150,7 +150,7 @@ export default function SidebarWithContent({
 								handlesBehavior={handlesBehavior}
 							/>
 						)}
-						{/* {activeTab === 'feedback' && <FeedbackSection />} */}
+						{activeTab === 'feedback' && <FeedbackSection />}
 						{activeTab === 'download' && (
 							<DownloadTreeButton
 								treeRef={treeRef}
