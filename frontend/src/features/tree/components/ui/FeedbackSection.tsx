@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/shared/components'
 
 import { useAppSelector } from '../../hooks/useHooks'
-import { ConfirmDialog } from '../menu/ConfirmDialog'
+import { ConfirmDialog } from './ConfirmDialog'
 import { useReactFlow } from '@xyflow/react'
 
 export function FeedbackSection() {
@@ -19,8 +19,14 @@ export function FeedbackSection() {
 	const [showDialog, setShowDialog] = useState(false)
 
 	const handleClick = () => {
-
+		if (!activate && getNodes().length > 0) {
+			setShowDialog(true)
+			// dispatch(toggleTab({ tab: '/' }))
+		} else {
+			// dispatch(toggleTab({ tab: 'node' }))
 			router.push('/tree/feedback')
+		}
+
 		
 	}
 

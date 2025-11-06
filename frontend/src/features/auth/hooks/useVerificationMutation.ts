@@ -9,12 +9,12 @@ export function useVerificationMutation() {
 	const { t } = useTranslation('auth')
 	
 	const { mutate: verification } = useMutation({
-		mutationKey: ['new verification'],
+		mutationKey: ['new-verification'],
 		mutationFn: (token: string | null) =>
 			verificationService.newVerification(token),
 		onSuccess() {
+			// router.push('/dashboard/settings')
 			toast.success(t('auth-toast.email-confirmed'))
-			router.push('/dashboard/settings')
 		},
 		onError() {
 			router.push('/auth/login')

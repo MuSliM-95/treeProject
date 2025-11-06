@@ -34,7 +34,7 @@ class AuthService {
 	}
 
 	public async fetchExistsInfo(token: string) {
-		const response = await api.get(`api/oauth/exists-info?token=${token}`, {credentials: 'include'})
+		const response = await api.get(`api/oauth/exists-info?token=${token}`)
 
 		return response
 	}

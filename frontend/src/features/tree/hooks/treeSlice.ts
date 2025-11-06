@@ -2,7 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { BackgroundVariant, Viewport } from '@xyflow/react'
 
-import { HandlesBehavior, Status, Theme, TreeEdge, TreeNode } from '../types/tree.types'
+import {
+	HandlesBehavior,
+	ITree,
+	Status,
+	Theme,
+	TreeEdge,
+	TreeNode
+} from '../types/tree.types'
 
 export interface IInitialState {
 	node: TreeNode | null
@@ -67,7 +74,12 @@ const treeReducer = createSlice({
 			state.edge = null
 		},
 
-		sendTree(
+		sendTree(state, action: PayloadAction<{ tree: ITree }>) {
+			state.nodes = action.payload.tree.nodes
+			state.edges = action.payload.tree.edges
+		},
+
+		saveChanges(
 			state,
 			action: PayloadAction<{
 				data: {
@@ -113,10 +125,11 @@ const treeReducer = createSlice({
 export const {
 	sendNode,
 	clearNodeEdge,
+	saveChanges,
 	sendTree,
 	toggleTab,
 	sendEdge,
 	togglePens,
-	buttonActivate,
+	buttonActivate
 } = treeReducer.actions
 export default treeReducer.reducer

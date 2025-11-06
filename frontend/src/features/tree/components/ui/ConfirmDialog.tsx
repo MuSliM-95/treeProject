@@ -2,6 +2,8 @@ import { Button, Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle 
 import { useRouter } from 'next/navigation'
 import React, { Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toggleTab } from '../../hooks'
+import { useAppDispatch } from '../../hooks/useHooks'
 
 interface Props {
   className?: string
@@ -12,6 +14,7 @@ interface Props {
 
 export const ConfirmDialog: React.FC<Props> = ({ setShowDialog, showDialog, patch }) => {
   const router = useRouter()
+  const dispatch = useAppDispatch()
   const { t } = useTranslation("tree")
 
   const handleConfirmLeave = () => {
@@ -21,6 +24,7 @@ export const ConfirmDialog: React.FC<Props> = ({ setShowDialog, showDialog, patc
 
   const handleCancelLeave = () => {
     setShowDialog(false)
+    dispatch(toggleTab({ tab: 'node' }))
   }
   
   return (

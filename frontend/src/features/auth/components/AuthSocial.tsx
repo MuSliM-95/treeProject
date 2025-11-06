@@ -1,4 +1,5 @@
 'use client'
+
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { FaGoogle, FaYandex } from 'react-icons/fa'

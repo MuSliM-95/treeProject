@@ -24,7 +24,7 @@ export function NewVerificationForm() {
 	return (
 		<AuthWrapper heading={t('auth-form.verify.title')}>
 			<div>
-				<SpinnerOverlay t={t} />
+				{/* <SpinnerOverlay t={t} /> */}
 			</div>
 		</AuthWrapper>
 	)

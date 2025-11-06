@@ -14,7 +14,7 @@ export function useEmailVerificationMutation() {
 		mutationFn: (token: string) =>
 			verificationService.newEmailVerification(token),
 		onSuccess() {
-			router.push('/dashboard/profile')
+			// router.push('/dashboard/profile')
 			toast.success(t('auth-toast.email-confirmed'))
 		},
 		onError(error) {

@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 
 import { Button } from '@/shared/components'
 
-import { buttonActivate, sendTree } from '../../hooks'
+import { buttonActivate, saveChanges } from '../../hooks'
 import { useAppDispatch, useAppSelector } from '../../hooks/useHooks'
 import { HandlesBehavior, Status, Theme, TreeEdge, TreeNode } from '../../types'
 
@@ -51,7 +51,7 @@ export const SaveButton: React.FC<Props> = ({
 		const nodes = getNodes() as TreeNode[]
 		const edges = getEdges() as TreeEdge[]
 		dispatch(
-			sendTree({
+			saveChanges({
 				data: {
 					nodes,
 					edges,

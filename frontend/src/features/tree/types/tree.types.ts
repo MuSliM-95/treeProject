@@ -65,3 +65,12 @@ export enum HandlesBehavior {
 	'TOP-BOTTOM' = 'top-bottom',
 	TOP = 'top'
 }
+
+export interface ITree {
+	nodes: TreeNode[]
+	edges: TreeEdge[]
+}
+
+export interface ITreeLink  {
+	link?: string
+} 

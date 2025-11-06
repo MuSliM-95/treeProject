@@ -93,14 +93,29 @@
 	"button_center": {
 		"center": "Center"
 	},
+
 	"feedback-form": {
 		"back": "Back"
+	},
+
+	"share-link": {
+		"title": "Share link",
+		"name": "Share",
+		"button": "Create link",
+		"changesRequireNewLink": "Changes require generating a new link",
+		"mustCreateNewLink": "You have to create a new link after making changes.",
+		"shareLink": "Share link"
+	},
+
+	"tree-link": {
+		"linkCopied": "Link copied",
+		"copyFailed": "Failed to copy"
 	},
 
 	"links": {
 		"errors": {
 			"mustStartWithHttps": "The link must start with https://"
 		}
-	}, 
+	},
 	"loading": "Loading"
 }
