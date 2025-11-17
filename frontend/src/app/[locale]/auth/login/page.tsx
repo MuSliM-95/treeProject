@@ -1,9 +1,9 @@
-import { LoginForm } from '@/features/auth/components'
-
+import { LoginFormDynamic } from '@/features/auth/components'
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['auth']
+
 
 export default async function LoginPage({
 	params
@@ -22,7 +22,7 @@ export default async function LoginPage({
 			locale={locale}
 			resources={resources}
 		>
-			<LoginForm />
+			<LoginFormDynamic />
 		</TranslationsProvider>
 	)
 }

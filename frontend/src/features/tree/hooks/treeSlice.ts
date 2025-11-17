@@ -34,7 +34,7 @@ const initialState: IInitialState = {
 	node: null,
 	edge: null,
 	tab: 'tree',
-	handlesBehavior: HandlesBehavior['TOP-BOTTOM'],
+	handlesBehavior: HandlesBehavior.TOP_BOTTOM,
 	nodes: [],
 	edges: [],
 	pens: true,

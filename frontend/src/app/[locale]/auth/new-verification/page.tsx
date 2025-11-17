@@ -1,4 +1,4 @@
-import { NewVerificationForm } from '@/features/auth/components'
+import { NewVerificationFormDynamic } from '@/features/auth/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
@@ -22,7 +22,7 @@ export default async function NewVerificationPage({
 			resources={resources}
 		>
 			{' '}
-			<NewVerificationForm />{' '}
+			<NewVerificationFormDynamic />{' '}
 		</TranslationsProvider>
 	)
 }

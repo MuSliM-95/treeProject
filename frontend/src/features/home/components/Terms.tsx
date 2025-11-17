@@ -8,10 +8,17 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-	Card
+	Card,
+	SpinnerOverlay
 } from '@/shared/components'
 import CopyLinkButton from '@/shared/components/ui/CopyLinkButton'
 import { InfoNavProvider } from '@/shared/providers'
+import dynamic from 'next/dynamic'
+
+export const TermsDynamic = dynamic(() => import('@features/home/components/Terms').then(m => m.Terms), {
+       ssr: false,
+	   loading:  () => <SpinnerOverlay className='size-10' /> ,
+})
 
 export function Terms() {
 	const [openItem, setOpenItem] = useState<string | undefined>(undefined)

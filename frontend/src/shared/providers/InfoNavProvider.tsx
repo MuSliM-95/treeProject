@@ -9,6 +9,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger
 } from '@/shared/components'
+import { pageConfig } from '../config'
 
 interface IInfoNavProvider {
 	children: ReactNode
@@ -34,7 +35,7 @@ export const InfoNavProvider: React.FC<IInfoNavProvider> = ({
 							<DropdownMenuItem>
 								<BackButton
 									t={t}
-									path='/'
+									path={pageConfig.home}
 									className='relative top-auto left-auto'
 								/>
 							</DropdownMenuItem>
@@ -58,7 +59,7 @@ export const InfoNavProvider: React.FC<IInfoNavProvider> = ({
 			<nav className='hidden w-64 space-y-2 border-r pr-4 lg:block'>
 				<BackButton
 					t={t}
-					path='/'
+					path={pageConfig.home}
 					className='relative top-auto left-auto'
 				/>
 

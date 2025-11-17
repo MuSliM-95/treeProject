@@ -1,4 +1,4 @@
-import { SettingsForm } from '@/features/user/components'
+import { SettingsFormDynamic } from '@/features/user/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
@@ -22,7 +22,7 @@ export default async function SettingsPage({
 			resources={resources}
 		>
 			{' '}
-			<SettingsForm />{' '}
+			<SettingsFormDynamic />{' '}
 		</TranslationsProvider>
 	)
 }

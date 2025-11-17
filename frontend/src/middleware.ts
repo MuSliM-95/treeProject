@@ -8,7 +8,7 @@ export default function middleware(request: NextRequest) {
 	const originalPath = nextUrl.pathname
 
 
-	const session = cookies.get('session')?.value
+	const session = cookies.get('genealogy.session.name')?.value
 	const locale = cookies.get('NEXT_LOCALE')?.value || 'ru'
 	const isAuthPage = originalPath.includes(`/${locale}/auth`)
 	const profilePage = originalPath.includes('/dashboard')
@@ -23,7 +23,6 @@ export default function middleware(request: NextRequest) {
 	// }
 
 	if (profilePage && !session) {
-		console.log('locale', locale)
 		return NextResponse.redirect(new URL(`/${locale}/auth/login`, url))
 	}
 

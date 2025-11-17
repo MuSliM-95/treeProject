@@ -32,6 +32,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { EdgeForm } from './EdgeForm'
 import { NodeForm } from './NodeForm'
 import { TreePattern } from './TreePattern'
+import { pageConfig } from '@/shared/config'
 
 const tabs = [
 	{ id: 'node', icon: Share2 },
@@ -96,10 +97,10 @@ export default function SidebarWithContent({
 	const handleTogglePage = () => {
 		if (!activate && getNodes().length > 0) {
 			setShowDialog(true)
-			dispatch(toggleTab({ tab: '/' }))
+			dispatch(toggleTab({ tab: pageConfig.home }))
 		} else {
 			dispatch(toggleTab({ tab: 'node' }))
-			router.push('/')
+			router.push(pageConfig.home)
 		}
 	}
 
@@ -108,7 +109,7 @@ export default function SidebarWithContent({
 			<ConfirmDialog
 				setShowDialog={setShowDialog}
 				showDialog={showDialog}
-				patch='/'
+				patch={pageConfig.home}
 			/>
 			<Sidebar collapsible='icon' className='hide-on-export'>
 				<div className='flex h-full w-full'>
@@ -118,7 +119,7 @@ export default function SidebarWithContent({
 							<SidebarMenuButton onClick={handleTogglePage}>
 								<Home
 									className={
-										activeTab === '/'
+										activeTab === pageConfig.home
 											? 'h-4 w-4 cursor-pointer text-red-500'
 											: 'h-4 w-4 cursor-pointer'
 									}
@@ -129,7 +130,7 @@ export default function SidebarWithContent({
 									<SidebarMenuButton
 										className={
 											activeTab === id &&
-											activeTab !== '/'
+											activeTab !== pageConfig.home
 												? 'text-red-500 cursor-pointer'
 												: 'cursor-pointer'
 										}

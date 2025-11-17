@@ -1,7 +1,9 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import dynamic from 'next/dynamic'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import {
 	Button,
@@ -10,15 +12,27 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
-	FormMessage
+	FormMessage,
+	SpinnerOverlay
 } from '@/shared/components'
 import { Input } from '@/shared/components/ui/input'
+import { pageConfig } from '@/shared/config'
 
 import { useRegisterMutation } from '../hooks'
 import { RegisterSchema, TypeRegisterSchema } from '../schemes'
 
 import { AuthWrapper } from './AuthWrapper'
-import { useTranslation } from 'react-i18next'
+
+export const RegisterFormDynamic = dynamic(
+	() =>
+		import('@/features/auth/components/RegisterForm').then(
+			m => m.RegisterForm
+		),
+	{
+		ssr: false,
+		loading: () => <SpinnerOverlay className='size-10' />
+	}
+)
 
 export function RegisterForm() {
 	const { t } = useTranslation('auth')
@@ -44,7 +58,7 @@ export function RegisterForm() {
 			heading={t('auth-form.register.title')}
 			description={t('auth-form.register.description')}
 			backButtonLabel={t('auth-form.register.loginLink')}
-			backButtonHref='/auth/login'
+			backButtonHref={pageConfig.auth.login}
 			isShowSocial
 		>
 			<Form {...form}>
@@ -57,10 +71,14 @@ export function RegisterForm() {
 						name='name'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('auth-form.register.name')}</FormLabel>
+								<FormLabel>
+									{t('auth-form.register.name')}
+								</FormLabel>
 								<FormControl>
 									<Input
-										placeholder={t('auth-form.register.namePlaceholder')}
+										placeholder={t(
+											'auth-form.register.namePlaceholder'
+										)}
 										disabled={isLoadingRegister}
 										{...field}
 									/>
@@ -74,7 +92,9 @@ export function RegisterForm() {
 						name='email'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('auth-form.register.email')}</FormLabel>
+								<FormLabel>
+									{t('auth-form.register.email')}
+								</FormLabel>
 								<FormControl>
 									<Input
 										placeholder='ivan@example.com'
@@ -92,7 +112,9 @@ export function RegisterForm() {
 						name='password'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('auth-form.register.password')}</FormLabel>
+								<FormLabel>
+									{t('auth-form.register.password')}
+								</FormLabel>
 								<FormControl>
 									<Input
 										placeholder='******'
@@ -110,7 +132,9 @@ export function RegisterForm() {
 						name='passwordRepeat'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('auth-form.register.passwordRepeat')}</FormLabel>
+								<FormLabel>
+									{t('auth-form.register.passwordRepeat')}
+								</FormLabel>
 								<FormControl>
 									<Input
 										placeholder='******'

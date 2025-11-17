@@ -8,6 +8,7 @@ import { treeLinkService } from '../services/tree.link.service'
 import { ITree } from '../types'
 
 import { useAppDispatch } from './useHooks'
+import { pageConfig } from '@/shared/config'
 
 export function useFindTreeMutation() {
 	const dispatch = useAppDispatch()
@@ -21,10 +22,10 @@ export function useFindTreeMutation() {
 		mutationFn: (token: string) => treeLinkService.getTreeLink(token),
 		onSuccess(data: { tree: ITree }) {
 			dispatch(sendTree(data))
-			route.push('/tree')
+			route.push(pageConfig.tree.tree)
 		},
 		onError(error: Error) {
-            route.push('/tree')
+            route.push(pageConfig.tree.tree)
 			toastMessageHandler(error)
 		}
 	

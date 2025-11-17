@@ -4,6 +4,7 @@ import React from 'react'
 import LanguageChanger from './LanguageChanger'
 import Link from 'next/link'
 import { User } from 'lucide-react'
+import { pageConfig } from '@/shared/config'
 
 interface Props {
 	className?: string
@@ -20,7 +21,7 @@ export const Header: React.FC<Props> = ({ className, t, locale }) => {
 			<div className='flex items-center gap-6'>
 				<LanguageChanger locale={locale} />
 				<Link 
-					href='/dashboard/profile'
+					href={pageConfig.user.profile}
 					aria-label={t('homepage.header.goToProfile')}
 					className='flex items-center gap-2 border-b-2 border-transparent text-[#6a4e3a] hover:border-[#6a4e3a]'
 				>

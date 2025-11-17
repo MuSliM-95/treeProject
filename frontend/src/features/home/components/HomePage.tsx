@@ -11,6 +11,7 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 import { HomeReactXFlow } from './HomeReactXFlow'
 import { Reviews } from './Reviews'
+import { pageConfig } from '@/shared/config'
 
 interface HeaderProps {
 	t: TFunction
@@ -34,13 +35,13 @@ export default function HomePage({ t, locale }: HeaderProps) {
 						</p>
 						<div className='mt-6 flex flex-wrap gap-4'>
 							<Link
-								href={'/tree'}
+								href={pageConfig.tree.tree}
 								className='flex items-center rounded-md bg-[#6a4e3a] px-6 text-lg text-white hover:bg-[#523a2a]'
 							>
 								{t('homepage.getStarted')}
 								<ArrowRight className='mt-1 ml-2 h-2 w-2' />
 							</Link>
-							<Link href='/lear-more'>
+							<Link href={pageConfig.info.lear_more}>
 								<Button
 									variant='outline'
 									className='border-[#6a4e3a] text-[#6a4e3a] hover:bg-[#f3ebe3]'

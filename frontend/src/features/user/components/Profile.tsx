@@ -2,6 +2,7 @@
 
 import { User } from 'lucide-react'
 import { useTranslation } from 'next-i18next'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { LuLogOut } from 'react-icons/lu'
 
@@ -13,13 +14,22 @@ import {
 	SpinnerOverlay
 } from '@/shared/components'
 import { BackButton } from '@/shared/components'
+import { pageConfig } from '@/shared/config'
 import { useProfile } from '@/shared/hooks'
 
 import { useLogoutMutation } from '../hooks'
 
 interface IProfile {}
 
-export default function Profile({}: IProfile) {
+export const ProfileDynamic = dynamic(
+	() => import('@features/user/components/Profile').then(m => m.Profile),
+	{
+		ssr: true,
+		loading: () => <SpinnerOverlay />
+	}
+)
+
+export function Profile({}: IProfile) {
 	const { user, isLoading } = useProfile()
 	const { t } = useTranslation('auth')
 	const { logout, isLoadingLogout } = useLogoutMutation(t)
@@ -28,9 +38,11 @@ export default function Profile({}: IProfile) {
 
 	return (
 		<>
-			{(isLoading || isLoadingLogout) && <SpinnerOverlay t={t} />}
+			{(isLoading || isLoadingLogout) && (
+				<SpinnerOverlay text={`${t('loading')}...`} />
+			)}
 			<main className='bg-background text-foreground flex min-h-screen flex-col items-center justify-start px-4 py-10'>
-				<BackButton t={t} path='/' />
+				<BackButton t={t} path={pageConfig.home} />
 				<section className='w-full max-w-md space-y-8'>
 					{/* Карточка профиля */}
 					<Card className='border-border/40 bg-card/60 rounded-2xl md:shadow-sm md:backdrop-blur-sm'>
@@ -81,7 +93,7 @@ export default function Profile({}: IProfile) {
 									size='lg'
 									className='rounded-xl'
 								>
-									<Link href='/dashboard/settings'>
+									<Link href={pageConfig.user.setting}>
 										{t('profile.settingsTitle')}
 									</Link>
 								</Button>

@@ -31,4 +31,6 @@ export * from './ui/ConsentBanner'
 export * from './ui/GoogleAnalytics'
 export * from './ui/separator'
 export * from './ui/SpinnerOverlay'
+export * from './ui/DynamicLoader'
+
 

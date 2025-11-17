@@ -1,4 +1,4 @@
-import { ResetPasswordForm } from '@/features/auth/components'
+import { ResetPasswordFormDynamic } from '@/features/auth/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
@@ -22,7 +22,7 @@ export default async function ResetPasswordPage({
 			resources={resources}
 		>
 			{' '}
-			<ResetPasswordForm />{' '}
+			<ResetPasswordFormDynamic />{' '}
 		</TranslationsProvider>
 	)
 }

@@ -369,9 +369,7 @@ export const TreePattern: React.FC<Props> = ({
 												<DropdownMenuItem
 													onClick={() =>
 														field.onChange(
-															HandlesBehavior[
-																'TOP-BOTTOM'
-															]
+															HandlesBehavior.TOP_BOTTOM
 														)
 													}
 												>

@@ -1,10 +1,10 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+
+import { AuthMethod } from '@/features/auth/types'
 
 import {
 	BackButton,
@@ -21,6 +21,7 @@ import {
 	FormMessage,
 	Input,
 	Loading,
+	SpinnerOverlay,
 	Switch
 } from '@/shared/components'
 import { useProfile } from '@/shared/hooks'
@@ -28,11 +29,20 @@ import { useProfile } from '@/shared/hooks'
 import { useUpdateProfileMutation } from '../hooks'
 import { SettingsSchema, TypeSettingsSchema } from '../schemes'
 
+import { ChangeDeleteProfileDialog } from './ChangeDeleteProfileDialog'
 import { ChangePasswordDialog } from './ChangePasswordDialog'
 import { EmailUpdate } from './EmailUpdate'
 import { UserButton, UserButtonLoading } from './UserButton'
-import { ChangeDeleteProfileDialog } from './ChangeDeleteProfileDialog'
+import { pageConfig } from '@/shared/config'
+import dynamic from 'next/dynamic'
 
+export const SettingsFormDynamic = dynamic(
+	() => import('@features/user/components/SettingsForm').then(m => m.SettingsForm),
+	{
+		ssr: true,
+		loading: () => <SpinnerOverlay />
+	}
+)
 
 export function SettingsForm() {
 	const { user, isLoading } = useProfile()
@@ -47,7 +57,7 @@ export function SettingsForm() {
 		}
 	})
 
-	const { update, isLoadingUpdate } = useUpdateProfileMutation()
+	const { update, isLoadingUpdate } = useUpdateProfileMutation(t)
 
 	const onSubmit = (values: TypeSettingsSchema) => {
 		update(values)
@@ -57,7 +67,7 @@ export function SettingsForm() {
 
 	return (
 		<div className='relative flex min-h-screen flex-col'>
-			<BackButton t={t} path='/dashboard/profile' />
+			<BackButton t={t} path={pageConfig.user.profile} />
 			<div className='flex w-full items-center justify-center px-4'>
 				<Card className='w-[450px] space-y-6'>
 					<CardHeader className='flex flex-row items-center justify-between'>
@@ -111,36 +121,39 @@ export function SettingsForm() {
 												)}
 											/>
 
-											<FormField
-												control={form.control}
-												name='isTwoFactorEnabled'
-												render={({ field }) => (
-													<FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
-														<div className='space-y-0.5'>
-															<FormLabel>
-																{t(
-																	'profile.twoFactorLabel'
-																)}
-															</FormLabel>
-															<p className='text-muted-foreground text-sm'>
-																{t(
-																	'profile.twoFactorDescription'
-																)}
-															</p>
-														</div>
-														<FormControl>
-															<Switch
-																checked={
-																	field.value
-																}
-																onCheckedChange={
-																	field.onChange
-																}
-															/>
-														</FormControl>
-													</FormItem>
-												)}
-											/>
+											{user.method ===
+												AuthMethod.Credentials && (
+												<FormField
+													control={form.control}
+													name='isTwoFactorEnabled'
+													render={({ field }) => (
+														<FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
+															<div className='space-y-0.5'>
+																<FormLabel>
+																	{t(
+																		'profile.twoFactorLabel'
+																	)}
+																</FormLabel>
+																<p className='text-muted-foreground text-sm'>
+																	{t(
+																		'profile.twoFactorDescription'
+																	)}
+																</p>
+															</div>
+															<FormControl>
+																<Switch
+																	checked={
+																		field.value
+																	}
+																	onCheckedChange={
+																		field.onChange
+																	}
+																/>
+															</FormControl>
+														</FormItem>
+													)}
+												/>
+											)}
 
 											<Button
 												type='submit'
@@ -152,15 +165,19 @@ export function SettingsForm() {
 									</Form>
 								</section>
 
-								{/* 2. Смена email */}
-								<section>
-									<EmailUpdate email={form.getValues('email')} />
-								</section>
-
-								{/* 3. Смена пароля */}
-								<section>
-									<ChangePasswordDialog isTwoFactorEnabled={form.getValues('isTwoFactorEnabled')} />
-								</section>
+								{user.method === AuthMethod.Credentials && (
+									<>
+										<section>
+											<EmailUpdate
+												email={form.getValues('email')}
+											/>
+										</section>
+										<section>
+											<ChangePasswordDialog
+											/>
+										</section>
+									</>
+								)}
 
 								{/* 3. Удалить профиль */}
 								<section>

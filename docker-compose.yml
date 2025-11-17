@@ -1,6 +1,5 @@
-networks:
-  dev:
-    # общая сеть для всех сервисов, чтобы они могли общаться по имени сервиса
+version: '3.9'
+# общая сеть для всех сервисов, чтобы они могли общаться по имени сервиса
 
 services:
   nginx:
@@ -14,25 +13,75 @@ services:
       - "/etc/letsencrypt:/etc/letsencrypt:ro" # монтируем SSL сертификаты, только для чтения
     restart: always # автоматически перезапускать контейнер при падении
     depends_on:
-      # - backend # запускать nginx после backend (порядок запуска, но не гарантирует готовность)
+      - backend # запускать nginx после backend (порядок запуска, но не гарантирует готовность)
       - frontend # запускать nginx после frontend
     networks:
       - dev # подключаем контейнер к сети dev
 
-  # backend:
-  #   container_name: express # имя контейнера на хосте
-  #   build:
-  #     context: ./backend # берем Dockerfile из папки backend для сборки образа
-  #   restart: always # автоматически перезапускать контейнер
-  #   networks:
-  #     - dev # подключаем контейнер к сети dev
+  backend:
+    container_name: express # имя контейнера на хосте
+    build:
+      context: ./backend # берем Dockerfile из папки backend для сборки образа
+    restart: always # автоматически перезапускать контейнер
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379
+    depends_on:
+      - db
+      - redis
+    networks:
+      - dev # подключаем контейнер к сети dev
+
+  db:
+    container_name: postgres
+    image: postgres:15.2
+    restart: always
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5435:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+  redis:
+    container_name: redis
+    image: redis:5.0
+    restart: unless-stopped
+    ports:
+      - 6380:6379
+    command: >
+      sh -c '
+       mkdir -p /usr/local/etc/redis &&
+       echo "bind 0.0.0.0" > /usr/local/etc/redis/redis.conf &&
+       echo "requirepass $REDIS_PASSWORD" >> /usr/local/etc/redis/redis.conf &&
+       echo "appendonly yes" >> /usr/local/etc/redis/redis.conf &&
+       echo "appendfsync everysec" >> /usr/local/etc/redis/redis.conf &&
+       echo "dir /data" >> /usr/local/etc/redis/redis.conf &&
+       redis-server /usr/local/etc/redis/redis.conf
+      '
+    volumes:
+      - redis_data:/data
+    networks:
+      - dev
 
   frontend:
     container_name: nextjs # имя контейнера на хосте
     build:
       context: ./frontend # берем Dockerfile из папки frontend для сборки образа
     restart: always # автоматически перезапускать контейнер
-    environment: 
+    environment:
       - SERVER_URL=${SERVER_URL}
     networks:
       - dev # подключаем контейнер к сети dev
+
+volumes:
+  postgres_data:
+  redis_data:
+
+
+networks:
+  dev:

@@ -6,21 +6,28 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button, Card, CardContent } from '@/shared/components'
+import { Button, Card, CardContent, SpinnerOverlay } from '@/shared/components'
 
 import { useExistsMutation } from '../hooks/useExistsMutation'
+import { pageConfig } from '@/shared/config'
+import dynamic from 'next/dynamic'
+
+export const ExistsDynamic = dynamic(() => import('@features/auth/components/Exists').then(m => m.Exists), {
+	ssr: false,
+	loading: () => <SpinnerOverlay className='size-10' />
+})
 
 export function Exists() {
-	const { mutate, data, isPending, error } = useExistsMutation()
+	const { t, i18n } = useTranslation('auth')
+	const { mutate, data, isPending, error } = useExistsMutation(t, i18n.language)
 	const searchParams = useSearchParams()
 	const router = useRouter()
-	const { t } = useTranslation('auth')
 
 	useEffect(() => {
 		const token = searchParams.get('token')
 
 		if (!token || error) {
-			return router.push('/auth/login')
+			return router.push(pageConfig.auth.login)
 		}
 		mutate(token)
 	}, [searchParams, error])
@@ -32,7 +39,7 @@ export function Exists() {
 			<Card className='w-[350px] rounded-2xl p-4 text-center shadow-lg'>
 				<div className='flex items-center gap-2'>
 					<Link
-						href='/auth/login'
+						href={pageConfig.auth.login}
 						className='text-xl font-bold text-red-500'
 					>
 						{' '}

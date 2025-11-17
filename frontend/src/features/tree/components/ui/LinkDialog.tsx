@@ -3,7 +3,6 @@
 import { Copy, RotateCw } from 'lucide-react'
 import { TFunction } from 'next-i18next'
 import React, { Dispatch, SetStateAction } from 'react'
-import { toast } from 'sonner'
 
 import {
 	Button,
@@ -37,6 +36,7 @@ export const LinkDialog: React.FC<Props> = ({
 	handleCreateLink
 }) => {
 	const handleCopy = async () => {
+		const { toast } = await import('sonner')
 		if (!link) return
 		try {
 			await navigator.clipboard.writeText(link)

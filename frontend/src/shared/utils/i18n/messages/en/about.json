@@ -16,5 +16,7 @@
 	},
 	"back": "Back",
 	"menu": "Menu",
-	"loading": "Loading"
+	"loading": "Loading",
+	"requestNewCode": "Request a new code"
+	
 }

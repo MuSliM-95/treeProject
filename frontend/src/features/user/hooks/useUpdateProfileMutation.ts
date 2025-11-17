@@ -5,14 +5,15 @@ import { toastMessageHandler } from '@/shared/utils'
 
 import { TypeSettingsSchema } from '../schemes'
 import { userService } from '../services'
+import { TFunction } from 'next-i18next'
 
-export function useUpdateProfileMutation() {
+export function useUpdateProfileMutation(t: TFunction) {
 	const { mutate: update, isPending: isLoadingUpdate } = useMutation({
 		mutationKey: ['update profile'],
 		mutationFn: (data: TypeSettingsSchema) =>
 			userService.updateProfile(data),
 		onSuccess() {
-			toast.success('Профиль успешно обновлён')
+			toast.success(t('profileUpdated'))
 		},
 		onError(error) {
 			toastMessageHandler(error)

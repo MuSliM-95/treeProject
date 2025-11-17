@@ -1,7 +1,7 @@
 import { ReactFlowProvider } from '@xyflow/react'
 import React from 'react'
 
-import { TreeLink } from '@/features/tree/components'
+import { TreeLinkDynamic } from '@/features/tree/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
@@ -11,6 +11,7 @@ interface IProps {
 }
 
 const i18nNamespaces = ['tree']
+
 export default async function LinkPage({ params }: IProps) {
 	const { token, locale } = await params
 
@@ -26,7 +27,7 @@ export default async function LinkPage({ params }: IProps) {
 			resources={resources}
 		>
 			<ReactFlowProvider>
-				<TreeLink token={token} />
+				<TreeLinkDynamic token={token} />
 			</ReactFlowProvider>
 		</TranslationsProvider>
 	)

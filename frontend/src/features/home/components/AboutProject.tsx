@@ -1,10 +1,14 @@
 import { TFunction } from 'i18next'
 
 import { InfoNavProvider } from '@/shared/providers'
+import dynamic from 'next/dynamic'
 
 interface IAboutProject {
 	t: TFunction
 }
+
+export const AboutProjectDynamic = dynamic(() => import('@features/home/components/AboutProject'))
+
 
 export default function AboutProject({ t }: IAboutProject) {
 	return (

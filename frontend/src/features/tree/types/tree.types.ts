@@ -49,22 +49,31 @@ export interface IProps extends NodeProps {
 	pens: boolean
 }
 
-export enum Theme {
-	'LIGHT' = 'light',
-	'DARK' = 'dark'
-}
+// Вместо enum Theme
+export const Theme = {
+	LIGHT: 'light',
+	DARK: 'dark',
+} as const
 
-export enum Status {
-	LOADING = 'loading',
-	ERROR = 'error',
-	SUCCESS = 'success',
-	INITIAL = 'initial'
-}
+export type Theme = (typeof Theme)[keyof typeof Theme]
 
-export enum HandlesBehavior {
-	'TOP-BOTTOM' = 'top-bottom',
-	TOP = 'top'
-}
+// Вместо enum Status
+export const Status = {
+	LOADING: 'loading',
+	ERROR: 'error',
+	SUCCESS: 'success',
+	INITIAL: 'initial',
+} as const
+
+export type Status = (typeof Status)[keyof typeof Status]
+
+// Вместо enum HandlesBehavior
+export const HandlesBehavior = {
+	TOP_BOTTOM: 'top-bottom',
+	TOP: 'top',
+} as const
+
+export type HandlesBehavior = (typeof HandlesBehavior)[keyof typeof HandlesBehavior]
 
 export interface ITree {
 	nodes: TreeNode[]

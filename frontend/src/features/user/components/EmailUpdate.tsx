@@ -41,6 +41,10 @@ export const EmailUpdate: React.FC<IProps> = ({ email }) => {
 		await updateEmail(values)
 	}
 
+	const backHandler = () => {
+		setIsShowFactor(false)
+	}
+
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<Input className='mb-4' disabled value={email} />
@@ -107,6 +111,17 @@ export const EmailUpdate: React.FC<IProps> = ({ email }) => {
 								? t('profile.confirmCode')
 								: t('profile.sendConfirmation')}
 					</Button>
+					{isShowTwoFactor && (
+							<Button
+								type='button'
+								variant={'link'}
+								className='w-full'
+								onClick={backHandler}
+								disabled={isPending}
+							>
+								{t('back')}
+							</Button>
+						)}
 				</form>
 			</DialogContent>
 		</Dialog>

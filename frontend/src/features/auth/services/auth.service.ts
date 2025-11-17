@@ -1,40 +1,33 @@
 import { api } from '@/shared/api'
-import { TypeLoginSchema, TypeRegisterSchema } from '../schemes'
-import { IUser } from '../types/user.types'
-import { TypeChangeEmailSchema } from '../../user/schemes/change-email-schema'
 
+import { TypeChangeEmailSchema } from '../../user/schemes/change-email-schema'
+import { TypeLoginSchema, TypeRegisterSchema } from '../schemes'
+import { ResponseExists, ResponseLoginData, ResponseRegisterData } from '../types/user.types'
 
 class AuthService {
-	public async register(body: TypeRegisterSchema, recaptcha?: string) {
-		const headers = recaptcha ? { recaptcha } : undefined
+	public async register(body: TypeRegisterSchema) {
 
-		const response = await api.post<IUser>('api/auth/register', body, {
-			headers
-		})
+		const response = await api.post<ResponseRegisterData>('api/auth/register', body)
 
 		return response
 	}
 
-	public async login(body: TypeLoginSchema, recaptcha?: string) {
-		const headers = recaptcha ? { recaptcha } : undefined
+	public async login(body: TypeLoginSchema) {
+		const response = await api.post<ResponseLoginData>('api/auth/login', body)
 
-		const response = await api.post<IUser>('api/auth/login', body, {
-			headers
-		})
-		
 		return response
 	}
 
-	public async oauthByProvider(provider: 'google' | 'yandex') {
+	public async oauthByProvider(provider: 'google' | 'yandex', lang: string) {
 		const response = await api.get<{ url: string }>(
 			`api/oauth/connect/${provider}`
 		)
-	
+
 		return response
 	}
 
-	public async fetchExistsInfo(token: string) {
-		const response = await api.get(`api/oauth/exists-info?token=${token}`)
+	public async fetchExistsInfo(token: string, lang: string) {
+		const response = await api.get<ResponseExists>(`api/oauth/exists-info?token=${token}`)
 
 		return response
 	}

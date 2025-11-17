@@ -1,3 +1,4 @@
+import { pageConfig } from '@/shared/config'
 import { TFunction } from 'i18next'
 import Link from 'next/link'
 import React from 'react'
@@ -18,7 +19,7 @@ export const Footer: React.FC<Props> = ({ className, t }) => {
 				{t('homepage.footer.rights')}
 			</p>
 			<p className='mt-2'>
-				<Link href='/terms' className='hover:underline'>
+				<Link href={pageConfig.info.terms} className='hover:underline'>
 					{t('homepage.infoPage.terms')}
 				</Link>
 			</p>

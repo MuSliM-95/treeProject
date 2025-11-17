@@ -1,5 +1,4 @@
-import { RegisterForm } from '@/features/auth/components'
-
+import { RegisterFormDynamic } from '@/features/auth/components'
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
 
@@ -22,7 +21,7 @@ export default async function RegisterPage({
 			resources={resources}
 		>
 			{' '}
-			<RegisterForm />{' '}
+			<RegisterFormDynamic />{' '}
 		</TranslationsProvider>
 	)
 }

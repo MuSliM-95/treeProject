@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { Card, CardContent, CardFooter } from './card'
+import { pageConfig } from '@/shared/config'
 
 export default function ConsentBanner() {
 	const { t, i18n } = useTranslation('common')
@@ -68,7 +69,7 @@ export default function ConsentBanner() {
 							<p className='text-sm text-gray-600 dark:text-gray-300'>
 								{t('description')}{' '}
 								<a
-									href='/terms#rule-2'
+									href={`${pageConfig.info.terms}#rule-2`}
 									className='text-blue-600 hover:underline dark:text-blue-400'
 									target='_blank'
 								>

@@ -5,7 +5,6 @@ import { useReactFlow } from '@xyflow/react'
 import React, { useEffect } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { toast } from 'sonner'
 
 import {
 	Button,
@@ -28,20 +27,17 @@ interface Props {
 	edgeColor: string
 }
 
-export const EdgeForm: React.FC<Props> = ({
-	edgeColor
-}) => {
+export const EdgeForm: React.FC<Props> = ({ edgeColor }) => {
 	const { setEdges } = useReactFlow()
 	const dispatch = useAppDispatch()
 	const { t } = useTranslation('tree')
 
 	const edge = useAppSelector(state => state.tree.edge)
 
-	
 	useEffect(() => {
 		form.setValue('animated', edge?.animated!)
 	}, [edge])
-	
+
 	const form = useForm<TypeEdgeSchema>({
 		resolver: zodResolver(edgeSchema),
 		defaultValues: {
@@ -49,7 +45,7 @@ export const EdgeForm: React.FC<Props> = ({
 			animated: edge?.animated
 		}
 	})
-	
+
 	const handleDeleteClick = () => {
 		if (!edge) return
 		setEdges(edges => edges.filter(edg => edg.id !== edge.id))
@@ -72,10 +68,9 @@ export const EdgeForm: React.FC<Props> = ({
 		)
 	}
 
-	const onInvalid = (errors: FieldErrors<TypeEdgeSchema>) => {
+	const onInvalid = async (errors: FieldErrors<TypeEdgeSchema>) => {
+		const { toast } = await import('sonner')
 		if (errors.animated?.message) {
-			console.log(errors.animated)
-
 			toast.error(errors.animated?.message)
 		}
 		if (errors.color?.message) {

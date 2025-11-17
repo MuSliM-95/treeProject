@@ -1,27 +1,18 @@
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
-
-import { toastMessageHandler } from '@/shared/utils'
 
 import { TypeChangePasswordSchema } from '../schemes/change-password-schema'
 import { userService } from '../services'
+import { IResponsePasswordUpdate } from '../types/user.types'
+
 
 export function useUpdatePasswordMutation() {
-	const { mutate: update, isPending: isLoadingUpdate, data } = useMutation({
+	const { mutateAsync: update, isPending: isLoadingUpdate } = useMutation({
 		mutationKey: ['update password'],
 		mutationFn: (data: TypeChangePasswordSchema) =>
 			userService.updatePassword(data),
-		onSuccess(data: any) {
-			if (data?.messageTwo) {
-				console.log(data);
-				return toast.message(data?.messageTwo)
-			}
-			toast.success(data?.message)
-		},
-		onError(error) {
-			toastMessageHandler(error)
-		}
+		onSuccess(data: IResponsePasswordUpdate) {},
+		onError(error) {}
 	})
 
-	return { update, isLoadingUpdate, data }
+	return { update, isLoadingUpdate }
 }

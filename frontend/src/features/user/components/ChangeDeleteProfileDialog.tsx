@@ -92,6 +92,15 @@ export function ChangeDeleteProfileDialog() {
 									? t('profile.confirmCode')
 									: t('profile.deleteProfile')}
 						</Button>
+						{isShowCode && (
+							<Button
+								className='w-full'
+								type='submit'
+								variant={'link'}
+							>
+								{t('requestNewCode')}
+							</Button>
+						)}
 					</form>
 				</FormProvider>
 			</DialogContent>

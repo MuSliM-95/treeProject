@@ -1,11 +1,10 @@
-// app/[locale]/layout.tsx
+// src/app/[locale]/layout.tsx
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import ConsentBanner from '@/shared/components/ui/ConsentBanner'
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 
-import i18nConfig from '../../../i18nConfig'
 import initTranslations from '../../shared/utils/i18n/i18n'
 
 export async function generateMetadata({
@@ -71,9 +70,6 @@ export async function generateMetadata({
 	}
 }
 
-export function generateStaticParams() {
-	return i18nConfig.locales.map(locale => ({ locale }))
-}
 
 interface ILayout {
 	children: ReactNode

@@ -14,19 +14,26 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Input
+	Input,
+	SpinnerOverlay
 } from '@/shared/components'
 
 import { useLoginMutation } from '../hooks'
 import { LoginSchema, TypeLoginSchema } from '../schemes'
 
 import { AuthWrapper } from './AuthWrapper'
-import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { pageConfig } from '@/shared/config'
+import dynamic from 'next/dynamic'
 
-interface IPLoginForm {
-	t: TFunction
-}
+export const LoginFormDynamic = dynamic(
+	() => import('@/features/auth/components/LoginForm').then(m => m.LoginForm),
+	{
+		ssr: false,
+		loading: () => <SpinnerOverlay className='size-10' />
+	}
+)
+
 
 export function LoginForm() {
 	const [isShowTwoFactor, setIsShowFactor] = useState(false)
@@ -37,7 +44,8 @@ export function LoginForm() {
 		resolver: zodResolver(schema),
 		defaultValues: {
 			email: '',
-			password: ''
+			password: '',
+			code: ''
 		}
 	})
 
@@ -52,7 +60,7 @@ export function LoginForm() {
 			heading={t('auth-form.login.title')}
 			description={t('auth-form.login.description')}
 			backButtonLabel={t('auth-form.login.registerLink')}
-			backButtonHref='/auth/register'
+			backButtonHref={pageConfig.auth.register}
 			isShowSocial
 		>
 			<Form {...form}>
@@ -113,7 +121,7 @@ export function LoginForm() {
 												{t('auth-form.login.password')}
 											</FormLabel>
 											<Link
-												href='/auth/reset-password'
+												href={pageConfig.auth.resetPassword}
 												className='ml-auto inline-block text-sm underline'
 											>
 												{t('auth-form.login.forgot')}

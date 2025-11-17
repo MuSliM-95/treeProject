@@ -12,13 +12,21 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Input
+	Input,
+	SpinnerOverlay
 } from '@/shared/components'
 
 import { useNewPasswordMutation } from '../hooks'
 import { NewPasswordSchema, TypeNewPasswordSchema } from '../schemes'
 
 import { AuthWrapper } from './AuthWrapper'
+import { pageConfig } from '@/shared/config'
+import dynamic from 'next/dynamic'
+
+export const NewPasswordFormDynamic = dynamic(() => import('@features/auth/components/NewPasswordForm').then(m => m.NewPasswordForm), {
+	ssr: false,
+	loading: () => <SpinnerOverlay className='size-10' />
+})
 
 export function NewPasswordForm() {
 	const { t } = useTranslation('auth')
@@ -42,7 +50,7 @@ export function NewPasswordForm() {
 			heading={t('auth-form.newPassword.title')}
 			description={t('auth-form.newPassword.description')}
 			backButtonLabel={t('auth-form.newPassword.back')}
-			backButtonHref='/auth/login'
+			backButtonHref={pageConfig.auth.login}
 		>
 			<Form {...form}>
 				<form

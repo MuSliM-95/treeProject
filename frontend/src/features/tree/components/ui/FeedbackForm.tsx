@@ -1,5 +1,6 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -8,6 +9,20 @@ import { Button } from '@/shared/components'
 
 import { SpinnerOverlay } from '../../../../shared/components/ui/SpinnerOverlay'
 
+export function LoadingMessage() {
+	const { t } = useTranslation('tree')
+	return <SpinnerOverlay text={`${t('loading')}...`}/>
+}
+
+export const FeedbackFormDynamic = dynamic(
+	() => import('@/features/tree/components/ui/FeedbackForm').then(mod => mod.FeedbackForm),
+	{
+		ssr: false, // форма только клиентская
+		loading: () => <LoadingMessage />, // отображается при загрузке
+	}
+)
+
+
 export function FeedbackForm() {
 	const router = useRouter()
 	const { t, i18n } = useTranslation('tree')
@@ -15,7 +30,7 @@ export function FeedbackForm() {
 
 	return (
 		<>
-			{loading && <SpinnerOverlay t={t} />}
+			{loading && <SpinnerOverlay text={`${t('loading')}...`} />}
 			<div className='mx-auto'>
 				<Button
 					onClick={() => router.back()}

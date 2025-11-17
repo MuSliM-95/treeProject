@@ -1,13 +1,19 @@
-export enum UserRole {
-	Regular = 'REGULAR',
-	Admin = 'ADMIN'
-}
+export const  UserRole = {
+	Regular: 'REGULAR',
+	Admin: 'ADMIN'
+} as const
 
-export enum AuthMethod {
-	Credentials = 'CREDENTIALS',
-	Google = 'GOOGLE',
-	Yandex = 'YANDEX'
-}
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+export const AuthMethod = {
+	Credentials: 'CREDENTIALS',
+	Google: 'GOOGLE',
+	Yandex: 'YANDEX'
+} as const
+
+
+export type AuthMethod = (typeof AuthMethod)[keyof typeof AuthMethod]
+
 
 export interface IAccount {
 	id: string
@@ -49,4 +55,14 @@ export interface IDeleteProfileResponse {
 
 export interface IDeleteProfile {
 	code?: string
+}
+
+export interface ResponseRegisterData {
+	message: string
+}
+
+export type ResponseLoginData = { message: string } | { messageTwo: string }
+
+export interface ResponseExists {
+	email: string
 }

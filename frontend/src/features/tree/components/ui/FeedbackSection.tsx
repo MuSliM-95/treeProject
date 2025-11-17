@@ -9,6 +9,7 @@ import { Button } from '@/shared/components'
 import { useAppSelector } from '../../hooks/useHooks'
 import { ConfirmDialog } from './ConfirmDialog'
 import { useReactFlow } from '@xyflow/react'
+import { pageConfig } from '@/shared/config'
 
 export function FeedbackSection() {
 	const router = useRouter()
@@ -21,13 +22,9 @@ export function FeedbackSection() {
 	const handleClick = () => {
 		if (!activate && getNodes().length > 0) {
 			setShowDialog(true)
-			// dispatch(toggleTab({ tab: '/' }))
 		} else {
-			// dispatch(toggleTab({ tab: 'node' }))
-			router.push('/tree/feedback')
+			router.push(pageConfig.tree.feedback)
 		}
-
-		
 	}
 
 	return (
@@ -35,7 +32,7 @@ export function FeedbackSection() {
 			<ConfirmDialog
 				setShowDialog={setShowDialog}
 				showDialog={showDialog}
-				patch='/tree/feedback'
+				patch={pageConfig.tree.feedback}
 			/>
 			<div className='space-y-8 bg-white p-4'>
 				<h2 className='text-lg font-semibold'>{t('feedback.title')}</h2>

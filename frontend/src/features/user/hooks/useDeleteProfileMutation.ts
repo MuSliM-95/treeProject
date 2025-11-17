@@ -6,6 +6,7 @@ import { TypeDeleteProfileSchema } from '../schemes/delete-profile-schema'
 import { userService } from '../services'
 import { useRouter } from 'next/navigation'
 import { IDeleteProfileResponse } from '@/features/auth/types'
+import { pageConfig } from '@/shared/config'
 
 
 
@@ -23,7 +24,7 @@ export function useDeleteProfileMutation(
 				return
 			}
 			setIsShowCode(false)
-			router.push('/')
+			router.push(pageConfig.home)
 			toast.success(data?.message)
 		},
 		onError(error) {

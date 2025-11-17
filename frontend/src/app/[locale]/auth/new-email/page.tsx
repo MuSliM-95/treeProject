@@ -1,4 +1,4 @@
-import { NewEmail } from '@/features/auth/components'
+import { NewEmailDynamic } from '@/features/auth/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
@@ -21,7 +21,7 @@ export default async function NewEmailPage({
 			locale={locale}
 			resources={resources}
 		>
-			<NewEmail />
+			<NewEmailDynamic />
 		</TranslationsProvider>
 	)
 }

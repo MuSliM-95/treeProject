@@ -1,148 +1,204 @@
 'use client'
 
-import { useState } from 'react'
-import {
-  Button,
-  Input,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  FormItem,
-  FormControl,
-  FormMessage,
-  FormField
-} from '@/shared/components'
-import { useTranslation } from 'react-i18next'
-import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ChangePasswordSchema, TypeChangePasswordSchema } from '@/features/user/schemes/change-password-schema'
+import { useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+
+import {
+	ChangePasswordSchema,
+	TypeChangePasswordSchema
+} from '@/features/user/schemes/change-password-schema'
+
+import {
+	Button,
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+	Input
+} from '@/shared/components'
+
 import { useUpdatePasswordMutation } from '../hooks/useUpdatePasswordMutation'
 
-interface IPChangePasswordDialog {
-  // onSuccess?: () => void,
-  isTwoFactorEnabled: boolean
+interface IPChangePasswordDialog {}
 
-}
+export function ChangePasswordDialog({}: IPChangePasswordDialog) {
+	const { t } = useTranslation('auth')
+	const [isShowCode, setIsShowCode] = useState(false)
+	const [open, setOpen] = useState(false)
 
-export function ChangePasswordDialog({ isTwoFactorEnabled }: IPChangePasswordDialog) {
-  const { t } = useTranslation('auth')
-  const [passwordStatus, setPasswordStatus] = useState('')
-  const [isShowCode, setIsShowCode] = useState(false)
-  const [open, setOpen] = useState(false)
+	const { update, isLoadingUpdate } = useUpdatePasswordMutation()
 
-  const { update, isLoadingUpdate, data } = useUpdatePasswordMutation()
+	const passwordForm = useForm<TypeChangePasswordSchema>({
+		resolver: zodResolver(ChangePasswordSchema(t)),
+		defaultValues: {
+			oldPassword: '',
+			password: '',
+			passwordRepeat: '',
+			code: ''
+		}
+	})
 
-  const passwordForm = useForm<TypeChangePasswordSchema>({
-    resolver: zodResolver(ChangePasswordSchema(t)),
-    defaultValues: { oldPassword: '', password: '', passwordRepeat: '', code: '' }
-  })
+	const handleChangePassword = async (values: TypeChangePasswordSchema) => {
+		const { toast } = await import('sonner')
 
-  const handleChangePassword = async (values: TypeChangePasswordSchema) => {
-    setPasswordStatus('')
-    try {
-      await update(values)
+		try {
+			const result = await update(values)
+			if (result.messageTwo) {
+				setIsShowCode(true)
+				toast.message(result?.messageTwo)
+				return
+			}
 
-      if (isTwoFactorEnabled && data?.messageTwo) {
-        setIsShowCode(true)
-        setPasswordStatus(t('profile.enterConfirmationCode'))
-        return
-      }
+			if (result.message) {
+				toast.message(result.message)
+				passwordForm.reset()
+				setIsShowCode(false)
+				setOpen(false)
+			}
+		} catch (error) {
+			const err = error as Error
+			toast.error(t(err.message))
+		}
+	}
 
-      setPasswordStatus(t('profile.passwordChanged'))
-      passwordForm.reset()
-      setIsShowCode(false)
-      setOpen(false)
-      // onSuccess?.()
-    } catch {
-      setPasswordStatus(t('profile.passwordChangeError'))
-    }
-  }
+	const backHandler = () => {
+		setIsShowCode(false)
+	}
 
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant='secondary'>{t('profile.changePassword')}</Button>
-      </DialogTrigger>
+	return (
+		<Dialog open={open} onOpenChange={setOpen}>
+			<DialogTrigger asChild>
+				<Button variant='secondary'>
+					{t('profile.changePassword')}
+				</Button>
+			</DialogTrigger>
 
-      <DialogContent className="sm:max-w-[400px]">
-        <DialogHeader>
-          <DialogTitle>{t('profile.changePassword')}</DialogTitle>
-        </DialogHeader>
+			<DialogContent className='sm:max-w-[400px]'>
+				<DialogHeader>
+					<DialogTitle>{t('profile.changePassword')}</DialogTitle>
+				</DialogHeader>
 
-        <FormProvider {...passwordForm}>
-          <form onSubmit={passwordForm.handleSubmit(handleChangePassword)} className="space-y-3 mt-2">
-            {!isShowCode && (
-              <>
-                <FormField
-                  name="oldPassword"
-                  control={passwordForm.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input type="password" placeholder={t('profile.currentPassword')} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+				<FormProvider {...passwordForm}>
+					<form
+						onSubmit={passwordForm.handleSubmit(
+							handleChangePassword
+						)}
+						className='mt-2 space-y-3'
+					>
+						{!isShowCode && (
+							<>
+								<FormField
+									name='oldPassword'
+									control={passwordForm.control}
+									render={({ field }) => (
+										<FormItem>
+											<FormControl>
+												<Input
+													type='password'
+													placeholder={t(
+														'profile.currentPassword'
+													)}
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 
-                <FormField
-                  name="password"
-                  control={passwordForm.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input type="password" placeholder={t('profile.newPassword')} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+								<FormField
+									name='password'
+									control={passwordForm.control}
+									render={({ field }) => (
+										<FormItem>
+											<FormControl>
+												<Input
+													type='password'
+													placeholder={t(
+														'profile.newPassword'
+													)}
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 
-                <FormField
-                  name="passwordRepeat"
-                  control={passwordForm.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input type="password" placeholder={t('profile.confirmNewPassword')} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </>
-            )}
+								<FormField
+									name='passwordRepeat'
+									control={passwordForm.control}
+									render={({ field }) => (
+										<FormItem>
+											<FormControl>
+												<Input
+													type='password'
+													placeholder={t(
+														'profile.confirmNewPassword'
+													)}
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</>
+						)}
 
-            {isShowCode && (
-              <FormField
-                name="code"
-                control={passwordForm.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input type="text" placeholder={t('profile.confirmationCode')} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
+						{isShowCode && (
+							<FormField
+								name='code'
+								control={passwordForm.control}
+								render={({ field }) => (
+									<FormItem>
+										<FormControl>
+											<Input
+												type='text'
+												placeholder={t(
+													'profile.confirmationCode'
+												)}
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						)}
 
-            <Button type="submit" className="w-full" disabled={isLoadingUpdate}>
-              {isLoadingUpdate
-                ? t('profile.sending')
-                : isShowCode
-                ? t('profile.confirmCode')
-                : t('profile.updatePassword')}
-            </Button>
-
-            {passwordStatus && <p className="text-sm text-muted-foreground">{passwordStatus}</p>}
-          </form>
-        </FormProvider>
-      </DialogContent>
-    </Dialog>
-  )
+						<Button
+							type='submit'
+							className='w-full'
+							disabled={isLoadingUpdate}
+						>
+							{isLoadingUpdate
+								? t('profile.sending')
+								: isShowCode
+									? t('profile.confirmCode')
+									: t('profile.updatePassword')}
+						</Button>
+						{isShowCode && (
+							<Button
+								type='button'
+								variant={'link'}
+								className='w-full'
+								onClick={backHandler}
+								disabled={isLoadingUpdate}
+							>
+								{t('back')}
+							</Button>
+						)}
+					</form>
+				</FormProvider>
+			</DialogContent>
+		</Dialog>
+	)
 }

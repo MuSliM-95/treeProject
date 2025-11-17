@@ -5,8 +5,7 @@ import { Position, useReactFlow } from '@xyflow/react'
 import { useEffect } from 'react'
 import { FieldErrors, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { toast } from 'sonner'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 import {
 	Button,
@@ -155,7 +154,8 @@ export function NodeForm({
 		form.reset()
 	}
 
-	const onInvalid = (errors: FieldErrors<TypeLinksSchema>) => {
+	const onInvalid = async (errors: FieldErrors<TypeLinksSchema>) => {
+		const { toast } = await import('sonner')
 		if (errors.imageUrl?.message) {
 			toast.error(errors.imageUrl.message)
 		}

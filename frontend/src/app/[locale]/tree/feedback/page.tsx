@@ -1,9 +1,18 @@
-import { FeedbackForm } from '@/features/tree/components'
+import { FeedbackFormDynamic } from '@/features/tree/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import initTranslations from '@/shared/utils/i18n/i18n'
+import i18nConfig from '../../../../../i18nConfig'
 
 const i18nNamespaces = ['tree']
+
+export const revalidate = false
+
+export const dynamic = 'force-static'
+
+export function generateStaticParams() {
+	return i18nConfig.locales.map(locale => ({ locale }))
+}
 
 export default async function FeedbackPage({
 	params
@@ -23,8 +32,9 @@ export default async function FeedbackPage({
 			locale={locale}
 			resources={resources}
 		>
-			{' '}
-			<FeedbackForm />{' '}
+			<main className='bg-background text-foreground h-screen w-full'>
+				<FeedbackFormDynamic />
+			</main>
 		</TranslationsProvider>
 	)
 }

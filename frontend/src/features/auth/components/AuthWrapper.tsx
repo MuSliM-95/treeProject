@@ -15,6 +15,7 @@ import {
 
 import { AuthSocial } from './AuthSocial'
 import { useTranslation } from 'react-i18next'
+import { pageConfig } from '@/shared/config'
 
 interface AuthWrapperProps {
 	heading: string
@@ -60,7 +61,7 @@ export function AuthWrapper({
 						)}
 					</CardFooter>
 					<Button variant='link' className='w-full font-normal mt-[-20px]'>
-						<Link href={'/'}>{t('auth-form.auth_wrapper.link')}</Link>
+						<Link href={pageConfig.home}>{t('auth-form.auth_wrapper.link')}</Link>
 					</Button>
 				</Card>
 			</div>

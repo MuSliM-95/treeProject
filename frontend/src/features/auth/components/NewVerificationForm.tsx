@@ -9,13 +9,19 @@ import { SpinnerOverlay } from '@/shared/components'
 import { useVerificationMutation } from '../hooks'
 
 import { AuthWrapper } from './AuthWrapper'
+import dynamic from 'next/dynamic'
+
+export const NewVerificationFormDynamic = dynamic(() => import('@features/auth/components/NewVerificationForm').then(m => m.NewVerificationForm), {
+	ssr: false,
+	loading: () => <SpinnerOverlay className='size-10' />
+})
 
 export function NewVerificationForm() {
 	const searchParams = useSearchParams()
 	const token = searchParams.get('token')
 	const { t } = useTranslation('auth')
 
-	const { verification } = useVerificationMutation()
+	const { verification, isPending } = useVerificationMutation()
 
 	useEffect(() => {
 		verification(token)
@@ -24,7 +30,7 @@ export function NewVerificationForm() {
 	return (
 		<AuthWrapper heading={t('auth-form.verify.title')}>
 			<div>
-				{/* <SpinnerOverlay t={t} /> */}
+				{isPending && <SpinnerOverlay text={`${t('loading')}...`} />}
 			</div>
 		</AuthWrapper>
 	)

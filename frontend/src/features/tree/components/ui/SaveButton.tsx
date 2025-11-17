@@ -4,7 +4,6 @@ import { BackgroundVariant, Viewport, useReactFlow } from '@xyflow/react'
 import '@xyflow/react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { toast } from 'sonner'
 
 import { Button } from '@/shared/components'
 
@@ -46,7 +45,8 @@ export const SaveButton: React.FC<Props> = ({
 	const { getEdges, getNodes } = useReactFlow()
 	const { t } = useTranslation('tree')
 
-	const handlerSaveTree = () => {
+	const handlerSaveTree = async () => {
+		const { toast } = await import('sonner')
 		const viewport = handleSave()
 		const nodes = getNodes() as TreeNode[]
 		const edges = getEdges() as TreeEdge[]

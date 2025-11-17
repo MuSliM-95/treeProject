@@ -153,7 +153,7 @@ export function DownloadTreeButton({
 
 	return (
 		<>
-			{loading && <SpinnerOverlay t={t} />}
+			{loading && <SpinnerOverlay text={`${t('loading')}...`} />}
 			<div className='space-y-4 p-4'>
 				<h2 className='text-lg font-semibold'>{t('download.title')}</h2>
 
