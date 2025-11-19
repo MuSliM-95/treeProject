@@ -18,8 +18,8 @@ export const ExistsDynamic = dynamic(() => import('@features/auth/components/Exi
 })
 
 export function Exists() {
-	const { t, i18n } = useTranslation('auth')
-	const { mutate, data, isPending, error } = useExistsMutation(t, i18n.language)
+	const { t } = useTranslation('auth')
+	const { mutate, data, isPending, error } = useExistsMutation(t)
 	const searchParams = useSearchParams()
 	const router = useRouter()
 

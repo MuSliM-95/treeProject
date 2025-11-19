@@ -2,14 +2,14 @@ import { inject, injectable } from 'inversify';
 import { IDotenvConfig } from './dotenv.config.interface';
 import { TYPES } from '../types';
 import { ILogger } from '../logger/logger.interface';
-import { DotenvConfigOutput, DotenvParseOutput, config } from 'dotenv';
+import { DotenvParseOutput, config } from 'dotenv';
 
 @injectable()
 export class DotenvConfig implements IDotenvConfig {
-	private config: DotenvParseOutput;
+	private config: DotenvParseOutput = {};
 	constructor(@inject(TYPES.ILogger) private logger: ILogger) {
 		
-		const result: DotenvConfigOutput = config();
+		const result = config();
 		
 		if (result.error) {
 			this.logger.error('[DotenvConfig] Не удалось прочитать файл .env или он отсутствует');
@@ -20,6 +20,6 @@ export class DotenvConfig implements IDotenvConfig {
 	}
 	
 	get(key: string): string {
-		return this.config[key];
+		return this.config[key] || process.env[key] || '';
 	}
 }

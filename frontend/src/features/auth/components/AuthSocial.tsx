@@ -9,12 +9,12 @@ import { useTranslation } from 'react-i18next'
 
 export function AuthSocial() {
 	const router = useRouter()
-	const { t, i18n } = useTranslation('auth')
+	const { t } = useTranslation('auth')
 
 	const { mutateAsync } = useMutation({
 		mutationKey: ['oauth by provider'],
 		mutationFn: async (provider: 'google' | 'yandex') =>
-			await authService.oauthByProvider(provider, i18n.language)
+			await authService.oauthByProvider(provider)
 	})
 
 	const onClick = async (provider: 'google' | 'yandex') => {

@@ -87,6 +87,7 @@ services:
     restart: always # автоматически перезапускать контейнер
     environment:
       - SERVER_URL=${SERVER_URL}
+      - NEXT_PUBLIC_GTAG_ID=${NEXT_PUBLIC_GTAG_ID}
 
     env_file:
       - ./.env

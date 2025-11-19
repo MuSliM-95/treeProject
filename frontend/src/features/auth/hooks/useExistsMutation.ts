@@ -6,10 +6,10 @@ import { authService } from '../services'
 import { toast } from 'sonner'
 import { toastMessageHandler } from '@/shared/utils'
 
-export function useExistsMutation(t: TFunction, lang: string) {
+export function useExistsMutation(t: TFunction) {
 	return useMutation({
 		mutationKey: ['exists'],
-		mutationFn: (token: string) => authService.fetchExistsInfo(token, lang),
+		mutationFn: (token: string) => authService.fetchExistsInfo(token),
 		onSuccess(data: ResponseExists) {
 			if (data?.email) {
 				toast.message(

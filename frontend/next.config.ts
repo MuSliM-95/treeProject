@@ -3,7 +3,7 @@ import bundleAnalyzer from '@next/bundle-analyzer'
 import { NextConfig } from 'next'
 
 const withBundleAnalyzer = bundleAnalyzer({
-	enabled: process.env.ANALYZE === 'true'
+	enabled: process.env.NEXT_PUBLIC_ANALYZE === 'true'
 })
 
 
@@ -13,6 +13,7 @@ const nextConfig: NextConfig = withBundleAnalyzer({
 	experimental: {
 		// missingSuspenseWithCSRBailout: false
 	},
+
 	env: {
 		SERVER_URL: process.env.SERVER_URL,
 		NEXT_PUBLIC_GTAG_ID: process.env.NEXT_PUBLIC_GTAG_ID
