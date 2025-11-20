@@ -7,13 +7,13 @@ import { ResponseExists, ResponseLoginData, ResponseRegisterData } from '../type
 class AuthService {
 	public async register(body: TypeRegisterSchema) {
 
-		const response = await api.post<ResponseRegisterData>('/api/auth/register', body)
+		const response = await api.post<ResponseRegisterData>('api/auth/register', body)
 
 		return response
 	}
 
 	public async login(body: TypeLoginSchema) {		
-		const response = await api.post<ResponseLoginData>('/api/auth/login', body)
+		const response = await api.post<ResponseLoginData>('api/auth/login', body)
 
 		return response
 	}
