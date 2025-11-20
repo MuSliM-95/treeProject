@@ -13,6 +13,8 @@ RUN npm ci
 COPY . .
 
 # Собираем проект
+RUN echo "BEFORE_BUILD = $NEXT_PUBLIC_SERVER_URL"
+
 RUN npm run build
 
 
