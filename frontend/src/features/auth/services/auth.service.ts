@@ -13,7 +13,7 @@ class AuthService {
 	}
 
 	public async login(body: TypeLoginSchema) {
-		console.log('login-test', process.env.SERVER_URL);
+		console.log('login-test', process.env.NEXT_PUBLIC_SERVER_URL);
 		
 		const response = await api.post<ResponseLoginData>('api/auth/login', body)
 
