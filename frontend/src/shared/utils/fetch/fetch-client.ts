@@ -48,7 +48,7 @@ export class FetchClient {
 	) {
 		let url = `${this.baseUrl}/${endpoint}`
 
-		console.log(url);
+		console.log(this.baseUrl);
 
 		if (options.params) {
 			url += this.createSearchParams(options.params)
