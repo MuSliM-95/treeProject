@@ -48,10 +48,14 @@ export class FetchClient {
 	) {
 		let url = `${this.baseUrl}/${endpoint}`
 
+		console.log(url);
+
 		if (options.params) {
 			url += this.createSearchParams(options.params)
 		}
-
+        
+		console.log(url);
+		
 		const config: RequestInit = {
 			...options,
 			...(!!this.options && { ...this.options }),
@@ -93,7 +97,6 @@ export class FetchClient {
 		body?: Record<string, any>,
 		options: RequestOptions = {}
 	) {
-		console.log(endpoint);
 		
 		return this.request<T>(endpoint, 'POST', {
 			...options,
