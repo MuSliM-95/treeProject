@@ -86,7 +86,7 @@ services:
       context: ./frontend # берем Dockerfile из папки frontend для сборки образа
     restart: always # автоматически перезапускать контейнер
     environment:
-      - SERVER_URL=${SERVER_URL}
+      - NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
       - NEXT_PUBLIC_GTAG_ID=${NEXT_PUBLIC_GTAG_ID}
 
     env_file:
