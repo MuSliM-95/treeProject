@@ -93,6 +93,8 @@ export class FetchClient {
 		body?: Record<string, any>,
 		options: RequestOptions = {}
 	) {
+		console.log(endpoint);
+		
 		return this.request<T>(endpoint, 'POST', {
 			...options,
 			headers: {
