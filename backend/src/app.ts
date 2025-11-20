@@ -83,8 +83,8 @@ export class App {
 		this.userRoutes();
 		this.useExceptionFilter();
 	
-		this.server = this.app.listen(this.port);
-		this.logger.log(`Сервер запушен на http://localhost:${this.port}`);
+		this.server = this.app.listen(this.port, '0.0.0.0');
+		this.logger.log(`Сервер запушен на http://0.0.0.0:${this.port}`);
 	}
 
 	public async close(): Promise<void> {
