@@ -33,6 +33,9 @@ services:
     depends_on:
       - db
       - redis
+
+    ports: 
+      - "9004:9004"  
     networks:
       - dev # подключаем контейнер к сети dev
 
