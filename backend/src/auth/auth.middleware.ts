@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { IMiddleware } from '../common/middleware.interface';
 import { IUserService } from '../user/interfaces/user.service.interface';
 import { IDotenvConfig } from '../configs/dotenv.config.interface';
+import { parseBoolean } from '../utils/parse-boolean.util';
 
 export class AuthMiddleware implements IMiddleware {
 	constructor(
@@ -14,8 +15,8 @@ export class AuthMiddleware implements IMiddleware {
 			const isExists = await this.userService.getUser(req.session.userId, req.t);
 			if (!isExists) {
 				res.clearCookie(this.dotenvConfig.get('SESSION_NAME'), {
-					httpOnly: true,
-					secure: true,
+					httpOnly: parseBoolean(this.dotenvConfig.get('SESSION_HTTP_ONLY')),
+					secure: parseBoolean(this.dotenvConfig.get('SESSION_SECURE')),
 					sameSite: 'lax',
 					path: '/',
 				});

@@ -20,6 +20,7 @@ import { AuthMethodGuard } from './guards/auth.method.guard';
 import { IUserService } from '../user/interfaces/user.service.interface';
 import { TokenDto } from './dto/token.dto';
 import { LangGuard } from './guards/lang.guard';
+import { parseBoolean } from '../utils/parse-boolean.util';
 
 @injectable()
 export class AuthController extends BaseController implements IAuthController {
@@ -49,7 +50,7 @@ export class AuthController extends BaseController implements IAuthController {
 				path: '/auth/logout',
 				method: 'post',
 				func: this.logout,
-				middlewares: [],
+				middlewares: [new AuthGuard()],
 			},
 
 			{
@@ -126,8 +127,8 @@ export class AuthController extends BaseController implements IAuthController {
 	public async logout({ session }: Request, res: Response, next: NextFunction): Promise<void> {
 		await this.sessionService.deleteSession(session);
 		res.clearCookie(this.dotenvConfig.get('SESSION_NAME'), {
-			httpOnly: true,
-			secure: true,
+			httpOnly: parseBoolean(this.dotenvConfig.get('SESSION_HTTP_ONLY')),
+			secure: parseBoolean(this.dotenvConfig.get('SESSION_SECURE')),
 			sameSite: 'lax',
 			path: '/',
 		});
@@ -181,8 +182,8 @@ export class AuthController extends BaseController implements IAuthController {
 		if (!data.needCode) {
 			await this.sessionService.deleteSession(session);
 			res.clearCookie(this.dotenvConfig.get('SESSION_NAME'), {
-				httpOnly: true,
-				secure: true,
+				httpOnly: parseBoolean(this.dotenvConfig.get('SESSION_HTTP_ONLY')),
+				secure: parseBoolean(this.dotenvConfig.get('SESSION_SECURE')),
 				sameSite: 'lax',
 				path: '/',
 			});
