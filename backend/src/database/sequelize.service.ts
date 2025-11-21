@@ -33,6 +33,10 @@ export class SequelizeService implements ISequelizeService {
 	}
 
 	public async connect(): Promise<void> {
+		console.log(this.dotenvConfig.get('POSTGRES_DB'));
+		console.log(this.dotenvConfig.get('POSTGRES_USER'));
+		console.log(this.dotenvConfig.get('POSTGRES_PASSWORD'));
+		
 		try {
 			await this.sequelize.authenticate();
 			await this.sequelize.sync();

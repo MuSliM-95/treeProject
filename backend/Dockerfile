@@ -19,6 +19,8 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY --from=build /app/dist ./dist
+COPY backend/src/locales ./dist/src/locales
+
 
 EXPOSE 9004
 

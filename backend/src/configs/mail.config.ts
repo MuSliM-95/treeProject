@@ -15,7 +15,7 @@ export class MailConfig {
 	) {
 		this._transporter = nodemailer.createTransport({
 			host: this.dotenvConfig.get('MAIL_HOST'),
-			port: Number(this.dotenvConfig.get('MAIL_PORT')),
+			port: Number(this.dotenvConfig.get('MAIL_PORT')),			
 			secure: !parseBoolean(this.dotenvConfig.get('IS_DEV')),
 			auth: {
 				user: this.dotenvConfig.get('MAIL_LOGIN'),
