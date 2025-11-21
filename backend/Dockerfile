@@ -20,4 +20,7 @@ RUN npm ci --omit=dev
 
 COPY --from=build /app/dist ./dist
 
+EXPOSE 9004
+
+
 CMD ["npm", "run", "start"]
