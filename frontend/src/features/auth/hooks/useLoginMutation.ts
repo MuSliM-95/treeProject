@@ -28,7 +28,7 @@ export function useLoginMutation(
 			}
 
 			if ('message' in data) {
-				toast.success(t(data.message))
+				toast.success(data.message)
 				router.push(pageConfig.user.profile)
 			}
 		},
