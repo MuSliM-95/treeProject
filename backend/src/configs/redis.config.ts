@@ -16,7 +16,14 @@ export class RedisConfig {
 			port: Number(this.dotenvConfig.get('REDIS_PORT')),
 			password: this.dotenvConfig.get('REDIS_PASSWORD'),
 		});
-		this.logger.log('[RedisConfig] Redis запушен')
+		
+		this._config.on('connect', () => {
+			this.logger.log('[Redis] Connected');
+		})
+
+		this._config.on('error', (err) => {
+			this.logger.error('[Redis] Error: ' + err.message);
+		})
 	}
 
 	public get config(): Redis {
