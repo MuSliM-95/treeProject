@@ -18,7 +18,7 @@ export class AuthMiddleware implements IMiddleware {
 					httpOnly: parseBoolean(this.dotenvConfig.get('SESSION_HTTP_ONLY')),
 					secure: parseBoolean(this.dotenvConfig.get('SESSION_SECURE')),
 					sameSite: 'lax',
-					path: '/',
+					domain: this.dotenvConfig.get('SESSION_DOMAIN'),
 				});
 			}
 			req.user = isExists;

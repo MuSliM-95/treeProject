@@ -130,7 +130,7 @@ export class AuthController extends BaseController implements IAuthController {
 			httpOnly: parseBoolean(this.dotenvConfig.get('SESSION_HTTP_ONLY')),
 			secure: parseBoolean(this.dotenvConfig.get('SESSION_SECURE')),
 			sameSite: 'lax',
-			path: '/',
+			domain: this.dotenvConfig.get('SESSION_DOMAIN'),
 		});
 		res.status(204).end();
 	}
@@ -185,7 +185,7 @@ export class AuthController extends BaseController implements IAuthController {
 				httpOnly: parseBoolean(this.dotenvConfig.get('SESSION_HTTP_ONLY')),
 				secure: parseBoolean(this.dotenvConfig.get('SESSION_SECURE')),
 				sameSite: 'lax',
-				path: '/',
+				domain: this.dotenvConfig.get('SESSION_DOMAIN'),
 			});
 		}
 
