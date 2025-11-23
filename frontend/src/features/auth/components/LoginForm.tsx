@@ -49,7 +49,7 @@ export function LoginForm() {
 		}
 	})
 
-	const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor, t)
+	const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor)
 
 	const onSubmit = (values: TypeLoginSchema) => {
 		login({ values })

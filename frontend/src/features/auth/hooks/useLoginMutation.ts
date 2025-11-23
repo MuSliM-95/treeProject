@@ -1,10 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import { TFunction } from 'i18next'
 import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { toast } from 'sonner'
 
-import { pageConfig } from '@/shared/config'
 import { toastMessageHandler } from '@/shared/utils'
 
 import { TypeLoginSchema } from '../schemes'
@@ -13,7 +11,6 @@ import { ResponseLoginData } from '../types/user.types'
 
 export function useLoginMutation(
 	setIsShowFactor: Dispatch<SetStateAction<boolean>>,
-	t: TFunction
 ) {
 	const router = useRouter()
 
@@ -29,7 +26,7 @@ export function useLoginMutation(
 
 			if ('message' in data) {
 				toast.success(data.message)
-				router.push(pageConfig.user.profile)
+				router.push('/dashboard/profile')
 			}
 		},
 		async onError(error) {
