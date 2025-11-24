@@ -3,8 +3,8 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
 import commonEN from './messages/en/common.json'
-import commonRU from './messages/ru/common.json'
 import treeEN from './messages/en/tree.json'
+import commonRU from './messages/ru/common.json'
 import treeRU from './messages/ru/tree.json'
 
 i18n.use(LanguageDetector)
@@ -14,7 +14,9 @@ i18n.use(LanguageDetector)
 		detection: {
 			order: ['cookie'],
 			lookupCookie: 'NEXT_LOCALE',
-			caches: ['cookie']
+			caches: ['cookie'],
+			cookieMinutes: 60 * 24 * 30,
+
 		},
 
 		resources: {

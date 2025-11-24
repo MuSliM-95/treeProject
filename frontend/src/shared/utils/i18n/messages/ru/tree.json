@@ -20,7 +20,7 @@
 
 	"delete_links": "Удалить ссылки",
 
-	"yourTree": "Ваше дерево",
+	"yourTree": "Ваше древо",
 	"nodeCount": "Количество узлов",
 	"edgeCount": "Количество соединений",
 	"appearance": "Вид",
@@ -64,16 +64,16 @@
 	},
 	"download": {
 		"title": "Выберите формат",
-		"button": "Скачать дерево",
+		"button": "Скачать древо",
 		"format": "Формат",
-		"loadTree": "Загрузить дерево",
-		"emptyTree": "Дерево пустое.",
+		"loadTree": "Загрузить древо",
+		"emptyTree": "Древо пустое.",
 		"jsonDownloaded": "JSON файл загружен.",
 		"imageDownloaded": "Изображение формата {{format}} загружено.",
 		"errorSaveTree": "Ошибка при сохранении дерева",
-		"invalidFile": "Файл не содержит корректное дерево",
+		"invalidFile": "Файл не содержит корректное древо",
 		"errorReadFile": "Ошибка при чтении файла",
-		"treeLoaded": "Дерево загружено"
+		"treeLoaded": "Древо загружено"
 	},
 	"theme": {
 		"label": "Тема",
@@ -90,8 +90,8 @@
 		"restore": "Вернуть"
 	},
 	"button_save_tree": {
-		"saveTree": "Сохранить дерево",
-		"treeSaved": "Дерево сохранено в браузере."
+		"saveTree": "Сохранить древо",
+		"treeSaved": "Древо сохранено в браузере."
 	},
 	"button_center": {
 		"center": "Центрировать"

@@ -45,7 +45,7 @@ export async function generateMetadata({
 					url: 'https://genealogyhub.ru/images/favicon.png',
 					width: 1200,
 					height: 630,
-					alt: 'Genealogy — создай свое дерево предков'
+					alt: 'Genealogy — создай свое древо предков'
 				}
 			],
 			type: 'website'
