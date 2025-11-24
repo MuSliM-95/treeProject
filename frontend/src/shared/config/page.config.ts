@@ -12,12 +12,6 @@ export const pageConfig = {
 		resetPassword: '/auth/reset-password'
 	},
 
-	oauth: {
-		existsInfo: '/oauth/exists-info',
-	    connect: '/oauth/connect'
-
-	},
-
 	user: {
 		profile: '/dashboard/profile',
 		setting: '/dashboard/settings'

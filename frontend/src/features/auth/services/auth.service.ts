@@ -33,7 +33,7 @@ class AuthService {
 	}
 
 	public async updateEmail(body: TypeChangeEmailSchema) {
-		const response = await api.post(`/api/auth/update-email`, body)
+		const response = await api.post(`api/auth/update-email`, body)
 
 		return response
 	}

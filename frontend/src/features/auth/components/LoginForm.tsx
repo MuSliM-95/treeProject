@@ -37,7 +37,7 @@ export const LoginFormDynamic = dynamic(
 
 export function LoginForm() {
 	const [isShowTwoFactor, setIsShowFactor] = useState(false)
-	const { t } = useTranslation('auth')
+	const { t, i18n } = useTranslation('auth')
 	const schema = LoginSchema(t)
 
 	const form = useForm<TypeLoginSchema>({
@@ -49,7 +49,7 @@ export function LoginForm() {
 		}
 	})
 
-	const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor)
+	const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor, i18n.language)
 
 	const onSubmit = (values: TypeLoginSchema) => {
 		login({ values })

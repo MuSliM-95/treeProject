@@ -12,7 +12,7 @@ export function useRegisterMutation() {
 		mutationFn: ({ values }: { values: TypeRegisterSchema }) =>
 			authService.register(values),
 		onSuccess(data: ResponseRegisterData) {
-			toast.message(data.message)
+			toast.success(data.message)
 		},
 		onError(error) {
 			toastMessageHandler(error)

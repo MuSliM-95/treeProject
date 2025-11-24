@@ -5,10 +5,11 @@ import React from 'react'
 
 interface Props {
 	className?: string
-	t:TFunction
+	t:TFunction,
+	lang: string
 }
 
-export const Footer: React.FC<Props> = ({ className, t }) => {
+export const Footer: React.FC<Props> = ({ className, t, lang }) => {
 
 	return (
 		<footer
@@ -19,7 +20,7 @@ export const Footer: React.FC<Props> = ({ className, t }) => {
 				{t('homepage.footer.rights')}
 			</p>
 			<p className='mt-2'>
-				<Link href={pageConfig.info.terms} className='hover:underline'>
+				<Link href={`/${lang}/${pageConfig.info.terms}`} className='hover:underline'>
 					{t('homepage.infoPage.terms')}
 				</Link>
 			</p>

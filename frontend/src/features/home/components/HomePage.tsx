@@ -72,7 +72,7 @@ export default function HomePage({ t, locale }: HeaderProps) {
 				<FaqSection t={t}/>
 				<Reviews t={t} />
 			</main>
-			<Footer t={t}/>
+			<Footer t={t} lang={locale}/>
 		</div>
 	)
 }

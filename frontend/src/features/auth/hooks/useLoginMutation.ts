@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { toast } from 'sonner'
 
+import { pageConfig } from '@/shared/config'
 import { toastMessageHandler } from '@/shared/utils'
 
 import { TypeLoginSchema } from '../schemes'
@@ -11,6 +12,7 @@ import { ResponseLoginData } from '../types/user.types'
 
 export function useLoginMutation(
 	setIsShowFactor: Dispatch<SetStateAction<boolean>>,
+	lang: string
 ) {
 	const router = useRouter()
 
@@ -26,7 +28,7 @@ export function useLoginMutation(
 
 			if ('message' in data) {
 				toast.success(data.message)
-				router.push('/dashboard/profile')
+				router.push(`/${lang}/${pageConfig.user.profile}`)
 			}
 		},
 		async onError(error) {

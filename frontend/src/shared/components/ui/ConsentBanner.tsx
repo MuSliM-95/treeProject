@@ -69,7 +69,7 @@ export default function ConsentBanner() {
 							<p className='text-sm text-gray-600 dark:text-gray-300'>
 								{t('description')}{' '}
 								<a
-									href={`${pageConfig.info.terms}#rule-2`}
+									href={`/${i18n.language}/${pageConfig.info.terms}#rule-2`}
 									className='text-blue-600 hover:underline dark:text-blue-400'
 									target='_blank'
 								>
