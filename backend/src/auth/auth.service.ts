@@ -113,7 +113,7 @@ export class AuthService implements IAuthService {
 
 		const { password, ...rest } = user;
 
-		this.sessionService.saveSession(session, rest);
+		await this.sessionService.saveSession(session, rest);
 
 		return {
 			message: t('auth-success'),

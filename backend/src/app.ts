@@ -23,7 +23,6 @@ import i18nextMiddleware from 'i18next-http-middleware';
 import { I18nConfig } from './configs/i18n.config';
 import { TreeController } from './tree/tree.controller';
 
-
 @injectable()
 export class App {
 	app: Express;
@@ -66,7 +65,7 @@ export class App {
 		this.app.use(cookieParser(this.dotenvConfig.get('COOKIES_SECRET')));
 		this.app.use(cors(this.corsConfig.config));
 		this.app.use(session(this.sessionConfig));
-		this.app.use(i18nextMiddleware.handle(this.I18nConfig.i18n))
+		this.app.use(i18nextMiddleware.handle(this.I18nConfig.i18n));
 		const authMiddleware = new AuthMiddleware(this.userService, this.dotenvConfig);
 		this.app.use(authMiddleware.execute.bind(authMiddleware));
 		this.app.use(helmet({ crossOriginResourcePolicy: false }));
@@ -79,12 +78,13 @@ export class App {
 	public async init(): Promise<void> {
 		this.useMiddleware();
 		await this.sequelize.connect();
-		await this.I18nConfig.init()
+		await this.I18nConfig.init();
 		this.userRoutes();
 		this.useExceptionFilter();
-	
-		this.server = this.app.listen(this.port, '0.0.0.0');
-		this.logger.log(`Сервер запушен на http://0.0.0.0:${this.port}`);
+
+		const host = this.dotenvConfig.get('API_HOST') || 'localhost';
+		this.server = this.app.listen(this.port, host);
+		this.logger.log(`Сервер запушен на http://${host}:${this.port}`);
 	}
 
 	public async close(): Promise<void> {

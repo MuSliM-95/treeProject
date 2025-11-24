@@ -12,7 +12,7 @@ import { passwordRecoveryService } from '../services/password-recovery.service'
 export function useNewPasswordMutation() {
 	const router = useRouter()
 	const searchParams = useSearchParams()
-	const { t, i18n } = useTranslation('auth')
+	const { t } = useTranslation('auth')
 
 	const token = searchParams.get('token')
 

@@ -8,7 +8,7 @@ import { toastMessageHandler } from '@/shared/utils'
 
 export function useVerificationMutation() {
 	const router = useRouter()
-	const { t, i18n } = useTranslation('auth')
+	const { t } = useTranslation('auth')
 	
 	const { mutate: verification, isPending } = useMutation({
 		mutationKey: ['new-verification'],
