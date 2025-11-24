@@ -62,6 +62,7 @@ export class App {
 
 	public useMiddleware(): void {
 		this.app.use(express.json());
+		this.app.set('trust proxy', 1);
 		this.app.use(cookieParser(this.dotenvConfig.get('COOKIES_SECRET')));
 		this.app.use(cors(this.corsConfig.config));
 		this.app.use(session(this.sessionConfig));
