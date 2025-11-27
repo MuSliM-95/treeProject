@@ -3,7 +3,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
     xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Главная -->
+  <!-- Главная (x-default) -->
   <url>
     <loc>https://genealogyhub.ru/</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru"/>
@@ -13,7 +13,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Русская главная -->
+  <!-- RU главная -->
   <url>
     <loc>https://genealogyhub.ru/ru</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru"/>
@@ -23,7 +23,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Английская главная -->
+  <!-- EN главная -->
   <url>
     <loc>https://genealogyhub.ru/en</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru"/>
@@ -33,7 +33,17 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Русская страница дерева -->
+  <!-- x-default страница дерева -->
+  <url>
+    <loc>https://genealogyhub.ru/tree</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/tree"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/tree"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/tree"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- RU дерево -->
   <url>
     <loc>https://genealogyhub.ru/ru/tree</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/tree"/>
@@ -43,7 +53,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Английская страница дерева -->
+  <!-- EN дерево -->
   <url>
     <loc>https://genealogyhub.ru/en/tree</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/tree"/>
