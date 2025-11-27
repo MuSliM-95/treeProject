@@ -42,7 +42,7 @@ export async function generateMetadata({
 			locale: locale === 'en' ? 'en_US' : 'ru_RU',
 			images: [
 				{
-					url: 'https://genealogyhub.ru/images/favicon.png',
+					url: 'https://genealogyhub.ru/images/favicon.svg',
 					width: 1200,
 					height: 630,
 					alt: 'Genealogy — создай свое древо предков'
@@ -54,7 +54,7 @@ export async function generateMetadata({
 			card: 'summary_large_image',
 			title: t('meta.title'),
 			description: t('meta.description'),
-			images: ['https://genealogyhub.ru/images/favicon.png']
+			images: ['https://genealogyhub.ru/images/favicon.svg']
 		},
 		alternates: {
 			canonical:
