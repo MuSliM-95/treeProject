@@ -1,8 +1,7 @@
 {
 	"meta": {
-	  "name": "Genealogy",
-	  "title": "Create a family tree as an infographic of your lineage.",
-	  "description": "Platform for building a family genealogy tree"
+		"name": "Genealogy",
+		"title": "Genealogy — Create Your Family Tree Online.",
+		"description": "Add ancestors, visualize family connections and preserve your family history with a simple and modern interactive family-tree builder."
 	}
 }
-  
