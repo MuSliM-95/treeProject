@@ -16,17 +16,14 @@ const geistMono = Geist_Mono({
 	subsets: ['latin']
 })
 
-
 export default async function RootLayout({
 	children
 }: {
 	children: React.ReactNode
 }) {
 	return (
-		<html>
-			<head>
-
-			</head>
+		<html lang='ru'>
+			<head></head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>

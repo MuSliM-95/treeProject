@@ -68,7 +68,7 @@ export default function HomePage({ t, locale }: HeaderProps) {
 
 				<HomeReactXFlow />
 				<Advertising locale={locale} t={t}/>
-				<TelegramIcon locale={locale}/>
+				<TelegramIcon locale={locale} t={t}/>
 				<FaqSection t={t}/>
 				<Reviews t={t} />
 			</main>

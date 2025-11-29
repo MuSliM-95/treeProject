@@ -1,9 +1,8 @@
 'use client'
 
-import { ArrowRightCircle, ExternalLink, User2 } from 'lucide-react'
+import { ExternalLink, User2 } from 'lucide-react'
 
 import {
-	Button,
 	Popover,
 	PopoverContent,
 	PopoverTrigger
@@ -22,13 +21,7 @@ export function NodePopover({ children, img, label, bio }: Props) {
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
-				<Button
-					variant="ghost"
-					size="sm"
-					className="w-6 h-6 p-0 rounded-full"
-				>
-					<ArrowRightCircle className="w-5 h-5 text-gray-600 cursor-pointer" />
-				</Button>
+	             {children}
 			</PopoverTrigger>
 
 			<PopoverContent

@@ -63,4 +63,97 @@
     <priority>0.7</priority>
   </url>
 
+
+    <!-- Learn More (x-default) -->
+  <url>
+    <loc>https://genealogyhub.ru/learn-more</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/learn-more"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/learn-more"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/learn-more"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- RU Learn More -->
+  <url>
+    <loc>https://genealogyhub.ru/ru/learn-more</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/learn-more"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/learn-more"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/learn-more"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- EN Learn More -->
+  <url>
+    <loc>https://genealogyhub.ru/en/learn-more</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/learn-more"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/learn-more"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/learn-more"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+
+  <!-- Terms (x-default) -->
+  <url>
+    <loc>https://genealogyhub.ru/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- RU Terms -->
+  <url>
+    <loc>https://genealogyhub.ru/ru/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- EN Terms -->
+  <url>
+    <loc>https://genealogyhub.ru/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/terms"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+
+  <!-- Feedback (x-default) -->
+  <url>
+    <loc>https://genealogyhub.ru/tree/feedback</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/tree/feedback"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/tree/feedback"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/tree/feedback"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- RU Feedback -->
+  <url>
+    <loc>https://genealogyhub.ru/ru/tree/feedback</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/tree/feedback"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/tree/feedback"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/tree/feedback"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- EN Feedback -->
+  <url>
+    <loc>https://genealogyhub.ru/en/tree/feedback</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://genealogyhub.ru/ru/tree/feedback"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://genealogyhub.ru/en/tree/feedback"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://genealogyhub.ru/tree/feedback"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>

@@ -17,6 +17,10 @@
 	"back": "Back",
 	"menu": "Menu",
 	"loading": "Loading",
-	"requestNewCode": "Request a new code"
-	
+	"requestNewCode": "Request a new code",
+
+	"meta": {
+		"title": "About Genealogy — Features and Capabilities",
+		"description": "Learn how Genealogy helps you build family trees, preserve family history, and share your tree with your relatives."
+	}
 }

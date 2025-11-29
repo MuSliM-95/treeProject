@@ -16,7 +16,6 @@ i18n.use(LanguageDetector)
 			lookupCookie: 'NEXT_LOCALE',
 			caches: ['cookie'],
 			cookieMinutes: 60 * 24 * 30,
-
 		},
 
 		resources: {

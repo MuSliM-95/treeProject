@@ -44,6 +44,7 @@ import { CenterButton } from './CenterButton'
 import { ClearButton } from './ClearButton'
 import { ThemePane } from './ThemePane'
 import { TreeTitleNode } from './TreeTitleNode'
+import { useTranslation } from 'react-i18next'
 
 
 interface IGenealogyEditorProps {
@@ -73,6 +74,8 @@ export default function GenealogyEditor({
 }: IGenealogyEditorProps) {
 	const dispatch = useAppDispatch()
 	const { setViewport } = useReactFlow()
+	const { t } = useTranslation('tree')
+
 	const viewportRef = useRef<Viewport | null>(null)
 
 	const initialNodes = useAppSelector(state => state.tree.nodes)
@@ -143,7 +146,7 @@ export default function GenealogyEditor({
 	const nodeTypes = useMemo(
 		() => ({
 			baseNode: (props: IProps) => (
-				<BaseNodeDemo {...props} pens={pens} />
+				<BaseNodeDemo {...props} pens={pens} t={t} />
 			),
 			treeTitle: TreeTitleNode
 		}),

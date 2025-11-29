@@ -2,7 +2,6 @@
 
 import { memo, useEffect, useState } from 'react'
 
-
 import {
 	Avatar,
 	AvatarFallback,
@@ -23,6 +22,7 @@ import { useAppDispatch } from '../../hooks/useHooks'
 import { IProps, TreeNode } from '../../types/tree.types'
 
 import { NodePopover } from './NodePopover'
+import { ArrowRightCircle } from 'lucide-react'
 
 export const BaseNodeDemo = memo(
 	({
@@ -34,13 +34,14 @@ export const BaseNodeDemo = memo(
 		positionAbsoluteY,
 		sourcePosition,
 		targetPosition,
-		pens
+		pens,
+		t
 	}: IProps) => {
 		const dispatch = useAppDispatch()
 
 		const [pensState, setPensState] = useState(pens)
 
-		useEffect(() => {			
+		useEffect(() => {
 			setPensState(pens)
 		}, [pens])
 
@@ -89,7 +90,7 @@ export const BaseNodeDemo = memo(
 
 					<NodeHeader className={`-mx-3 -mt-2`}>
 						<NodeHeaderIcon>
-							<Avatar  >
+							<Avatar>
 								<AvatarImage
 									src={
 										data.img
@@ -103,7 +104,7 @@ export const BaseNodeDemo = memo(
 								</AvatarFallback>
 							</Avatar>
 						</NodeHeaderIcon>
-						<NodeHeaderTitle className='text-[8px] whitespace-nowrap text-ellipsis '>
+						<NodeHeaderTitle className='text-[8px] text-ellipsis whitespace-nowrap'>
 							{data.label}
 						</NodeHeaderTitle>
 						<NodeHeaderActions>
@@ -114,9 +115,13 @@ export const BaseNodeDemo = memo(
 							>
 								<Button
 									variant='ghost'
-									size='icon'
-									className='rounded-full'
-								></Button>
+									size='sm'
+									type='button'
+									className='h-6 w-6 rounded-full p-0'
+									aria-label={t('menu-node')}
+								>
+									<ArrowRightCircle className='h-6 w-6 cursor-pointer text-gray-600' />
+								</Button>
 							</NodePopover>
 							<DropdownMenuSeparator />
 						</NodeHeaderActions>

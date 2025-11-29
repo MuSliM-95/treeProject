@@ -2,14 +2,17 @@
 
 import {
 	Background,
+	NodeTypes,
 	ReactFlow,
 	addEdge,
 	useEdgesState,
 	useNodesState
 } from '@xyflow/react'
-import React, { useCallback, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
+import React, { useCallback, useEffect, useMemo } from 'react'
+
 import { BaseNodeDemo } from '@/features/tree/components'
+import { IProps } from '@/features/tree/types'
 
 interface Props {
 	className?: string
@@ -38,10 +41,14 @@ export const HomeReactXFlow: React.FC<Props> = ({ className }) => {
 		[]
 	)
 
-	const nodeTypes = {
-		baseNode: BaseNodeDemo
-	}
-
+	const nodeTypes = useMemo(
+		() => ({
+			baseNode: (props: IProps) => (
+				<BaseNodeDemo {...props} pens={false} t={t} />
+			)
+		}),
+		[t, i18n.language]
+	)
 	// Обновление узлов при изменении языка
 	useEffect(() => {
 		setNodes([
@@ -96,7 +103,9 @@ export const HomeReactXFlow: React.FC<Props> = ({ className }) => {
 				<h3 className='text-2xl font-semibold text-[#4a372a]'>
 					{t('homepage.tree.title')}
 				</h3>
-				<p className='mt-2 text-[#6b5445]'>{t('homepage.tree.subtitle')}</p>
+				<p className='mt-2 text-[#6b5445]'>
+					{t('homepage.tree.subtitle')}
+				</p>
 			</div>
 			<div className='mx-auto h-[500px] w-full max-w-7xl rounded-xl border border-[#e5d6c5] shadow-md'>
 				<ReactFlow
@@ -105,7 +114,7 @@ export const HomeReactXFlow: React.FC<Props> = ({ className }) => {
 					onNodesChange={onNodesChange}
 					onEdgesChange={onEdgesChange}
 					onConnect={onConnect}
-					nodeTypes={nodeTypes as any}
+					nodeTypes={nodeTypes as unknown as NodeTypes}
 					fitView
 					className='z-10'
 					defaultViewport={{ x: 200, y: 100, zoom: 0.9 }}

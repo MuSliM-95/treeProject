@@ -1,6 +1,7 @@
 import { HandleType, NodeProps, Position } from '@xyflow/react'
 
 import { NodeStatus } from '@/shared/components'
+import { TFunction } from 'next-i18next'
 
 export type TreeNode = {
 	id: string
@@ -47,6 +48,7 @@ export interface IProps extends NodeProps {
 	type: HandleType
 	style: NodeStyle
 	pens: boolean
+	t: TFunction
 }
 
 // Вместо enum Theme

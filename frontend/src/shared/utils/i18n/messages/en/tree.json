@@ -57,7 +57,12 @@
 	"feedback": {
 		"title": "Leave Feedback",
 		"description": "Please leave a short review and answer a few questions. This will help improve the product.",
-		"button": "Go to the survey"
+		"button": "Go to the survey",
+		"meta": {
+			"name": "Feedback",
+			"title": "Genealogy Tree Editor Feedback",
+			"description": "Leave your feedback about the Genealogy family tree editor and share your experience with the service."
+		}
 	},
 	"download": {
 		"title": "Choose format",
@@ -117,5 +122,7 @@
 			"mustStartWithHttps": "The link must start with https://"
 		}
 	},
-	"loading": "Loading"
+	"loading": "Loading",
+
+	"menu-node": "Open node menu"
 }

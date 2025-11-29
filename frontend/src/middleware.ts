@@ -10,17 +10,8 @@ export default function middleware(request: NextRequest) {
 
 	const session = cookies.get('genealogy.session.name')?.value
 	const locale = cookies.get('NEXT_LOCALE')?.value || 'ru'
-	const isAuthPage = originalPath.includes(`/${locale}/auth`)
 	const profilePage = originalPath.includes('/dashboard')
 
-	// if (isAuthPage) {
-	// 	if (session) {
-	// 		return NextResponse.redirect(
-	// 			new URL(`/${locale}/dashboard/profile`, url)
-	// 		)
-	// 	}
-	// 	return NextResponse.next()
-	// }
 
 	if (profilePage && !session) {
 		return NextResponse.redirect(new URL(`/${locale}/auth/login`, url))

@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 
 import ConsentBanner from '@/shared/components/ui/ConsentBanner'
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+import { createAlternates } from '@/shared/utils'
 
 import initTranslations from '../../shared/utils/i18n/i18n'
 
@@ -34,10 +35,7 @@ export async function generateMetadata({
 		openGraph: {
 			title: t('meta.title'),
 			description: t('meta.description'),
-			url:
-				locale === 'en'
-					? 'https://genealogyhub.ru/en'
-					: 'https://genealogyhub.ru/ru',
+			url: createAlternates(locale, '/tree').canonical,
 			siteName: t('meta.name'),
 			locale: locale === 'en' ? 'en_US' : 'ru_RU',
 			images: [
@@ -56,20 +54,9 @@ export async function generateMetadata({
 			description: t('meta.description'),
 			images: ['https://genealogyhub.ru/images/favicon.svg']
 		},
-		alternates: {
-			canonical:
-				locale === 'en'
-					? 'https://genealogyhub.ru/en'
-					: 'https://genealogyhub.ru/ru',
-			languages: {
-				en: 'https://genealogyhub.ru/en',
-				ru: 'https://genealogyhub.ru/ru'
-			}
-		},
-		
+		alternates: createAlternates(locale, '/tree')
 	}
 }
-
 
 interface ILayout {
 	children: ReactNode
