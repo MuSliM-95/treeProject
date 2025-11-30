@@ -24,9 +24,20 @@ export async function generateMetadata({
 		title: t('meta.title'),
 		description: t('meta.description'),
 		icons: {
-			icon: 'https://genealogyhub.ru/images/favicon.svg',
-			shortcut: 'https://genealogyhub.ru/images/favicon.svg',
-			apple: 'https://genealogyhub.ru/images/favicon.svg'
+			icon: [
+				{
+					url: 'https://genealogyhub.ru/images/favicon.svg?v=2',
+					type: 'image/svg+xml'
+				}
+			],
+
+			apple: [
+				{
+					url: 'https://genealogyhub.ru/images/favicon.png?v=2',
+					sizes: '180x180',
+					type: 'image/png'
+				}
+			]
 		},
 		verification: {
 			google: 'K4NjTpnl-Yu4tWYOS-afGUtZA3PIIZM-AH30tKuJrzo',
@@ -40,10 +51,10 @@ export async function generateMetadata({
 			locale: locale === 'en' ? 'en_US' : 'ru_RU',
 			images: [
 				{
-					url: 'https://genealogyhub.ru/images/favicon.svg',
+					url: 'https://genealogyhub.ru/images/og-image.png?v=2',
 					width: 1200,
 					height: 630,
-					alt: 'Genealogy — создай свое древо предков'
+					alt: t('meta.description')
 				}
 			],
 			type: 'website'
@@ -52,7 +63,12 @@ export async function generateMetadata({
 			card: 'summary_large_image',
 			title: t('meta.title'),
 			description: t('meta.description'),
-			images: ['https://genealogyhub.ru/images/favicon.svg']
+			images: [
+				{
+					url: 'https://genealogyhub.ru/images/og-image.png?v=2',
+					type: 'image/png'
+				}
+			]
 		},
 		alternates: createAlternates(locale, '/tree')
 	}
