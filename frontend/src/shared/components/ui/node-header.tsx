@@ -87,7 +87,7 @@ export const NodeHeaderIcon = forwardRef<HTMLSpanElement, NodeHeaderIconProps>(
 			<span
 				ref={ref}
 				{...props}
-				className={cn(className, '[&>*]:size-5')}
+				className={cn('[&>*]:size-5', className)}
 			/>
 		)
 	}

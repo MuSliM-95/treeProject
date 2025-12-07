@@ -137,7 +137,7 @@ export function NodeForm({
 				x: data.posX || (screenCenterX - panX) / zoom,
 				y: data.posY || (screenCenterY - panY) / zoom
 			},
-			type: 'baseNode',
+			type: 'roundedNode',
 			sourcePosition: Position.Bottom,
 			targetPosition: Position.Top
 		}

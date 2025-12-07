@@ -14,6 +14,7 @@ export default async function ProfilePage({
 		locale: locale,
 		namespaces: i18nNamespaces
 	})
+	
 
 	return (
 		<TranslationsProvider

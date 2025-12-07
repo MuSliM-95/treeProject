@@ -5,6 +5,8 @@ import initTranslations from '@/shared/utils/i18n/i18n'
 import i18nConfig from '../../../../i18nConfig'
 import { Metadata } from 'next'
 import { createAlternates } from '@/shared/utils'
+import { CreateOpenGraph } from '@/shared/utils/seo/create.open.graph'
+import { createTwitterMeta } from '@/shared/utils/seo/create.twitter'
 
 const i18nNamespaces = ['terms']
 
@@ -21,17 +23,8 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 	return {
 		title: t('meta.title'),
 		description: t('meta.description'),
-
-		openGraph: {
-			title: t('meta.title'),
-			description: t('meta.description'),
-			url: createAlternates(locale, '/terms').canonical,
-			siteName: t('meta.name'),
-		},
-		twitter: {
-			title: t('meta.title'),
-			description: t('meta.description')
-		},
+		openGraph: CreateOpenGraph(t, createAlternates(locale, '/terms').canonical, locale),
+		twitter: createTwitterMeta(t),
 		alternates: createAlternates(locale, '/terms')
 	}
 }

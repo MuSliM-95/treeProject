@@ -45,6 +45,7 @@ import { ClearButton } from './ClearButton'
 import { ThemePane } from './ThemePane'
 import { TreeTitleNode } from './TreeTitleNode'
 import { useTranslation } from 'react-i18next'
+import { RoundedNode } from './RoundedNode'
 
 
 interface IGenealogyEditorProps {
@@ -148,7 +149,10 @@ export default function GenealogyEditor({
 			baseNode: (props: IProps) => (
 				<BaseNodeDemo {...props} pens={pens} t={t} />
 			),
-			treeTitle: TreeTitleNode
+			roundedNode: (props: IProps) => (
+				<RoundedNode {...props} pens={pens} t={t} />
+			),
+			treeTitle: TreeTitleNode,
 		}),
 		[pens]
 	)

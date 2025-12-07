@@ -7,6 +7,8 @@ import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import i18nConfig from '../../../i18nConfig'
 import initTranslations from '../../shared/utils/i18n/i18n'
 import { createAlternates } from '@/shared/utils'
+import { CreateOpenGraph } from '@/shared/utils/seo/create.open.graph'
+import { createTwitterMeta } from '@/shared/utils/seo/create.twitter'
 
 const i18nNamespaces = ['home']
 
@@ -32,17 +34,8 @@ export async function generateMetadata({
 	return {
 		title: t('meta.title'),
 		description: t('meta.description'),
-
-		openGraph: {
-			title: t('meta.title'),
-			description: t('meta.description'),
-			url: createAlternates(locale, '/').canonical,
-			siteName: t('meta.name'),
-		},
-		twitter: {
-			title: t('meta.title'),
-			description: t('meta.description')
-		},
+		openGraph: CreateOpenGraph(t, createAlternates(locale, '/').canonical, locale),
+		twitter: createTwitterMeta(t),
 		alternates: createAlternates(locale, '/')
 	}
 }

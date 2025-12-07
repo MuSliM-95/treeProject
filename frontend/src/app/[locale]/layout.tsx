@@ -7,6 +7,8 @@ import TranslationsProvider from '@/shared/providers/TranslationsProvider'
 import { createAlternates } from '@/shared/utils'
 
 import initTranslations from '../../shared/utils/i18n/i18n'
+import { CreateOpenGraph } from '@/shared/utils/seo/create.open.graph'
+import { createTwitterMeta } from '@/shared/utils/seo/create.twitter'
 
 export async function generateMetadata({
 	params
@@ -43,33 +45,8 @@ export async function generateMetadata({
 			google: 'K4NjTpnl-Yu4tWYOS-afGUtZA3PIIZM-AH30tKuJrzo',
 			yandex: '016d187c35064f23'
 		},
-		openGraph: {
-			title: t('meta.title'),
-			description: t('meta.description'),
-			url: createAlternates(locale, '/tree').canonical,
-			siteName: t('meta.name'),
-			locale: locale === 'en' ? 'en_US' : 'ru_RU',
-			images: [
-				{
-					url: 'https://genealogyhub.ru/images/og-image.png?v=2',
-					width: 1200,
-					height: 630,
-					alt: t('meta.description')
-				}
-			],
-			type: 'website'
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: t('meta.title'),
-			description: t('meta.description'),
-			images: [
-				{
-					url: 'https://genealogyhub.ru/images/og-image.png?v=2',
-					type: 'image/png'
-				}
-			]
-		},
+		openGraph: CreateOpenGraph(t, createAlternates(locale, '/tree').canonical, locale),
+		twitter: createTwitterMeta(t),
 		alternates: createAlternates(locale, '/tree')
 	}
 }
