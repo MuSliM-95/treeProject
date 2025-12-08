@@ -1,20 +1,17 @@
 import { ProfileDynamic } from '@/features/user/components/Profile'
+
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+import { IProps } from '@/shared/types/locale.type'
 import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['auth']
 
-export default async function ProfilePage({
-	params
-}: {
-	params: Promise<{ locale: string }>
-}) {
+export default async function ProfilePage({ params }: IProps) {
 	const { locale } = await params
 	const { resources } = await initTranslations({
 		locale: locale,
 		namespaces: i18nNamespaces
 	})
-	
 
 	return (
 		<TranslationsProvider
@@ -22,7 +19,7 @@ export default async function ProfilePage({
 			locale={locale}
 			resources={resources}
 		>
-			<ProfileDynamic /> 
+			<ProfileDynamic />
 		</TranslationsProvider>
 	)
 }

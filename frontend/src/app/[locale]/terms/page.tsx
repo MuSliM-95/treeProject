@@ -7,12 +7,10 @@ import { Metadata } from 'next'
 import { createAlternates } from '@/shared/utils'
 import { CreateOpenGraph } from '@/shared/utils/seo/create.open.graph'
 import { createTwitterMeta } from '@/shared/utils/seo/create.twitter'
+import { IProps } from '@/shared/types/locale.type'
 
 const i18nNamespaces = ['terms']
 
-interface IProps {
-	params: Promise<{ locale: string }>
-}
 
 export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 	const { locale } = await params

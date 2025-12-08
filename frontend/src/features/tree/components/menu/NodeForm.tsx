@@ -11,6 +11,11 @@ import {
 	Button,
 	Card,
 	Checkbox,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
 	Form,
 	FormControl,
 	FormField,
@@ -22,7 +27,7 @@ import {
 import { buttonActivate, clearNodeEdge, sendNode } from '../../hooks'
 import { useAppDispatch, useAppSelector } from '../../hooks/useHooks'
 import { TypeLinksSchema, createLinksSchema } from '../../schemes'
-import { TreeNode } from '../../types'
+import { NodeType, TreeNode } from '../../types'
 
 type Props = {
 	selectedNode: TreeNode | null
@@ -56,7 +61,8 @@ export function NodeForm({
 			clearImg: false,
 			bgColor: nodeColor || '#ffffff',
 			nodeTextColor: nodeTextColor || '#000000',
-			position: true
+			position: true,
+			type: selectedNode?.type || NodeType.BASE_NODE
 		}
 	})
 
@@ -73,6 +79,7 @@ export function NodeForm({
 				'nodeTextColor',
 				selectedNode.data?.style?.color || '#000000'
 			)
+			form.setValue('type', selectedNode.type!)
 		} else {
 			form.reset()
 		}
@@ -95,7 +102,7 @@ export function NodeForm({
 				x: selectedNode.position.x,
 				y: selectedNode.position.y + 100
 			},
-			type: 'baseNode',
+			type: selectedNode.type,
 			sourcePosition: Position.Bottom,
 			targetPosition: Position.Top
 		}
@@ -137,7 +144,7 @@ export function NodeForm({
 				x: data.posX || (screenCenterX - panX) / zoom,
 				y: data.posY || (screenCenterY - panY) / zoom
 			},
-			type: 'roundedNode',
+			type: data.type || selectedNode?.type, 
 			sourcePosition: Position.Bottom,
 			targetPosition: Position.Top
 		}
@@ -313,6 +320,50 @@ export function NodeForm({
 							/>
 						</>
 					)}
+					<FormField
+						control={form.control}
+						name='type'
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>{t('type_node.title')}</FormLabel>
+								<FormControl>
+									<DropdownMenu>
+										<DropdownMenuTrigger asChild>
+											<Button
+												variant={'outline'}
+												className='w-full justify-start'
+											>
+												{t(
+													`type_node.${form.watch('type')}`
+												)}
+											</Button>
+										</DropdownMenuTrigger>
+										<DropdownMenuContent>
+											<DropdownMenuSeparator />
+											<DropdownMenuItem
+												onClick={() =>
+													field.onChange(
+														NodeType.BASE_NODE
+													)
+												}
+											>
+												{t(`type_node.baseNode`)}
+											</DropdownMenuItem>
+											<DropdownMenuItem
+												onClick={() =>
+													field.onChange(
+														NodeType.ROUNDED_NODE
+													)
+												}
+											>
+												{t('type_node.roundedNode')}
+											</DropdownMenuItem>
+										</DropdownMenuContent>
+									</DropdownMenu>
+								</FormControl>
+							</FormItem>
+						)}
+					/>
 
 					<div className='flex gap-2'>
 						<FormField

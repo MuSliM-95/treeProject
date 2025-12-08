@@ -28,7 +28,6 @@ export default async function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<MainProvider>{children}</MainProvider>
-
 				<GoogleAnalytics />
 			</body>
 		</html>

@@ -14,7 +14,7 @@ export const treePatternSchema = z.object({
 	color: z.boolean(),
 	showHandles: z.boolean(),
 	togglePens: z.string(),
-
+	
 	currentStatus: z.nativeEnum(Status)
 })
 

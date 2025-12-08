@@ -124,5 +124,11 @@
 	},
 	"loading": "Loading",
 
-	"menu-node": "Open node menu"
+	"menu-node": "Open node menu",
+
+	"type_node": {
+		"title": "Node type",
+		"baseNode": "Base node",
+		"roundedNode": "Rounded Node"
+	}
 }

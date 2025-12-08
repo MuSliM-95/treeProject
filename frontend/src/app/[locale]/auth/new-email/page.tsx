@@ -1,15 +1,12 @@
 import { NewEmailDynamic } from '@/features/auth/components'
 
 import TranslationsProvider from '@/shared/providers/TranslationsProvider'
+import { IProps } from '@/shared/types/locale.type'
 import initTranslations from '@/shared/utils/i18n/i18n'
 
 const i18nNamespaces = ['auth']
 
-export default async function NewEmailPage({
-	params
-}: {
-	params: Promise<{ locale: string }>
-}) {
+export default async function NewEmailPage({ params }: IProps) {
 	const { locale } = await params
 	const { resources } = await initTranslations({
 		locale: locale,

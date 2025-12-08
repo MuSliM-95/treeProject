@@ -5,12 +5,9 @@ import initTranslations from '@/shared/utils/i18n/i18n'
 import i18nConfig from '../../../../../i18nConfig'
 import { Metadata } from 'next'
 import { createAlternates } from '@/shared/utils'
+import { IProps } from '@/shared/types/locale.type'
 
 const i18nNamespaces = ['tree']
-
-interface IProps {
-	params: Promise<{ locale: string }>
-}
 
 export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 	const { locale } = await params

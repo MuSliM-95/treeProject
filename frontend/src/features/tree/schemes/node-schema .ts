@@ -24,7 +24,8 @@ export const createLinksSchema = (t: TFunction) =>
 		nodeTextColor: z.string(),
 		// sourcePosition: z.nativeEnum(Position),
 		// targetPosition: z.nativeEnum(Position)
-		position: z.boolean()
+		position: z.boolean(),
+		type: z.string()
 	})
 
 export type TypeLinksSchema = z.infer<ReturnType<typeof createLinksSchema>>

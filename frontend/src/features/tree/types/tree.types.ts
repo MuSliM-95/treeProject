@@ -1,13 +1,13 @@
 import { HandleType, NodeProps, Position } from '@xyflow/react'
+import { TFunction } from 'next-i18next'
 
 import { NodeStatus } from '@/shared/components'
-import { TFunction } from 'next-i18next'
 
 export type TreeNode = {
 	id: string
 	data: NodeDataType
 	position: PositionType
-	type?: string
+	type: string
 	style?: NodeStyle
 	sourcePosition?: Position
 	targetPosition?: Position
@@ -54,7 +54,7 @@ export interface IProps extends NodeProps {
 // Вместо enum Theme
 export const Theme = {
 	LIGHT: 'light',
-	DARK: 'dark',
+	DARK: 'dark'
 } as const
 
 export type Theme = (typeof Theme)[keyof typeof Theme]
@@ -64,7 +64,7 @@ export const Status = {
 	LOADING: 'loading',
 	ERROR: 'error',
 	SUCCESS: 'success',
-	INITIAL: 'initial',
+	INITIAL: 'initial'
 } as const
 
 export type Status = (typeof Status)[keyof typeof Status]
@@ -72,16 +72,24 @@ export type Status = (typeof Status)[keyof typeof Status]
 // Вместо enum HandlesBehavior
 export const HandlesBehavior = {
 	TOP_BOTTOM: 'top-bottom',
-	TOP: 'top',
+	TOP: 'top'
 } as const
 
-export type HandlesBehavior = (typeof HandlesBehavior)[keyof typeof HandlesBehavior]
+export type HandlesBehavior =
+	(typeof HandlesBehavior)[keyof typeof HandlesBehavior]
+
+export const NodeType = {
+	ROUNDED_NODE: 'roundedNode',
+	BASE_NODE: 'baseNode'
+} as const
+
+export type NodeType = (typeof NodeType)[keyof typeof NodeType]
 
 export interface ITree {
 	nodes: TreeNode[]
 	edges: TreeEdge[]
 }
 
-export interface ITreeLink  {
+export interface ITreeLink {
 	link?: string
-} 
+}

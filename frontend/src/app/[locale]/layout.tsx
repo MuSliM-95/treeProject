@@ -9,12 +9,11 @@ import { createAlternates } from '@/shared/utils'
 import initTranslations from '../../shared/utils/i18n/i18n'
 import { CreateOpenGraph } from '@/shared/utils/seo/create.open.graph'
 import { createTwitterMeta } from '@/shared/utils/seo/create.twitter'
+import { IProps } from '@/shared/types/locale.type'
 
 export async function generateMetadata({
 	params
-}: {
-	params: Promise<{ locale: string }>
-}): Promise<Metadata> {
+}: IProps): Promise<Metadata> {
 	const { locale } = await params
 	const { t } = await initTranslations({
 		locale: locale,
