@@ -26,14 +26,18 @@ import {
 import { useAppSelector } from '../../hooks/useHooks'
 import { TreePatternForm, treePatternSchema } from '../../schemes'
 import { HandlesBehavior, Status, TreeNode } from '../../types'
-
+import { toast } from 'sonner'
 
 interface Props {
 	className?: string
 	nodeCount: number
 	edgeCount: number
 	pens: boolean
+	flexibleKnots: boolean
+	setFlexibleKnots: Dispatch<SetStateAction<boolean>>
 	setPensState: Dispatch<SetStateAction<boolean>>
+	setTypeEdge: Dispatch<SetStateAction<string>>
+	typeEdge: string
 	setEdgeColor: Dispatch<SetStateAction<string>>
 	setNodeColor: Dispatch<SetStateAction<string>>
 	setNodeTextColor: Dispatch<SetStateAction<string>>
@@ -52,7 +56,10 @@ export const TreePattern: React.FC<Props> = ({
 	nodeCount = 0,
 	edgeCount = 0,
 	pens,
+	flexibleKnots,
+	setFlexibleKnots,
 	setPensState,
+	setTypeEdge,
 	setEdgeColor,
 	setNodeColor,
 	setNodeTextColor,
@@ -80,13 +87,13 @@ export const TreePattern: React.FC<Props> = ({
 			nodeColorCheckbox: false,
 			isAnimatedNode: false,
 			isAnimatedEdge: animatedEdge,
+			flexibleKnots: flexibleKnots,
 			color: false,
 			showHandles: pens,
 			currentStatus: nodesStatus,
 			togglePens: handlesBehavior
 		}
 	})
-
 
 	const handlerUpdate = (values: TreePatternForm) => {
 		setEdges(edges =>
@@ -95,7 +102,8 @@ export const TreePattern: React.FC<Props> = ({
 				style: values.color
 					? { ...edge.style, stroke: values.edgeColor }
 					: edge.style,
-				animated: values.isAnimatedEdge
+				animated: values.isAnimatedEdge,
+				type: form.getValues('flexibleKnots') ? '' : 'floating'
 			}))
 		)
 
@@ -127,11 +135,14 @@ export const TreePattern: React.FC<Props> = ({
 		setNodesStatus(values.currentStatus)
 		setAnimatedEdge(values.isAnimatedEdge)
 		setPensState(values.showHandles)
+		const edgeType = form.getValues('flexibleKnots') ? '' : 'floating'
+		setTypeEdge(edgeType)
+		setFlexibleKnots(values.flexibleKnots)
 
 		setEdgeColor(values.edgeColor)
 		setNodeColor(values.nodeColor)
 		setNodeTextColor(values.nodeTextColor)
-		setHandlesBehavior(form.getValues('togglePens') as HandlesBehavior)
+		setHandlesBehavior(values.togglePens as HandlesBehavior)
 	}
 
 	const statusLabels: Record<Status, string> = {
@@ -361,7 +372,9 @@ export const TreePattern: React.FC<Props> = ({
 													variant={'outline'}
 													className='w-full justify-start'
 												>
-													{t(`handles_behavior.${form.watch('togglePens')}`)}
+													{t(
+														`handles_behavior.${form.watch('togglePens')}`
+													)}
 												</Button>
 											</DropdownMenuTrigger>
 											<DropdownMenuContent>
@@ -429,6 +442,23 @@ export const TreePattern: React.FC<Props> = ({
 									<FormLabel>
 										{t('animateBranches')}
 									</FormLabel>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name='flexibleKnots'
+							render={({ field }) => (
+								<FormItem className='flex items-center gap-2'>
+									<FormControl>
+										<Checkbox
+											checked={field.value}
+											onCheckedChange={val =>
+												field.onChange(Boolean(val))
+											}
+										/>
+									</FormControl>
+									<FormLabel>{t('flexibleKnots')}</FormLabel>
 								</FormItem>
 							)}
 						/>

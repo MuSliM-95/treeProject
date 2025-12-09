@@ -7,7 +7,11 @@ import {
 	Connection,
 	Edge,
 	EdgeChange,
+	EdgeTypes,
+	MarkerType,
 	NodeChange,
+	NodeTypes,
+	Position,
 	ReactFlow,
 	Viewport,
 	addEdge,
@@ -28,6 +32,8 @@ import React, {
 	useRef,
 	useState
 } from 'react'
+import { useTranslation } from 'react-i18next'
+import { v4 as uuidv4 } from 'uuid'
 
 import {
 	buttonActivate,
@@ -37,19 +43,28 @@ import {
 	toggleTab
 } from '../../hooks'
 import { useAppDispatch, useAppSelector } from '../../hooks/useHooks'
-import { HandlesBehavior, IProps, Status, Theme, TreeEdge, TreeNode } from '../../types'
+import {
+	HandlesBehavior,
+	IProps,
+	Status,
+	Theme,
+	TreeEdge,
+	TreeNode
+} from '../../types'
+
 
 import { BackgroundType } from './BackgroundType'
 import { CenterButton } from './CenterButton'
 import { ClearButton } from './ClearButton'
+import FloatingEdge from './FloatingEdge'
+import { RoundedNode } from './RoundedNode'
 import { ThemePane } from './ThemePane'
 import { TreeTitleNode } from './TreeTitleNode'
-import { useTranslation } from 'react-i18next'
-import { RoundedNode } from './RoundedNode'
-
 
 interface IGenealogyEditorProps {
+	edgeType: string
 	edgeColor: string
+	flexibleKnots: boolean
 	nodeColor: string
 	nodeTextColor: string
 	treeRef: RefObject<HTMLDivElement | null>
@@ -63,7 +78,9 @@ interface IGenealogyEditorProps {
 
 export default function GenealogyEditor({
 	treeRef,
+	edgeType,
 	nodesStatus,
+	flexibleKnots,
 	edgeColor,
 	nodeColor,
 	nodeTextColor,
@@ -74,8 +91,23 @@ export default function GenealogyEditor({
 	pens
 }: IGenealogyEditorProps) {
 	const dispatch = useAppDispatch()
-	const { setViewport } = useReactFlow()
+	const { setViewport, screenToFlowPosition } = useReactFlow()
 	const { t } = useTranslation('tree')
+
+	const defaultEdgeOptions = {
+		animated: animatedEdge,
+		style: {
+			stroke: edgeColor
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			color: '#b1b1b7'
+		}
+	}
+
+	const edgeTypes = {
+		floating: FloatingEdge
+	}
 
 	const viewportRef = useRef<Viewport | null>(null)
 
@@ -91,13 +123,6 @@ export default function GenealogyEditor({
 
 	const [background, setBackground] =
 		useState<BackgroundVariant>(backgroundState)
-
-	const edgeOptions = {
-		animated: animatedEdge,
-		style: {
-			stroke: edgeColor
-		}
-	}
 
 	const BOUND_X = 4000
 	const BOUND_Y = 2000
@@ -119,6 +144,50 @@ export default function GenealogyEditor({
 			dispatch(buttonActivate({ activate: false }))
 		},
 		[dispatch]
+	)
+
+	const onConnectEnd = useCallback(
+		(event: MouseEvent | TouchEvent, connectionState: any) => {
+			// when a connection is dropped on the pane it's not valid
+			if (!connectionState.isValid) {
+				// we need to remove the wrapper bounds, in order to get the correct position
+				const { fromNode } = connectionState
+
+				const id = uuidv4()
+				const edgeId = `edge-${id}`
+				const nodeId = `node-${id}`
+				const { clientX, clientY } =
+					'changedTouches' in event ? event.changedTouches[0] : event
+				const newNode = {
+					id: nodeId,
+					data: {
+						label: `${fromNode.data.label}`,
+						status: fromNode.data.status,
+						style: fromNode.data.style,
+						img: null,
+						bio: null
+					},
+					position: screenToFlowPosition({
+						x: clientX,
+						y: clientY
+					}),
+					type: fromNode.type,
+					sourcePosition: Position.Bottom,
+					targetPosition: Position.Top
+				}
+
+				setNodes(nds => nds.concat(newNode))
+				setEdges(eds =>
+					eds.concat({
+						id: edgeId,
+						source: connectionState.fromNode.id,
+						target: nodeId,
+						type: edgeType
+					})
+				)
+			}
+		},
+		[screenToFlowPosition, edgeType]
 	)
 
 	useEffect(() => {
@@ -152,7 +221,7 @@ export default function GenealogyEditor({
 			roundedNode: (props: IProps) => (
 				<RoundedNode {...props} pens={pens} t={t} />
 			),
-			treeTitle: TreeTitleNode,
+			treeTitle: TreeTitleNode
 		}),
 		[pens]
 	)
@@ -184,7 +253,7 @@ export default function GenealogyEditor({
 				edges={edges}
 				onNodesChange={onNodesChange}
 				onEdgesChange={onEdgesChange}
-				defaultEdgeOptions={edgeOptions}
+				defaultEdgeOptions={defaultEdgeOptions}
 				onConnect={onConnect}
 				onNodeDragStop={(event, node) => {
 					dispatch(sendNode({ data: node as TreeNode }))
@@ -203,7 +272,9 @@ export default function GenealogyEditor({
 					[MIN_X, MIN_Y],
 					[MAX_X, MAX_Y]
 				]}
-				nodeTypes={nodeTypes as any}
+				nodeTypes={nodeTypes as unknown as NodeTypes}
+				edgeTypes={edgeTypes as EdgeTypes}
+				onConnectEnd={onConnectEnd}
 				defaultViewport={{
 					x: 0,
 					y: 0,
@@ -214,6 +285,8 @@ export default function GenealogyEditor({
 			>
 				<div className='hide-on-export absolute top-2 right-2 z-50 flex w-[140px] flex-col space-y-2 sm:w-auto'>
 					<SaveButton
+					    flexibleKnots={flexibleKnots}
+						edgeType={edgeType}
 						edgeColor={edgeColor}
 						nodeColor={nodeColor}
 						nodeTextColor={nodeTextColor}

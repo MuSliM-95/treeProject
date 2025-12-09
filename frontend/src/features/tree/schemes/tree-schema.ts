@@ -10,6 +10,7 @@ export const treePatternSchema = z.object({
 	nodeText: z.boolean(),
 	nodeColorCheckbox: z.boolean(),
 	isAnimatedNode: z.boolean(),
+	flexibleKnots: z.boolean(),
 	isAnimatedEdge: z.boolean(),
 	color: z.boolean(),
 	showHandles: z.boolean(),

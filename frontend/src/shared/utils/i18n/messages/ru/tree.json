@@ -40,6 +40,7 @@
 	"changeEdgeColor": "Изменить цвет веток",
 	"showHandles": "Показать ручки",
 	"animateBranches": "Анимировать ветки",
+	"flexibleKnots": "Гибкие ветки",
 	"nodeView": "Анимация узлов",
 	"statusLabels": {
 		"initial": "Базовый",

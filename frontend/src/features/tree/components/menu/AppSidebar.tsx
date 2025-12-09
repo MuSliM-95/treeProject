@@ -21,18 +21,18 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem
 } from '@/shared/components'
+import { pageConfig } from '@/shared/config'
 
 import { toggleTab } from '../../hooks'
 import { useAppDispatch, useAppSelector } from '../../hooks/useHooks'
 import { HandlesBehavior, Status, Theme } from '../../types'
+import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { DownloadTreeButton } from '../ui/DownloadTreeButton'
 import { ShareLink } from '../ui/ShareLink'
 
-import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { EdgeForm } from './EdgeForm'
 import { NodeForm } from './NodeForm'
 import { TreePattern } from './TreePattern'
-import { pageConfig } from '@/shared/config'
 
 const tabs = [
 	{ id: 'node', icon: Share2 },
@@ -46,6 +46,10 @@ const tabs = [
 interface ISidebarWithContent {
 	treeRef: RefObject<HTMLDivElement | null>
 	setNodesStatus: Dispatch<SetStateAction<Status>>
+	setTypeEdge: Dispatch<SetStateAction<string>>
+	flexibleKnots: boolean
+	setFlexibleKnots: Dispatch<SetStateAction<boolean>>
+	typeEdge: string
 	setEdgeColor: Dispatch<SetStateAction<string>>
 	setNodeColor: Dispatch<SetStateAction<string>>
 	setNodeTextColor: Dispatch<SetStateAction<string>>
@@ -62,7 +66,11 @@ interface ISidebarWithContent {
 }
 export default function SidebarWithContent({
 	treeRef,
+	setTypeEdge,
+	typeEdge,
 	setNodesStatus,
+	flexibleKnots,
+	setFlexibleKnots,
 	setEdgeColor,
 	setNodeColor,
 	setNodeTextColor,
@@ -131,7 +139,7 @@ export default function SidebarWithContent({
 										className={
 											activeTab === id &&
 											activeTab !== pageConfig.home
-												? 'text-red-500 cursor-pointer'
+												? 'cursor-pointer text-red-500'
 												: 'cursor-pointer'
 										}
 										onClick={() =>
@@ -159,7 +167,11 @@ export default function SidebarWithContent({
 
 						{activeTab === 'tree' && (
 							<TreePattern
+								flexibleKnots={flexibleKnots}
+								setFlexibleKnots={setFlexibleKnots}
 								edgeColor={edgeColor}
+								setTypeEdge={setTypeEdge}
+								typeEdge={typeEdge}
 								setEdgeColor={setEdgeColor}
 								setNodeColor={setNodeColor}
 								setNodeTextColor={setNodeTextColor}
@@ -177,7 +189,9 @@ export default function SidebarWithContent({
 							/>
 						)}
 						{activeTab === 'feedback' && <FeedbackSection />}
-						{activeTab === 'share_link' && <ShareLink link={link} setLink={setLink} />}
+						{activeTab === 'share_link' && (
+							<ShareLink link={link} setLink={setLink} />
+						)}
 						{activeTab === 'download' && (
 							<DownloadTreeButton
 								treeRef={treeRef}

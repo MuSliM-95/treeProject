@@ -85,6 +85,13 @@ export const NodeType = {
 
 export type NodeType = (typeof NodeType)[keyof typeof NodeType]
 
+// export const EdgeType = {
+// 	ROUNDED_NODE: 'roundedNode',
+// 	BASE_NODE: 'baseNode'
+// } as const
+
+// export type EdgeType = (typeof EdgeType)[keyof typeof EdgeType]
+
 export interface ITree {
 	nodes: TreeNode[]
 	edges: TreeEdge[]

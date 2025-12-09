@@ -22,15 +22,19 @@ export default function TreePageClient() {
 
 	
 	const animated = useAppSelector(state => state.tree.animatedEdge)
+	const edgeType = useAppSelector(state => state.tree.edgeType)
 	const themeState = useAppSelector(state => state.tree.theme)
 	const edgeColorState = useAppSelector(state => state.tree.edgeColor)
 	const treeColorState = useAppSelector(state => state.tree.nodeColor)
-	const nodeTextColorState = useAppSelector(state => state.tree.nodeTextColor)
+	const nodeTextColorState = useAppSelector(state => state.tree.nodeTextColor) 
+	const flexibleKnotsState = useAppSelector(state => state.tree.flexibleKnots) 
 	const handles_behavior = useAppSelector(state => state.tree.handlesBehavior)
 	const pens = useAppSelector(state => state.tree.pens)
 	const treeRef = useRef<HTMLDivElement>(null)
 
 	const [nodesStatus, setNodesStatus] = useState<Status>(Status.INITIAL)
+	const [typeEdge, setTypeEdge] = useState(edgeType)                
+	const [flexibleKnots, setFlexibleKnots] = useState(flexibleKnotsState)                
 	const [animatedEdge, setAnimatedEdge] = useState(animated)
 	const [theme, setTheme] = useState<Theme>(themeState)
 	const [pensState, setPensState] = useState(pens)
@@ -44,6 +48,10 @@ export default function TreePageClient() {
 		<I18nextProvider i18n={i18n}>
 			<ReactFlowProvider>
 				<TreeSidebarProvider
+				    setTypeEdge={setTypeEdge}
+					flexibleKnots={flexibleKnots}
+					setFlexibleKnots={setFlexibleKnots}
+					typeEdge={typeEdge}
 					setPensState={setPensState}
 					setEdgeColor={setEdgeColor}
 					setNodeColor={setNodeColor}
@@ -61,6 +69,8 @@ export default function TreePageClient() {
 					handlesBehavior={handlesBehavior}
 				>
 					<GenealogyEditor
+					    flexibleKnots={flexibleKnots}
+					    edgeType={typeEdge}
 						edgeColor={edgeColor}
 						nodeColor={nodeColor}
 						nodeTextColor={nodeTextColor}

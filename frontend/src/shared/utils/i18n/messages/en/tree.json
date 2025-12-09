@@ -37,6 +37,7 @@
 	"changeEdgeColor": "Change edge color",
 	"showHandles": "Show handles",
 	"animateBranches": "Animate branches",
+	"flexibleKnots": "Flexible branches",
 	"nodeView": "Node Animation",
 	"statusLabels": {
 		"initial": "Default",

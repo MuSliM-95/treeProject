@@ -5,6 +5,7 @@ import { BackgroundVariant, Viewport } from '@xyflow/react'
 import {
 	HandlesBehavior,
 	ITree,
+	NodeType,
 	Status,
 	Theme,
 	TreeEdge,
@@ -19,10 +20,13 @@ export interface IInitialState {
 	edges: TreeEdge[]
 	pens: boolean
 	animatedEdge: boolean
+	flexibleKnots: boolean
 	handlesBehavior: HandlesBehavior
 	edgeColor: string
 	nodeColor: string
 	nodeTextColor: string
+	nodeType: string
+	edgeType: string
 	theme: Theme
 	background: BackgroundVariant
 	viewport: Viewport
@@ -39,9 +43,12 @@ const initialState: IInitialState = {
 	edges: [],
 	pens: true,
 	animatedEdge: false,
+	flexibleKnots: true,
 	edgeColor: '#b1b1b7',
 	nodeColor: '#ffffff',
 	nodeTextColor: '#000000',
+	nodeType: NodeType.BASE_NODE,
+	edgeType: '',
 	theme: Theme.LIGHT,
 	background: BackgroundVariant.Dots,
 	viewport: {
@@ -83,6 +90,7 @@ const treeReducer = createSlice({
 			state,
 			action: PayloadAction<{
 				data: {
+					edgeType: string
 					nodes: TreeNode[]
 					edges: TreeEdge[]
 					theme: Theme
@@ -90,6 +98,7 @@ const treeReducer = createSlice({
 					background: BackgroundVariant
 					nodesStatus: Status
 					animatedEdge: boolean
+					flexibleKnots: boolean
 					pens: boolean
 					edgeColor: string
 					nodeColor: string
@@ -98,6 +107,8 @@ const treeReducer = createSlice({
 				}
 			}>
 		) {
+			state.edgeType = action.payload.data.edgeType
+			state.flexibleKnots = action.payload.data.flexibleKnots
 			state.nodes = action.payload.data.nodes
 			state.edges = action.payload.data.edges
 			state.theme = action.payload.data.theme

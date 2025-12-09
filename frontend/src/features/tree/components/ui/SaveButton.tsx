@@ -12,6 +12,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useHooks'
 import { HandlesBehavior, Status, Theme, TreeEdge, TreeNode } from '../../types'
 
 interface Props {
+	edgeType: string
+	flexibleKnots: boolean
 	edgeColor: string
 	nodeColor: string
 	nodeTextColor: string
@@ -26,7 +28,9 @@ interface Props {
 }
 
 export const SaveButton: React.FC<Props> = ({
+	edgeType,
 	edgeColor,
+	flexibleKnots,
 	nodeColor,
 	nodeTextColor,
 	theme,
@@ -53,6 +57,8 @@ export const SaveButton: React.FC<Props> = ({
 		dispatch(
 			saveChanges({
 				data: {
+					edgeType,
+					flexibleKnots,
 					nodes,
 					edges,
 					theme,

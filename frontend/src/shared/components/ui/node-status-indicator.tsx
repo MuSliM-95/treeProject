@@ -1,47 +1,54 @@
-import { ReactNode } from "react";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle } from 'lucide-react'
+import { ReactNode } from 'react'
 
-import { cn } from "@/shared/utils/index";
+import { cn } from '@/shared/utils/index'
 
-export type NodeStatus = "loading" | "success" | "error" | "initial";
+export type NodeStatus = 'loading' | 'success' | 'error' | 'initial'
 
-export type NodeStatusVariant = "overlay" | "border";
+export type NodeStatusVariant = 'overlay' | 'border'
 
 export type NodeStatusIndicatorProps = {
-  status?: NodeStatus;
-  variant?: NodeStatusVariant;
-  children: ReactNode;
-};
+	status?: NodeStatus
+	variant?: NodeStatusVariant
+	children: ReactNode
+  className?: string
+}
 
 export const SpinnerLoadingIndicator = ({
-  children,
+	children,
+	className
 }: {
-  children: ReactNode;
+	children: ReactNode
+	className?: string
 }) => {
-  return (
-    <div className="relative">
-      <StatusBorder className="border-blue-700/40 ">{children}</StatusBorder>
+	return (
+		<div className='relative'>
+			<StatusBorder className={cn('border-blue-700/40', className)}>
+				{children}
+			</StatusBorder>
 
-      <div className="absolute inset-0 z-50 rounded-[7px] bg-background/50 backdrop-blur-sm" />
-      <div className="absolute inset-0 z-50">
-        <span className="absolute left-[calc(50%-1.25rem)] top-[calc(50%-1.25rem)] inline-block h-10 w-10 animate-ping rounded-full bg-blue-700/20" />
+			<div className='bg-background/50 absolute inset-0 z-50 rounded-[7px] backdrop-blur-sm' />
+			<div className='absolute inset-0 z-50'>
+				<span className='absolute top-[calc(50%-1.25rem)] left-[calc(50%-1.25rem)] inline-block h-10 w-10 animate-ping rounded-full bg-blue-700/20' />
 
-        <LoaderCircle className="absolute left-[calc(50%-0.75rem)] top-[calc(50%-0.75rem)] size-6 animate-spin text-blue-700" />
-      </div>
-    </div>
-  );
-};
+				<LoaderCircle className='absolute top-[calc(50%-0.75rem)] left-[calc(50%-0.75rem)] size-6 animate-spin text-blue-700' />
+			</div>
+		</div>
+	)
+}
 
 export const BorderLoadingIndicator = ({
-  children,
+	children,
+  className
 }: {
-  children: ReactNode;
+	children: ReactNode
+  className?: string
 }) => {
-  return (
-    <>
-      <div className="absolute -left-[1px] -top-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)]">
-        <style>
-          {`
+	return (
+		<>
+			<div className='absolute -top-[1px] -left-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)]'>
+				<style>
+					{`
         @keyframes spin {
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to { transform: translate(-50%, -50%) rotate(360deg); }
@@ -56,58 +63,73 @@ export const BorderLoadingIndicator = ({
           transform-origin: center;
         }
       `}
-        </style>
-        <div className="absolute inset-0 overflow-hidden rounded-[7px]">
-          <div className="spinner rounded-full bg-[conic-gradient(from_0deg_at_50%_50%,_rgb(42,67,233)_0deg,_rgba(42,138,246,0)_360deg)]" />
-        </div>
-      </div>
-      {children}
-    </>
-  );
-};
+				</style>
+				<div className={cn('absolute inset-0 overflow-hidden rounded-[7px]', className)}>
+					<div className='spinner rounded-full bg-[conic-gradient(from_0deg_at_50%_50%,_rgb(42,67,233)_0deg,_rgba(42,138,246,0)_360deg)]' />
+				</div>
+			</div>
+			{children}
+		</>
+	)
+}
 
 const StatusBorder = ({
-  children,
-  className,
+	children,
+	className
 }: {
-  children: ReactNode;
-  className?: string;
+	children: ReactNode
+	className?: string
 }) => {
-  return (
-    <>
-      <div
-        className={cn(
-          "absolute -left-[1px] -top-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)] rounded-[7px] border-2",
-          className,
-        )}
-      />
-      {children}
-    </>
-  );
-};
+	return (
+		<>
+			<div
+				className={cn(
+					'absolute -top-[1px] -left-[1px] h-[calc(100%+2px)] w-[calc(100%+2px)] rounded-[7px] border-2',
+					className
+				)}
+			/>
+			{children}
+		</>
+	)
+}
 
 export const NodeStatusIndicator = ({
-  status,
-  variant = "border",
-  children,
+	status,
+	variant = 'border',
+	children,
+  className
 }: NodeStatusIndicatorProps) => {
-  switch (status) {
-    case "loading":
-      switch (variant) {
-        case "overlay":
-          return <SpinnerLoadingIndicator>{children}</SpinnerLoadingIndicator>;
-        case "border":
-          return <BorderLoadingIndicator>{children}</BorderLoadingIndicator>;
-        default:
-          return <>{children}</>;
-      }
-    case "success":
-      return (
-        <StatusBorder className="border-emerald-600">{children}</StatusBorder>
-      );
-    case "error":
-      return <StatusBorder className="border-red-400">{children}</StatusBorder>;
-    default:
-      return <>{children}</>;
-  }
-};
+	switch (status) {
+		case 'loading':
+			switch (variant) {
+				case 'overlay':
+					return (
+						<SpinnerLoadingIndicator className={className}>
+							{children}
+						</SpinnerLoadingIndicator>
+					)
+				case 'border':
+					return (
+						<BorderLoadingIndicator className={className}>
+							{children}
+						</BorderLoadingIndicator>
+					)
+				default:
+					return <>{children}</>
+			}
+		case 'success':
+			return (
+				<StatusBorder className='border-emerald-600'>
+					{children}
+				</StatusBorder>
+			)
+		case 'error':
+			return (
+				<StatusBorder className='border-red-400'>
+					{children}
+				</StatusBorder>
+			)
+		default:
+			return <>{children}</>
+	}
+}

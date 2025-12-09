@@ -9,7 +9,11 @@ import { SidebarProvider, SidebarTrigger } from '../components'
 
 interface ITreeSidebarProps extends PropsWithChildren<unknown> {
 	treeRef: RefObject<HTMLDivElement | null>
+	setTypeEdge: Dispatch<SetStateAction<string>>
+	typeEdge: string
 	setNodesStatus: Dispatch<SetStateAction<Status>>
+	flexibleKnots: boolean
+	setFlexibleKnots: Dispatch<SetStateAction<boolean>>
 	setEdgeColor: Dispatch<SetStateAction<string>>
 	setNodeColor: Dispatch<SetStateAction<string>>
 	setNodeTextColor: Dispatch<SetStateAction<string>>
@@ -28,6 +32,10 @@ interface ITreeSidebarProps extends PropsWithChildren<unknown> {
 export default function TreeSidebarProvider({
 	children,
 	treeRef,
+	setTypeEdge,
+	flexibleKnots,
+	setFlexibleKnots,
+	typeEdge,
 	setNodesStatus,
 	setEdgeColor,
 	setNodeColor,
@@ -46,6 +54,10 @@ export default function TreeSidebarProvider({
 	return (
 		<SidebarProvider>
 			<SidebarWithContent
+				flexibleKnots={flexibleKnots}
+				setFlexibleKnots={setFlexibleKnots}
+				setTypeEdge={setTypeEdge}
+				typeEdge={typeEdge}
 				setNodesStatus={setNodesStatus}
 				setEdgeColor={setEdgeColor}
 				setNodeColor={setNodeColor}
