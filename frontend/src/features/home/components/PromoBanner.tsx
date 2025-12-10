@@ -1,6 +1,5 @@
 'use client'
 
-import Script from 'next/script'
 import React from 'react'
 
 export const PromoBanner: React.FC = () => {
@@ -10,7 +9,6 @@ export const PromoBanner: React.FC = () => {
 				src='https://www.effectivegatecpm.com/cbkhrf92nc?key=ed89702e00a3b75ad21707825c5530cf'
 				height='90'
 				width='728'
-				className='border: 0; overflow: hidden;'
 			/>
 		</section>
 	)
