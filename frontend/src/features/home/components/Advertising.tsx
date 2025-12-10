@@ -116,19 +116,6 @@ export const Advertising: React.FC<Props> = ({ className, locale, t }) => {
 			</div>
 
 			<PromoBanner />
-			{/* <div
-				className={cn(isEnglish && 'hidden', 'mx-auto mt-10 max-w-7xl')}
-			>
-				<script
-					src='//wpwidget.ru/js/wps-widget-entry.min.js'
-					async
-				></script>
-				<div
-					className='wps-widget'
-					data-w='//wpwidget.ru/greetings?orientation=3&pid=29659'
-				></div>
-			</div> */}
-
 			{!isEnglish && (
 				<div className='mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3'>
 					<CustomAd ads={ads} />
