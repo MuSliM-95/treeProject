@@ -115,7 +115,7 @@ export const Advertising: React.FC<Props> = ({ className, locale, t }) => {
 				</h3>
 			</div>
 
-			<PromoBanner t={t}/>
+			<PromoBanner />
 			{/* <div
 				className={cn(isEnglish && 'hidden', 'mx-auto mt-10 max-w-7xl')}
 			>
