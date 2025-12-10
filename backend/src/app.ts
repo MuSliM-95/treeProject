@@ -52,7 +52,7 @@ export class App {
 		this.sequelize = sequelizeService;
 	}
 
-	public userRoutes(): void {
+	public useRoutes(): void {
 		this.app.use('/api', this.authController.router);
 		this.app.use('/api', this.userController.router);
 		this.app.use('/api', this.oauthController.router);
@@ -80,7 +80,7 @@ export class App {
 		this.useMiddleware();
 		await this.sequelize.connect();
 		await this.I18nConfig.init();
-		this.userRoutes();
+		this.useRoutes();
 		this.useExceptionFilter();
 
 		const host = this.dotenvConfig.get('API_HOST') || 'localhost';
