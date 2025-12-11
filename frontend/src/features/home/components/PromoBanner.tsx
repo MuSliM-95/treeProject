@@ -9,11 +9,8 @@ export const PromoBanner: React.FC = () => {
 				src='https://www.effectivegatecpm.com/cbkhrf92nc?key=d2aeaecfd7ba35addb08fdfe759aa8cc'
 				height='250'
 				width='300'
-			/>
-			<iframe
-				src='https://www.effectivegatecpm.com/cbkhrf92nc?key=ed89702e00a3b75ad21707825c5530cf'
-				height='90'
-				width='728'
+        scrolling="no"
+        className="border: 0; overflow: hidden;"
 			/>
 		</section>
 	)
