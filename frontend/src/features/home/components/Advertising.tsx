@@ -2,7 +2,6 @@ import { TFunction } from 'i18next'
 import React from 'react'
 
 import { CustomAd } from './CustomAd'
-import { PromoBanner } from './PromoBanner'
 
 interface Props {
 	className?: string
@@ -43,19 +42,19 @@ const adsRU3 = [
 // Реклама для EN
 const adsEN = [
 	{
-		url: 'https://purpleschool.ru/course/html-css?utm_source=ref&utm_campaign=ref&referralId=15948'
+		url: ''
 	}
 ]
 
 const adsEN2 = [
-	{ 
-		url: '' 
+	{
+		url: 'https://purpleschool.ru/course/html-css?utm_source=ref&utm_campaign=ref&referralId=15948'
 	}
 ]
 
 const adsEN3 = [
 	{
-		url: ''
+		url: 'https://purpleschool.ru/course/html-css?utm_source=ref&utm_campaign=ref&referralId=15948'
 	}
 ]
 
@@ -73,11 +72,17 @@ export const Advertising: React.FC<Props> = ({ className, locale, t }) => {
 					{t('homepage.ads.title')}
 				</h3>
 			</div>
-			{!isEnglish && (
+			{!isEnglish ? (
 				<div className='mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3'>
 					<CustomAd ads={ads} />
 					<CustomAd ads={ads2} />
 					<CustomAd ads={ads3} />
+				</div>
+			) : (
+				<div className='mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3'>
+					<CustomAd ads={adsEN} />
+					<CustomAd ads={adsEN2} />
+					<CustomAd ads={adsEN3} />
 				</div>
 			)}
 		</section>

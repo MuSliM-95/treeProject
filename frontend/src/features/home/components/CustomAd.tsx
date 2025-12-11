@@ -1,6 +1,11 @@
 'use client'
 
+import { TFunction } from 'i18next'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { Button } from '@/shared/components'
 
 interface AdItem {
 	url: string
@@ -16,6 +21,7 @@ export const CustomAd: React.FC<CustomAdProps> = ({
 	interval = 10000
 }) => {
 	const [current, setCurrent] = useState(0)
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		if (ads.length <= 1) return
@@ -41,7 +47,13 @@ export const CustomAd: React.FC<CustomAdProps> = ({
 					width='300'
 					scrolling='no'
 					className='border: 0; overflow: hidden;'
+					style={{ pointerEvents: 'none' }}
 				/>
+				<Button variant={'link'} className='mt-2'>
+					<Link href={ad.url} target='_blank'>
+						{t('homepage.learnMore')}
+					</Link>
+				</Button>
 			</div>
 		</div>
 	)

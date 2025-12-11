@@ -23,7 +23,9 @@ export default async function RootLayout({
 }) {
 	return (
 		<html lang='ru'>
-			<head></head>
+			<head>
+				<meta name='verify-admitad' content='cd19109cf6' />
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
