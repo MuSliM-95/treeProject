@@ -1,6 +1,5 @@
 'use client'
 
-import { TFunction } from 'i18next'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -9,6 +8,7 @@ import { Button } from '@/shared/components'
 
 interface AdItem {
 	url: string
+	img?: string
 }
 
 interface CustomAdProps {
@@ -41,14 +41,20 @@ export const CustomAd: React.FC<CustomAdProps> = ({
 			style={{ minHeight: '100px' }}
 		>
 			<div className='xl1080:text-left flex h-full flex-1 flex-col text-center'>
-				<iframe
-					src={ad.url}
-					height='250'
-					width='300'
-					scrolling='no'
-					className='border: 0; overflow: hidden;'
-					style={{ pointerEvents: 'none' }}
-				/>
+				{ad.img ? (
+			
+						<img src={ad.img} className='w-[300px] h-[250px]' alt="image"  />
+		
+				) : (
+					<iframe
+						src={ad.url}
+						height='250'
+						width='300'
+						scrolling='no'
+						className='border: 0; overflow: hidden;'
+						style={{ pointerEvents: 'none' }}
+					/>
+				)}
 				<Button variant={'link'} className='mt-2'>
 					<Link href={ad.url} target='_blank'>
 						{t('homepage.learnMore')}

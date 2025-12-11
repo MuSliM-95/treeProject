@@ -29,32 +29,37 @@ const adsRU = [
 
 const adsRU2 = [
 	{
-		url: 'https://purpleschool.ru/profession/devops?utm_source=ref&utm_campaign=ref&referralId=15948'
+		img: 'images/657b85237693073.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png',
+		url: 'https://uuwgc.com/g/bd7a1b8337cd19109cf68b0fa31d56/?erid=F7NfYUJRWmqqH7eTNtLw'
 	}
 ]
 
 const adsRU3 = [
 	{
-		url: 'https://purpleschool.ru/profession/devops?utm_source=ref&utm_campaign=ref&referralId=15948'
+		img: 'images/403bbebea56587321ba75b8fc1d9f99e.png',
+		url: 'https://kjuzv.com/g/q6gfnfvsq0cd19109cf6a804937a48/?erid=MvGzQC98w3Z1gMq1kx5ACoy5'
 	}
 ]
 
 // Реклама для EN
 const adsEN = [
 	{
-		url: ''
+		img: '/images/banner-300-250.f58d.jpg',
+		url: 'https://rzekl.com/g/1e8d114494cd19109cf616525dc3e8/'
 	}
 ]
 
 const adsEN2 = [
 	{
-		url: 'https://purpleschool.ru/course/html-css?utm_source=ref&utm_campaign=ref&referralId=15948'
+		img: '/images/banner-300-250.f58d.jpg',
+		url: 'https://rzekl.com/g/1e8d114494cd19109cf616525dc3e8/'
 	}
 ]
 
 const adsEN3 = [
 	{
-		url: 'https://purpleschool.ru/course/html-css?utm_source=ref&utm_campaign=ref&referralId=15948'
+		img: '/images/banner-300-250.f58d.jpg',
+		url: 'https://rzekl.com/g/1e8d114494cd19109cf616525dc3e8/'
 	}
 ]
 
