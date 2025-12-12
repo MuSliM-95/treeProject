@@ -1,14 +1,13 @@
 'use client'
 
-import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button } from '@/shared/components'
-
 interface AdItem {
 	url: string
-	img?: string
+	title?: string
+	image?: string
+	description?: string
 }
 
 interface CustomAdProps {
@@ -40,26 +39,28 @@ export const CustomAd: React.FC<CustomAdProps> = ({
 			className='xl1080:flex-row xl1080:items-start flex flex-col items-center justify-between gap-4 rounded border bg-[#fdfaf6] p-4'
 			style={{ minHeight: '100px' }}
 		>
-			<div className='xl1080:text-left flex h-full flex-1 flex-col text-center'>
-				{ad.img ? (
-			
-						<img src={ad.img} className='w-[300px] h-[250px]' alt="image"  />
-		
-				) : (
-					<iframe
-						src={ad.url}
-						height='250'
-						width='300'
-						scrolling='no'
-						className='border: 0; overflow: hidden;'
-						style={{ pointerEvents: 'none' }}
+					{ad.image && (
+				<div className='xl1080:w-[100px] xl1080:justify-start flex w-full flex-shrink-0 justify-center'>
+					<img
+						src={`/images/${ad.image}`}
+						alt={ad.title}
+						className=' w-[250px] h-[200px] object-contain'
 					/>
+				</div>
+			)}
+
+			<div className='xl1080:text-left flex h-full flex-1 flex-col text-center'>
+				<a
+					href={ad.url}
+					target='_blank'
+					rel='noopener noreferrer'
+					className='mb-2 font-bold text-blue-600 hover:underline'
+				>
+					{ad.title}
+				</a>
+				{ad.description && (
+					<p className='text-sm text-gray-700'>{ad.description}</p>
 				)}
-				<Button variant={'link'} className='mt-2'>
-					<Link href={ad.url} target='_blank'>
-						{t('homepage.learnMore')}
-					</Link>
-				</Button>
 			</div>
 		</div>
 	)

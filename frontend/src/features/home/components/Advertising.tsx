@@ -11,55 +11,80 @@ interface Props {
 
 const adsRU = [
 	{
-		url: 'https://purpleschool.ru/course/javascript-basics?utm_source=ref&utm_campaign=ref&referralId=15948'
+		title: 'JavaScript с нуля',
+		description: 'Основы языка и практика для начинающих',
+		url: 'https://purpleschool.ru/course/javascript-basics?utm_source=ref&utm_campaign=ref&referralId=15948',
+		image: 'b74853df-60b5-478e-af56-8ae08bafd6ac.png'
 	},
 	{
-		url: 'https://purpleschool.ru/course/html-css?utm_source=ref&utm_campaign=ref&referralId=15948'
+		title: 'HTML И CSS',
+		description: 'Полный курс по верстке с нуля',
+		url: 'https://purpleschool.ru/course/html-css?utm_source=ref&utm_campaign=ref&referralId=15948',
+		image: 'advertising.png'
 	},
 	{
-		url: 'https://purpleschool.ru/course/nodejs?utm_source=ref&utm_campaign=ref&referralId=15948'
+		title: 'Node.js - с нуля.',
+		description: 'Основы и построение архитектуры приложений.',
+		url: 'https://purpleschool.ru/course/nodejs?utm_source=ref&utm_campaign=ref&referralId=15948',
+		image: 'node-image1.png'
 	},
 	{
-		url: 'https://purpleschool.ru/course/nestjs?utm_source=ref&utm_campaign=ref&referralId=15948'
+		title: 'NestJS - с нуля.',
+		description: 'Современный backend на TypeScript и Node JS',
+		url: 'https://purpleschool.ru/course/nestjs?utm_source=ref&utm_campaign=ref&referralId=15948',
+		image: 'nest.png'
 	},
 	{
-		url: 'https://purpleschool.ru/profession/devops?utm_source=ref&utm_campaign=ref&referralId=15948'
+		title: 'Devops инженер',
+		description: 'Автоматизируй. Оптимизируй. Управляй.',
+		url: 'https://purpleschool.ru/profession/devops?utm_source=ref&utm_campaign=ref&referralId=15948',
+		image: 'devops.png'
 	}
 ]
 
 const adsRU2 = [
 	{
-		img: 'images/657b85237693073.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png',
+		title: 'Авиасейлс',
+		description: 'Тут покупают дешёвые авиабилеты',
+		image: '657b85237693073.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png',
 		url: 'https://uuwgc.com/g/bd7a1b8337cd19109cf68b0fa31d56/?erid=F7NfYUJRWmqqH7eTNtLw'
 	}
 ]
 
 const adsRU3 = [
 	{
-		img: 'images/403bbebea56587321ba75b8fc1d9f99e.png',
-		url: 'https://kjuzv.com/g/q6gfnfvsq0cd19109cf6a804937a48/?erid=MvGzQC98w3Z1gMq1kx5ACoy5'
+		title: 'Читай город',
+		description: 'Эксклюзивно в «Читай-Городе» ',
+		image: '403bbebea56587321ba75b8fc1d9f99e.png',
+		url: 'https://www.chitai-gorod.ru/r/wfcfV?erid=2W5zFHVdUkQ'
 	}
 ]
 
 // Реклама для EN
 const adsEN = [
 	{
-		img: '/images/banner-300-250.f58d.jpg',
+		title: 'AliExpress',
+		description: 'AliExpress — millions of products at the lowest prices',
+		image: 'banner-300-250.f58d.jpg',
 		url: 'https://rzekl.com/g/1e8d114494cd19109cf616525dc3e8/'
 	}
 ]
 
 const adsEN2 = [
 	{
-		img: '/images/banner-300-250.f58d.jpg',
-		url: 'https://rzekl.com/g/1e8d114494cd19109cf616525dc3e8/'
+		title: 'Geekbuying',
+		description: 'GeekBuying.com — the most exciting gadgets at incredibly low prices',
+		image: 'images.png',
+		url: 'https://bywiola.com/g/78tuvzaw8kcd19109cf60267b86f6e/'
 	}
 ]
 
 const adsEN3 = [
 	{
-		img: '/images/banner-300-250.f58d.jpg',
-		url: 'https://rzekl.com/g/1e8d114494cd19109cf616525dc3e8/'
+		title: 'Simbye eSIM',
+		description: 'We offer instant eSIM activation, FREE 100MB trial, and competitive pricing from $0.50/GB.',
+		image: 'images (1).png',
+		url: 'https://xmknb.com/g/gp9rkzj3gccd19109cf6daec78ae77/'
 	}
 ]
 
