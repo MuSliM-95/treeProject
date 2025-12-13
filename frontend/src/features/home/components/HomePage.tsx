@@ -30,9 +30,9 @@ export default function HomePage({ t, locale }: HeaderProps) {
 						<h2 className='font-serif text-4xl leading-snug font-bold text-[#4a372a] md:text-5xl'>
 							{t('homepage.exploreRoots')}
 						</h2>
-						<p className='mt-4 max-w-xl text-lg text-[#5a4638]'>
+						<h3 className='mt-4 max-w-xl text-lg text-[#5a4638]'>
 							{t('homepage.archiveBuildPreserve')}
-						</p>
+						</h3>
 						<div className='mt-6 flex flex-wrap gap-4'>
 							<Link
 								href={pageConfig.tree.tree}

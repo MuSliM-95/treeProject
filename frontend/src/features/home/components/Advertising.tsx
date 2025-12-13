@@ -98,9 +98,9 @@ export const Advertising: React.FC<Props> = ({ className, locale, t }) => {
 	return (
 		<section className='mt-24'>
 			<div className='text-center'>
-				<h3 className='text-2xl font-semibold'>
+				<h2 className='text-2xl font-semibold'>
 					{t('homepage.ads.title')}
-				</h3>
+				</h2>
 			</div>
 			{!isEnglish ? (
 				<div className='mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3'>

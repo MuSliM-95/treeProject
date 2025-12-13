@@ -21,9 +21,9 @@ export function FaqSection({ t }: IFaqSection) {
 
 	return (
 		<section className='mx-auto mt-24 max-w-4xl'>
-			<h3 className='mb-6 text-center text-2xl font-semibold text-[#4a372a]'>
+			<h2 className='mb-6 text-center text-2xl font-semibold text-[#4a372a]'>
 				{t('homepage.faq.title')}
-			</h3>
+			</h2>
 			<Accordion type='single' collapsible className='w-full space-y-4'>
 				{faqItems.map((item, index) => (
 					<AccordionItem key={index} value={`item-${index}`}>

@@ -174,9 +174,9 @@ export const TreePattern: React.FC<Props> = ({
 
 					{/* Вид */}
 					<section className='space-y-3'>
-						<h3 className='text-lg font-semibold'>
+						<h2 className='text-lg font-semibold'>
 							{t('appearance')}
-						</h3>
+						</h2>
 
 						{/* Цвет текста */}
 						<FormField

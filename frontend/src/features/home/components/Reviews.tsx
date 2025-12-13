@@ -17,9 +17,9 @@ export const Reviews: React.FC<Props> = ({ className, t }) => {
 	return (
 		<section className='mt-24 mb-24'>
 			<div className='text-center'>
-				<h3 className='text-2xl font-semibold text-[#4a372a]'>
+				<h2 className='text-2xl font-semibold text-[#4a372a]'>
 					{t('homepage.reviews.title')}
-				</h3>
+				</h2>
 			</div>
 			<div className='mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3'>
 				{reviews.map((review, index) => (

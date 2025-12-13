@@ -63,9 +63,9 @@ export default function ConsentBanner() {
 				>
 					<Card className='max-w-80 rounded-xl border border-gray-200 bg-white shadow-2xl dark:bg-gray-900'>
 						<CardContent className='p-4'>
-							<h3 className='mb-2 text-lg font-semibold text-gray-800 dark:text-gray-100'>
+							<h2 className='mb-2 text-lg font-semibold text-gray-800 dark:text-gray-100'>
 								{t('title')}
-							</h3>
+							</h2>
 							<p className='text-sm text-gray-600 dark:text-gray-300'>
 								{t('description')}{' '}
 								<a

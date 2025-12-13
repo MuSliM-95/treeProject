@@ -100,9 +100,9 @@ export const HomeReactXFlow: React.FC<Props> = ({ className }) => {
 	return (
 		<section className='mx-auto mt-24 max-w-7xl'>
 			<div className='mb-8 text-center'>
-				<h3 className='text-2xl font-semibold text-[#4a372a]'>
+				<h2 className='text-2xl font-semibold text-[#4a372a]'>
 					{t('homepage.tree.title')}
-				</h3>
+				</h2>
 				<p className='mt-2 text-[#6b5445]'>
 					{t('homepage.tree.subtitle')}
 				</p>

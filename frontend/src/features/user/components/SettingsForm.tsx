@@ -85,9 +85,9 @@ export function SettingsForm() {
 							<>
 								{/* 1. Основная информация */}
 								<section>
-									<h3 className='mb-2 text-lg font-semibold'>
+									<h2 className='mb-2 text-lg font-semibold'>
 										{t('profile.basicInfo')}
-									</h3>
+									</h2>
 									<Form {...form}>
 										<form
 											onSubmit={form.handleSubmit(

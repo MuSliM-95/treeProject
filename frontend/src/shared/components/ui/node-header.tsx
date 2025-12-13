@@ -11,7 +11,7 @@ import React, {
 	useCallback
 } from 'react'
 
-import { useAppDispatch } from '@/features/tree/hooks/useHooks'
+
 import { PositionType, TreeNode } from '@/features/tree/types'
 
 import { Button, IButtonProps } from '@/shared/components'
