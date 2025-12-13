@@ -27,14 +27,14 @@ export async function generateMetadata({
 		icons: {
 			icon: [
 				{
-					url: 'https://genealogyhub.ru/images/favicon.svg?v=2',
+					url: 'https://genealogyhub.ru/images/favicon.svg',
 					type: 'image/svg+xml'
 				}
 			],
 
 			apple: [
 				{
-					url: 'https://genealogyhub.ru/images/favicon.png?v=2',
+					url: 'https://genealogyhub.ru/images/favicon.png',
 					sizes: '180x180',
 					type: 'image/png'
 				}

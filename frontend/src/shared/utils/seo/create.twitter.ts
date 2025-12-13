@@ -8,7 +8,7 @@ export const createTwitterMeta = (t: TFunction) => {
 		description: t('meta.description'),
 		images: [
 			{
-				url: 'https://genealogyhub.ru/images/og-image.png?v=2',
+				url: 'https://genealogyhub.ru/images/og-image.png',
 				type: 'image/png'
 			}
 		]

@@ -9,7 +9,7 @@ export const CreateOpenGraph = (t: TFunction, url: string, locale: string) => {
 		locale: locale === 'en' ? 'en_US' : 'ru_RU',
 		images: [
 			{
-				url: 'https://genealogyhub.ru/images/og-image.png?v=2',
+				url: 'https://genealogyhub.ru/images/og-image.png',
 				width: 1200,
 				height: 630,
 				alt: t('meta.description')
