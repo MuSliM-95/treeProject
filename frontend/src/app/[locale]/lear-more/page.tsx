@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 	return {
 		title: t('meta.title'),
 		description: t('meta.description'),
-		openGraph: CreateOpenGraph(t, createAlternates(locale, '/lear-more').canonical, locale),
+		openGraph: CreateOpenGraph(t, createAlternates('/lear-more').canonical, locale),
 		twitter: createTwitterMeta(t),
-		alternates: createAlternates(locale, '/lear-more')
+		alternates: createAlternates('/lear-more')
 	}
 }
 

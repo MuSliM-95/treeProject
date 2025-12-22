@@ -96,6 +96,7 @@ export default function GenealogyEditor({
 
 	const defaultEdgeOptions = {
 		animated: animatedEdge,
+		type: edgeType,
 		style: {
 			stroke: edgeColor
 		},

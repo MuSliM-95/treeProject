@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+
 
 interface AdItem {
 	url: string
@@ -17,10 +17,10 @@ interface CustomAdProps {
 
 export const CustomAd: React.FC<CustomAdProps> = ({
 	ads = [],
-	interval = 10000
+	interval = 3000
 }) => {
 	const [current, setCurrent] = useState(0)
-	const { t } = useTranslation()
+
 
 	useEffect(() => {
 		if (ads.length <= 1) return

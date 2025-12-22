@@ -31,14 +31,10 @@ import { NodeType, TreeNode } from '../../types'
 
 type Props = {
 	selectedNode: TreeNode | null
-	nodeColor: string
-	nodeTextColor: string
 	animatedEdge: boolean
 }
 export function NodeForm({
 	selectedNode,
-	nodeColor,
-	nodeTextColor,
 	animatedEdge
 }: Props) {
 	const dispatch = useAppDispatch()
@@ -52,17 +48,17 @@ export function NodeForm({
 	const form = useForm<TypeLinksSchema>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			label: selectedNode?.data.label || 'default-node',
+			label: 'default-node',
 			imageUrl: '',
 			bioUrl: '',
-			posX: selectedNode?.position.x || 0,
-			posY: selectedNode?.position.y || 0,
+			posX:  0,
+			posY:  0,
 			clearBio: false,
 			clearImg: false,
-			bgColor: nodeColor || '#ffffff',
-			nodeTextColor: nodeTextColor || '#000000',
+			bgColor: '#ffffff',
+			nodeTextColor: '#000000',
 			position: true,
-			type: selectedNode?.type || NodeType.BASE_NODE
+			type: NodeType.BASE_NODE
 		}
 	})
 

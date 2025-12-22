@@ -34,6 +34,7 @@ import { EdgeForm } from './EdgeForm'
 import { NodeForm } from './NodeForm'
 import { TreePattern } from './TreePattern'
 
+
 const tabs = [
 	{ id: 'node', icon: Share2 },
 	{ id: 'edge', icon: Split },
@@ -156,13 +157,11 @@ export default function SidebarWithContent({
 						{activeTab === 'node' && (
 							<NodeForm
 								selectedNode={selectedNode}
-								nodeColor={nodeColor}
-								nodeTextColor={nodeTextColor}
 								animatedEdge={animatedEdge}
 							/>
 						)}
 						{activeTab === 'edge' && (
-							<EdgeForm edgeColor={edgeColor} />
+							<EdgeForm edgeColor={edgeColor} animatedEdge={animatedEdge} />
 						)}
 
 						{activeTab === 'tree' && (

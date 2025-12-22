@@ -25,9 +25,10 @@ import { TypeEdgeSchema, edgeSchema } from '../../schemes'
 
 interface Props {
 	edgeColor: string
+	animatedEdge: boolean
 }
 
-export const EdgeForm: React.FC<Props> = ({ edgeColor }) => {
+export const EdgeForm: React.FC<Props> = ({ edgeColor, animatedEdge }) => {
 	const { setEdges } = useReactFlow()
 	const dispatch = useAppDispatch()
 	const { t } = useTranslation('tree')
@@ -36,13 +37,14 @@ export const EdgeForm: React.FC<Props> = ({ edgeColor }) => {
 
 	useEffect(() => {
 		form.setValue('animated', edge?.animated!)
+		form.setValue('color', edge?.style?.stroke!)
 	}, [edge])
 
 	const form = useForm<TypeEdgeSchema>({
 		resolver: zodResolver(edgeSchema),
 		defaultValues: {
-			color: edge?.style?.stroke || edgeColor,
-			animated: edge?.animated
+			color: edgeColor,
+			animated: animatedEdge
 		}
 	})
 
@@ -51,6 +53,7 @@ export const EdgeForm: React.FC<Props> = ({ edgeColor }) => {
 		setEdges(edges => edges.filter(edg => edg.id !== edge.id))
 		dispatch(clearNodeEdge({}))
 	}
+
 	const handleUpdate = (data: TypeEdgeSchema) => {
 		if (!edge) return
 		const update = {

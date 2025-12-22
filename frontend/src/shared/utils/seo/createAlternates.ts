@@ -1,6 +1,6 @@
-export function createAlternates(locale: string, path: string) {
+export function createAlternates(path: string) {
 	return {
-	  canonical: `https://genealogyhub.ru/${locale}${path}`,
+	  canonical: `https://genealogyhub.ru${path}`,
 	  languages: {
 		en: `https://genealogyhub.ru/en${path}`,
 		ru: `https://genealogyhub.ru/ru${path}`,

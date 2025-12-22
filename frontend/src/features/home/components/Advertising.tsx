@@ -44,14 +44,11 @@ const adsRU = [
 
 const adsRU2 = [
 	{
-		title: 'Авиасейлс',
-		description: 'Тут покупают дешёвые авиабилеты',
-		image: '657b85237693073.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png',
-		url: 'https://uuwgc.com/g/bd7a1b8337cd19109cf68b0fa31d56/?erid=F7NfYUJRWmqqH7eTNtLw'
-	}
-]
-
-const adsRU3 = [
+		title: 'Яндекс Еда',
+		description: 'Яндекс Еда и  Деливери ',
+		image: 'yandex_food.png',
+		url: 'https://yyczo.com/g/m6ste24j7qcd19109cf6a368968085/?erid=5jtCeReNwxHpfQTERQfZc5X'
+	},
 	{
 		title: 'Читай город',
 		description: 'Эксклюзивно в «Читай-Городе» ',
@@ -60,12 +57,27 @@ const adsRU3 = [
 	}
 ]
 
+const adsRU3 = [
+	{
+		title: 'Авиасейлс',
+		description: 'Тут покупают дешёвые авиабилеты',
+		image: '657b85237693073.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png',
+		url: 'https://uuwgc.com/g/bd7a1b8337cd19109cf68b0fa31d56/?erid=F7NfYUJRWmqqH7eTNtLw'
+	},
+	{
+		title: 'AliExpress',
+		description: 'AliExpress — миллионы товаров по самым низким ценам.',
+		image: 'aliexpress.jpg',
+		url: 'https://dhwnh.com/g/vv3q4oey1vcd19109cf6b6d1781017/?erid=2bL9aMPo2e49hMef4pdzo6JkYp'
+	}
+]
+
 // Реклама для EN
 const adsEN = [
 	{
 		title: 'AliExpress',
 		description: 'AliExpress — millions of products at the lowest prices',
-		image: 'banner-300-250.f58d.jpg',
+		image: 'aliexpress.jpg',
 		url: 'https://rzekl.com/g/1e8d114494cd19109cf616525dc3e8/'
 	}
 ]
