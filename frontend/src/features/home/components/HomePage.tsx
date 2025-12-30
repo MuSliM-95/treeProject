@@ -41,7 +41,7 @@ export default function HomePage({ t, locale }: HeaderProps) {
 								{t('homepage.getStarted')}
 								<ArrowRight className='mt-1 ml-2 h-2 w-2' />
 							</Link>
-							<Link href={pageConfig.info.lear_more}>
+							<Link href={pageConfig.info.learn_more}>
 								<Button
 									variant='outline'
 									className='border-[#6a4e3a] text-[#6a4e3a] hover:bg-[#f3ebe3]'

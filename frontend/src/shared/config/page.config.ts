@@ -18,7 +18,7 @@ export const pageConfig = {
 	},
 
 	info: {
-		lear_more: 'lear-more',
+		learn_more: 'learn-more',
 		terms: 'terms'
 	}
 } as const

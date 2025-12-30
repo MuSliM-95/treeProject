@@ -9,6 +9,7 @@ import { createAlternates } from '@/shared/utils'
 import { CreateOpenGraph } from '@/shared/utils/seo/create.open.graph'
 import { createTwitterMeta } from '@/shared/utils/seo/create.twitter'
 import { IProps } from '@/shared/types/locale.type'
+import { pageConfig } from '@/shared/config'
 
 const i18nNamespaces = ['about']
 
@@ -21,9 +22,9 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 	return {
 		title: t('meta.title'),
 		description: t('meta.description'),
-		openGraph: CreateOpenGraph(t, createAlternates('/lear-more').canonical, locale),
+		openGraph: CreateOpenGraph(t, createAlternates(`/${pageConfig.info.learn_more}`).canonical, locale),
 		twitter: createTwitterMeta(t),
-		alternates: createAlternates('/lear-more')
+		alternates: createAlternates(`/${pageConfig.info.learn_more}`)
 	}
 }
 
