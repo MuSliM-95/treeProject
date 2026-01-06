@@ -22,14 +22,14 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 		openGraph: {
 			title: t('feedback.meta.title'),
 			description: t('feedback.meta.description'),
-			url: createAlternates('/tree/feedback').canonical,
+			url: createAlternates('/tree/feedback', locale).canonical,
 			siteName: t('feedback.meta.name'),
 		},
 		twitter: {
 			title: t('feedback.meta.title'),
 			description: t('feedback.meta.description')
 		},
-		alternates: createAlternates('/tree/feedback')
+		alternates: createAlternates('/tree/feedback', locale)
 	}
 }
 

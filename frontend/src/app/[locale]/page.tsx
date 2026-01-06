@@ -33,11 +33,11 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 		description: t('meta.description'),
 		openGraph: CreateOpenGraph(
 			t,
-			createAlternates('/').canonical,
+			createAlternates('/', locale).canonical,
 			locale
 		),
 		twitter: createTwitterMeta(t),
-		alternates: createAlternates('/')
+		alternates: createAlternates('/', locale)
 	}
 }
 

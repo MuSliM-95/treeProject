@@ -44,9 +44,9 @@ export async function generateMetadata({
 			google: 'K4NjTpnl-Yu4tWYOS-afGUtZA3PIIZM-AH30tKuJrzo',
 			yandex: '016d187c35064f23'
 		},
-		openGraph: CreateOpenGraph(t, createAlternates('/tree').canonical, locale),
+		openGraph: CreateOpenGraph(t, createAlternates('/tree', locale).canonical, locale),
 		twitter: createTwitterMeta(t),
-		alternates: createAlternates('/tree')
+		alternates: createAlternates('/tree', locale)
 	}
 }
 
