@@ -1,5 +1,5 @@
 {
-	"title": "About the Project",
+	"title": "About the Project — Genealogy",
 	"intro": "This project is designed for creating infographic-style family trees.",
 	"features": "You can create beautiful family tree infographics, customize their style, and save them. You can also download your tree in JSON, SVG, PNG, and JPG formats to share it with relatives.",
 	"storage": "The JSON format allows you to reload your tree back to the site, enabling you to store it on your own computer or external drive. Note that we do not store your tree on our server — it is stored in your browser’s local storage, so don’t forget to save it.",
