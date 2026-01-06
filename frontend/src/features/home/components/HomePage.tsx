@@ -46,7 +46,7 @@ export default function HomePage({ t, locale }: HeaderProps) {
 									variant='outline'
 									className='border-[#6a4e3a] text-[#6a4e3a] hover:bg-[#f3ebe3]'
 								>
-									{t('homepage.infoPage.lear-more')}
+									{t('homepage.infoPage.learn-more')}
 								</Button>
 							</Link>
 						</div>
