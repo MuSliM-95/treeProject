@@ -3,22 +3,19 @@ import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import {getPersistConfig } from 'redux-deep-persist'
+import { getPersistConfig } from 'redux-deep-persist'
 
 import treeReducer from '@/features/tree/hooks/treeSlice'
-import homeReducer from '@/features/home/hooks/homeSlice'
 
 const rootReducer = combineReducers({
-	tree: treeReducer,
-	home: homeReducer
+	tree: treeReducer
 })
 const persistConfig = getPersistConfig({
 	key: 'root',
 	storage,
 	blacklist: ['tree.node', 'tree.edge', 'tree.sevButtonActivate'],
 	rootReducer: combineReducers({
-		tree: treeReducer,
-		home: homeReducer
+		tree: treeReducer
 	})
 	
 }, 
