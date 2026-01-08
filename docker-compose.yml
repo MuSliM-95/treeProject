@@ -9,7 +9,7 @@ services:
       - "80:80" # проброс порта HTTP наружу
       - "443:443" # проброс порта HTTPS наружу
     volumes:
-      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./default.conf:/etc/nginx/conf.d/default.conf:ro"
       - "./gzip.conf:/etc/nginx/conf.d/gzip.conf:ro"
       - "/etc/letsencrypt:/etc/letsencrypt:ro"
     restart: always # автоматически перезапускать контейнер при падении
