@@ -9,9 +9,9 @@ services:
       - "80:80" # проброс порта HTTP наружу
       - "443:443" # проброс порта HTTPS наружу
     volumes:
-      - "./nginx.conf:/etc/nginx/nginx.conf:ro" # монтируем локальный конфиг Nginx внутрь контейнера
-      - "/etc/letsencrypt:/etc/letsencrypt:ro" # монтируем SSL сертификаты, только для чтения
-      - "./gzip.conf:/etc/nginx/gzip.conf:ro" # монтируем gzip файл внутрь контейнера
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./gzip.conf:/etc/nginx/conf.d/gzip.conf:ro"
+      - "/etc/letsencrypt:/etc/letsencrypt:ro"
     restart: always # автоматически перезапускать контейнер при падении
     depends_on:
       - backend # запускать nginx после backend (порядок запуска, но не гарантирует готовность)
