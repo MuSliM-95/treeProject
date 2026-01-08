@@ -21,15 +21,6 @@ export default function LanguageChanger({ locale }: ILanguageChanger) {
 	const currentPathname = usePathname()
 
 	const handleChange = (lang: 'ru' | 'en') => {
-		// set cookie for next-i18n-router
-		// const days = 30
-		// const date = new Date()
-		// date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-		// const expires = date.toUTCString()
-		// document.cookie =
-		// 	`NEXT_LOCALE=${lang};expires=${expires};path=/;SameSite=Lax` +
-		// 	(process.env.NEXT_PUBLIC_IS_DEV !== 'true' ? ';Secure' : '')
-
 	
 		const cleanedPath = currentPathname.replace(/^\/(en|ru)(?=\/|$)/, '')
 
