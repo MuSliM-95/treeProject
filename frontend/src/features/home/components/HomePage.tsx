@@ -12,6 +12,7 @@ import { Header } from './Header'
 import { HomeReactXFlow } from './HomeReactXFlow'
 import { Reviews } from './Reviews'
 import { pageConfig } from '@/shared/config'
+import Image from 'next/image'
 
 interface HeaderProps {
 	t: TFunction
@@ -54,7 +55,9 @@ export default function HomePage({ t, locale }: HeaderProps) {
 
 					<div>
 						<div className='max-w-sm overflow-hidden'>
-							<img
+							<Image
+							    width={384}
+								height={292}
 								src='/images/home-tree-img.png'
 								alt={t('homepage.familyImageAlt')}
 								className='w-full rounded-t-2xl object-cover'
