@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 
@@ -41,9 +42,11 @@ export const CustomAd: React.FC<CustomAdProps> = ({
 		>
 					{ad.image && (
 				<div className='xl1080:w-[100px] xl1080:justify-start flex w-full flex-shrink-0 justify-center'>
-					<img
+					<Image
+					    width={250}
+						height={200}
 						src={`/images/${ad.image}`}
-						alt={ad.title}
+						alt={ad.title!}
 						className=' w-[250px] h-[200px] object-contain'
 					/>
 				</div>
