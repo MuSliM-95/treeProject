@@ -12,7 +12,7 @@ interface Props {
 
 export const TelegramIcon: React.FC<Props> = ({ className, locale, t }) => {
 		return (
-		<div className='fixed top-1/3 left-2'>
+		<div className='hidden md:block fixed top-1/3 left-2'>
 			<Link
 				href={
 					locale === 'ru'
