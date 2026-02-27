@@ -19,10 +19,8 @@ WORKDIR /app
 RUN addgroup -S nodejs && adduser -S appuser -G nodejs
 USER appuser
 
-COPY package*.json ./
-RUN npm ci --omit=dev
-
 COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
 COPY src/locales ./dist/src/locales
 
 
