@@ -15,15 +15,18 @@ RUN npm run build
 FROM node:20-alpine AS runner
 WORKDIR /app
 
+# non-root
+RUN addgroup -S nodejs && adduser -S appuser -G nodejs
+USER appuser
+
 COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY --from=build /app/dist ./dist
-
 COPY src/locales ./dist/src/locales
 
 
 EXPOSE 9004
 
 
-CMD ["npm", "run", "start"]
+CMD ["node", "dist/src/main.js"]

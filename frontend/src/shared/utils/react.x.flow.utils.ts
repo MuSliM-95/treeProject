@@ -1,4 +1,3 @@
-import { TreeNode } from '@/features/tree/types';
 import { Position, MarkerType, Node, InternalNode } from '@xyflow/react';
 
 // this helper function returns the intersection point
