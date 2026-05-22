@@ -7,11 +7,17 @@ export default function middleware(request: NextRequest) {
 	const { nextUrl, cookies, url } = request
 	const originalPath = nextUrl.pathname
 
-
+	
+	
 	const session = cookies.get('genealogy.session.name')?.value
 	const locale = cookies.get('NEXT_LOCALE')?.value || 'ru'
 	const profilePage = originalPath.includes('/dashboard')
+	
+	const validLocales = ['ru', 'en'];
 
+if (!validLocales.includes(locale)) {
+  return NextResponse.redirect(new URL('/ru', url));
+}
 
 	if (profilePage && !session) {
 		return NextResponse.redirect(new URL(`/${locale}/auth/login`, url))
