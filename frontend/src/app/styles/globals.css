@@ -2,7 +2,12 @@
 @import "tw-animate-css";
 @tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
+
+/* html,
+body {
+	background: white;
+} */
 
 @theme inline {
   

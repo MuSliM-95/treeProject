@@ -50,7 +50,14 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 			locale
 		),
 		twitter: createTwitterMeta(t),
-		alternates: createAlternates('/tree', locale)
+		alternates: createAlternates('/tree', locale),
+		themeColor: '#ffffff',
+
+		appleWebApp: {
+			capable: true,
+			statusBarStyle: 'default',
+			title: 'Genealogy'
+		}
 	}
 }
 
