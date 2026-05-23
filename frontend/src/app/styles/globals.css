@@ -4,10 +4,10 @@
 
 /* @custom-variant dark (&:is(.dark *)); */
 
-/* html,
+html,
 body {
 	background: white;
-} */
+}
 
 @theme inline {
   
