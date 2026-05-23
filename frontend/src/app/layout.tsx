@@ -25,6 +25,8 @@ export default async function RootLayout({
 		<html lang='ru'>
 			<head>
 				<meta name='verify-admitad' content='cd19109cf6' />
+				{/* <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> */}
+				{/* <link rel="apple-touch-icon" href="/icons/apple-icon.png" /> */}
 			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
