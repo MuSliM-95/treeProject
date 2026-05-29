@@ -1,17 +1,26 @@
 #!/bin/bash
-# generate-certificate.sh
 
-# чистим папку, где могут находиться старые сертификаты
 rm -rf /etc/letsencrypt/live/certfolder*
 
-# выдаем себе сертификат (обратите внимание на переменные среды)
-certbot certonly --standalone --http-01-port 6000 --email $DOMAIN_EMAIL -d $DOMAIN_URL --cert-name=certfolder --key-type rsa --agree-tos
+certbot certonly \
+  --webroot \
+  -w /var/www/certbot \
+  --email $DOMAIN_EMAIL \
+  -d $DOMAIN_URL \
+  --cert-name certfolder \
+  --key-type rsa \
+  --agree-tos \
+  --non-interactive
 
-# удаляем старые сертификаты из примонтированной
-# через Docker Compose папки Nginx
-rm -rf /etc/nginx/fullchain.pem;
-rm -rf /etc/nginx/privkey.pem;
+if [ $? -ne 0 ]; then
+  echo "Certbot failed"
+  exit 1
+fi
 
-# копируем сертификаты из образа certbot в папку Nginx
-cp /etc/letsencrypt/live/certfolder*/fullchain.pem /etc/nginx/fullchain.pem
-cp /etc/letsencrypt/live/certfolder*/privkey.pem /etc/nginx/privkey.pem
+rm -f /etc/nginx/fullchain.pem
+rm -f /etc/nginx/privkey.pem
+
+cp /etc/letsencrypt/live/certfolder/fullchain.pem /etc/nginx/fullchain.pem
+cp /etc/letsencrypt/live/certfolder/privkey.pem /etc/nginx/privkey.pem
+
+echo "Certificate generated successfully"
