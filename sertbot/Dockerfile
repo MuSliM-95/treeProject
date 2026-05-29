@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-EXPOSE 6000 80
+EXPOSE 6000
 
 # читаем переменные среды из .env
 ARG DOMAIN_EMAIL
