@@ -18,7 +18,7 @@ services:
     networks:
       - dev # подключаем контейнер к сети dev
 
-  cerbot: 
+  certbot: 
     ports: 
       - "6000:80"
     env_file: 
