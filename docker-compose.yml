@@ -27,7 +27,7 @@ services:
     volumes: 
       - ./nginx/:/etc/nginx
     build: 
-      context: ./serbot
+      context: ./sertbot
       dockerfile: Dockerfile
       args: 
         DOMAIN_EMAIL: ${DOMAIN_EMAIL}
