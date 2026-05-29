@@ -18,18 +18,12 @@ services:
       - dev # подключаем контейнер к сети dev
 
   certbot:
-    build:
-      context: ./sertbot
-      dockerfile: Dockerfile
-
-    env_file:
-      - .env
-
+    image: certbot/certbot
     volumes:
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
-      - ./nginx/ssl:/etc/nginx
 
+      
   backend:
     container_name: express # имя контейнера на хосте
     build:
